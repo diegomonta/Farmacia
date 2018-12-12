@@ -1,0 +1,278 @@
+USE master
+GO
+
+IF EXISTS(SELECT * FROM Sysdatabases WHERE name='Farmacia')
+BEGIN
+	DROP DATABASE Farmacia
+END
+GO
+
+CREATE DATABASE Farmacia
+GO
+
+USE Farmacia
+GO
+
+--TABLAS
+--FARMACEUTICA
+CREATE TABLE Farmaceutica(
+RUC INT PRIMARY KEY NOT NULL,
+Nombre VARCHAR(50) NOT NULL,
+CorreoElectronico VARCHAR(50) NOT NULL,
+Direccion VARCHAR(50) NOT NULL
+);
+GO
+
+--MEDICAMENTO
+CREATE TABLE Medicamento(
+Codigo INT PRIMARY KEY NOT NULL,
+Farmaceutica INT FOREIGN KEY REFERENCES Farmaceutica(RUC) NOT NULL,
+Descripcion VARCHAR(50) NOT NULL,
+Precio FLOAT NOT NULL,
+Nombre VARCHAR(50) NOT NULL
+);
+GO
+
+--USUARIO
+CREATE TABLE Usuario(
+Usuario VARCHAR(20) PRIMARY KEY NOT NULL,
+Pass VARCHAR(10) NOT NULL,
+Nombre VARCHAR(50) NOT NULL
+);
+GO
+
+--CLIENTE
+CREATE TABLE Cliente(
+Usuario VARCHAR(20) PRIMARY KEY FOREIGN KEY REFERENCES Usuario(Usuario), 
+DireccionFacturacion VARCHAR(50) NOT NULL,
+Telefono VARCHAR(15) NOT NULL
+);
+GO
+
+--EMPLEADO
+CREATE TABLE Empleado(
+Usuario VARCHAR(20) PRIMARY KEY FOREIGN KEY REFERENCES Usuario(Usuario),
+InicioJornada DATE NOT NULL,
+FinJornada DATE NOT NULL
+);
+GO
+
+--PEDIDO
+CREATE TABLE Pedido(
+Numero INT PRIMARY KEY NOT NULL,
+Cliente VARCHAR(20) FOREIGN KEY REFERENCES Usuario(Usuario) NOT NULL,
+Medicamento INT FOREIGN KEY REFERENCES Medicamento(Codigo) NOT NULL,
+CantidadMedicamento INT NOT NULL,
+Estado VARCHAR(50) NOT NULL
+);
+GO
+
+--STORED PROCEDURES
+--FARMACEUTICA
+--ABM
+--ALTA
+CREATE PROCEDURE AltaFarmaceutica
+@RUC INT,
+@Nombre VARCHAR(50),
+@CorreoElecctronico VARCHAR(50),
+@Direccion VARCHAR (50)
+AS BEGIN
+	--VERIFICAR EXITENCIA FARMACEUTICA 
+	IF NOT EXISTS(SELECT * FROM Farmaceutica WHERE RUC=@RUC)
+	BEGIN
+		INSERT Farmaceutica (RUC,Nombre,CorreoElectronico,Direccion) VALUES (@RUC,@Nombre,@CorreoElecctronico,@Direccion) 
+		RETURN 0
+	END	
+	ELSE 
+	BEGIN
+		RETURN -1
+	END	
+END
+GO
+
+--BAJA
+CREATE PROCEDURE BajaFarmacecutica
+@RUC INT
+AS BEGIN
+	--VERIFICAR EXISTENCIA FARMACEUTICA
+	IF EXISTS (SELECT * FROM Farmaceutica WHERE RUC=@RUC)
+	BEGIN
+		DELETE Farmaceutica WHERE RUC=@RUC
+		RETURN 0
+	END	
+	ELSE
+	BEGIN
+		RETURN -1
+	END
+END 
+GO
+
+--MODIFICAR 
+CREATE PROCEDURE ModificarFarmaceutica
+@RUC INT,
+@Nombre VARCHAR(50),
+@CorreoElecctronico VARCHAR(50),
+@Direccion VARCHAR (50)
+AS BEGIN
+	--VERIFICAR EXISTENCIA FARMACEUTICA 
+	IF EXISTS(SELECT * FROM Farmaceutica WHERE RUC=@RUC)
+	BEGIN
+		UPDATE Farmaceutica SET Nombre=@Nombre,CorreoElectronico=@CorreoElecctronico,Direccion=@Direccion WHERE RUC=@RUC
+		RETURN 0
+	END	
+	ELSE 
+	BEGIN
+		RETURN -1
+	END
+END	
+GO
+
+--MEDICAMENTO
+--ABM
+--ALTA
+CREATE PROCEDURE AltaMedicamento
+@Codigo INT,
+@Farmaceutica INT,
+@Descripcion VARCHAR(50),
+@Precio FLOAT,
+@Nombre VARCHAR(50)
+AS BEGIN
+	--VERIFICAR EXISTENCIA DEL MEDICAMENTO 
+	IF NOT EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo)
+	BEGIN
+		INSERT Medicamento (Codigo,Farmaceutica,Descripcion,Precio,Nombre) VALUES (@Codigo,@Farmaceutica,@Descripcion,@Precio,@Nombre)
+		RETURN 0
+	END
+	ELSE 
+	BEGIN
+		RETURN -1
+	END
+END	
+GO
+
+--BAJA
+CREATE PROCEDURE BajaMedicamento
+@Codigo INT
+AS BEGIN
+	--VERIFICAR EXISTENCIA DEL MEDICAMENTO 
+	IF EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo)
+	BEGIN
+		DELETE Medicamento WHERE Codigo=@Codigo
+		RETURN 0
+	END
+	ELSE
+	BEGIN
+		RETURN -1
+	END
+END 
+GO
+
+---MODIFICACION
+CREATE PROCEDURE ModificarMedicamento
+@Codigo INT,
+@Farmaceutica INT,
+@Descripcion VARCHAR(50),
+@Precio FLOAT,
+@Nombre VARCHAR(50)
+AS BEGIN
+	--VERIFICAR EXISTENCIA MEDICAMENTO
+	IF EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo)
+	BEGIN
+		UPDATE Medicamento SET Codigo=@Codigo,Farmaceutica=@Farmaceutica,Descripcion=@Descripcion,Precio=@Precio,Nombre=@Nombre
+		RETURN 0
+	END
+	ELSE 
+	BEGIN
+		RETURN -1
+	END
+END
+GO
+
+--USUARIO
+--ABM
+--ALTA
+CREATE PROCEDURE AltaUsuario
+@Usuario VARCHAR(20),
+@Pass VARCHAR(10),
+@Nombre VARCHAR(50)
+AS BEGIN
+	--VERIFICAR EXISTENCIA USUARIO
+	IF NOT EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
+	BEGIN
+		INSERT Usuario (Usuario,Pass,Nombre) VALUES(@Usuario,@Pass,@Nombre)
+		RETURN 0
+	END
+	ELSE 
+	BEGIN
+		RETURN -1
+	END
+END
+GO
+
+--BAJA
+CREATE PROCEDURE BajaUsuario
+@Usuario VARCHAR(50)
+AS BEGIN
+	--VERIFICAR EXISTENCIA USUARIO
+	IF EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
+	BEGIN
+		DELETE Usuario WHERE Usuario=@Usuario
+		RETURN 0
+	END
+	ELSE
+	BEGIN
+		RETURN -1
+	END
+END 
+GO
+
+--MODIFICACION
+CREATE PROCEDURE ModificacionUsuario
+@Usuario VARCHAR(20),
+@Pass VARCHAR(10),
+@Nombre VARCHAR(50)
+AS BEGIN
+	--VERIFICAR EXISTENCIA USUARIO
+	IF EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
+	BEGIN
+		UPDATE Usuario SET Usuario=@Usuario,Pass=@Pass,Nombre=@Nombre
+		RETURN 0
+	END
+	ELSE
+	BEGIN
+		RETURN -1
+	END
+END
+GO
+
+--CLIENTE
+--ABM
+--ALTA
+CREATE PROCEDURE AltaCliente
+@Usuario VARCHAR(20),
+@DireccionFacturacion VARCHAR(50),
+@Telefono VARCHAR(15)
+AS BEGIN
+	--VERIFICAR EXISTENCIA USUARIO
+	IF NOT EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
+	BEGIN
+		INSERT Cliente (Usuario,DireccionFacturacion,Telefono) VALUES(@Usuario,@DireccionFacturacion,@Telefono)
+		RETURN 0
+	END
+	ELSE
+	BEGIN
+		RETURN -1
+	END
+END
+GO
+
+--BAJA
+CREATE PROCEDURE BajaCliente
+@Usuario VARCHAR(20)
+AS BEGIN
+	--VERIFICAR EXISTENCIA USUARIO
+	IF EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
+	BEGIN
+		RETURN 0
+	END
+END
