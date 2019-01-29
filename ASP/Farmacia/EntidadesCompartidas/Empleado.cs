@@ -5,7 +5,14 @@ using System.Text;
 
 namespace EntidadesCompartidas
 {
-    class Empleado
+    class Empleado:Usuario
     {
+        /*ATRIBUTOS*/
+        /*
+         * horario de trabajo es un objeto o un string concatenado de
+         */
+        /*PROPIEDADES*/
+
+        /*CONSTRUCTOR*/
     }
 }
