@@ -16,19 +16,40 @@ namespace EntidadesCompartidas
         public string pNombreUsuario
         {
             get { return NombreUsuario; }
-            set { NombreUsuario = value; }
+            set
+            {
+                /*VERIFICAR LONGITUD*/
+                if (value.Trim().Length <= 20)
+                    NombreUsuario = value.Trim().ToUpper();
+                else
+                    throw new Exception("El nombre usuario debe contener menos de 20 caracteres.");
+            }
         }
 
         public string pPass
         {
             get { return Pass; }
-            set { Pass = value; }
+            set
+            {
+                /*VERIFICAR LONGITUD*/
+                if (value.Trim().Length <= 10)
+                    Pass = value.Trim().ToUpper();
+                else
+                    throw new Exception("La password debe contener menos de 10 caracteres.");
+            }
         }
 
         public string pNombreCompleto
         {
             get { return NombreCompleto; }
-            set { NombreCompleto = value; }
+            set
+            {
+                /*VERIFICAR LONGITUD*/
+                if (value.Trim().Length <= 50)
+                    NombreCompleto = value.Trim().ToUpper();
+                else
+                    throw new Exception("El nombre debe contener menos de 50 caracteres.");
+            }
         }
 
         /*CONSTRUCTOR*/

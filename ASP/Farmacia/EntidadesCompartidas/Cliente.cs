@@ -15,7 +15,10 @@ namespace EntidadesCompartidas
         public string pDireccionFacturacion
         {
             get { return DireccionFacturacion; }
-            set { DireccionFacturacion = value; }
+            set {
+                /**/
+                DireccionFacturacion = value; 
+            }
         }
 
         public string pTelefono

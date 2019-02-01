@@ -1,13 +1,32 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farmacia", "Farmacia\Farmacia.csproj", "{C97E53CC-3DE4-43E9-BD46-0287AA4FA96F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntidadesCompartidas", "EntidadesCompartidas\EntidadesCompartidas.csproj", "{44DCA08A-A184-46D1-B1DB-67626AFE3C5E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistencia", "Persistencia\Persistencia.csproj", "{13FC37AB-FFA5-4E3B-96AA-BCF3EBA13054}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logica", "Logica\Logica.csproj", "{1EEBD3FB-79A8-4628-B934-EC3CA459C3FB}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Farmacia", "..\..\Farmacia\", "{1CF3E1D2-511D-4F54-9DEE-BE37C311D7BC}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/Farmacia"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\Farmacia\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Farmacia\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/Farmacia"
+		Release.AspNetCompiler.PhysicalPath = "..\..\Farmacia\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Farmacia\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "6521"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +34,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C97E53CC-3DE4-43E9-BD46-0287AA4FA96F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C97E53CC-3DE4-43E9-BD46-0287AA4FA96F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C97E53CC-3DE4-43E9-BD46-0287AA4FA96F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C97E53CC-3DE4-43E9-BD46-0287AA4FA96F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44DCA08A-A184-46D1-B1DB-67626AFE3C5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44DCA08A-A184-46D1-B1DB-67626AFE3C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44DCA08A-A184-46D1-B1DB-67626AFE3C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,6 +46,10 @@ Global
 		{1EEBD3FB-79A8-4628-B934-EC3CA459C3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EEBD3FB-79A8-4628-B934-EC3CA459C3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EEBD3FB-79A8-4628-B934-EC3CA459C3FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CF3E1D2-511D-4F54-9DEE-BE37C311D7BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CF3E1D2-511D-4F54-9DEE-BE37C311D7BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CF3E1D2-511D-4F54-9DEE-BE37C311D7BC}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CF3E1D2-511D-4F54-9DEE-BE37C311D7BC}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

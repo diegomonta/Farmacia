@@ -1,0 +1,4 @@
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Logica\bin\Debug\Logica.dll
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Logica\bin\Debug\Logica.pdb
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Logica\obj\Debug\Logica.dll
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Logica\obj\Debug\Logica.pdb

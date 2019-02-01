@@ -30,13 +30,28 @@ namespace EntidadesCompartidas
         public string pNombre
         {
             get { return Nombre; }
-            set { Nombre = value; }
+            set
+            {
+                /*VERIFICAR LONGITUD*/
+                if (value.Trim().Length <= 50)
+                    Nombre = value.Trim().ToUpper();
+                else
+                    throw new Exception("El nombre debe contener menos de 50 caracteres.");
+            }
         }
 
         public string pDescripcion
         {
             get { return Descripcion; }
-            set { Descripcion = value; }
+            set
+            {
+                /*VERIFICAR LONGITUD*/
+                if (value.Trim().Length <= 50)
+                    Descripcion = value.Trim().ToUpper();
+                else
+                    throw new Exception("La descripcion debe contener menos de 50 caracteres.");
+
+            }
         }
 
         public float pPrecio

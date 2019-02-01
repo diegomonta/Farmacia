@@ -1,0 +1,4 @@
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Persistencia\bin\Debug\Persistencia.dll
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Persistencia\bin\Debug\Persistencia.pdb
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Persistencia\obj\Debug\Persistencia.dll
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Persistencia\obj\Debug\Persistencia.pdb

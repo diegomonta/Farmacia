@@ -1,0 +1,4 @@
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.dll
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb
