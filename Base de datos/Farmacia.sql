@@ -82,7 +82,7 @@ AS BEGIN
 	IF NOT EXISTS(SELECT * FROM Farmaceutica WHERE RUC=@RUC)
 	BEGIN
 		INSERT Farmaceutica (RUC,Nombre,CorreoElectronico,Direccion) VALUES (@RUC,@Nombre,@CorreoElecctronico,@Direccion) 
-		RETURN 0
+		RETURN 1
 	END	
 	ELSE 
 	BEGIN
@@ -99,7 +99,7 @@ AS BEGIN
 	IF EXISTS (SELECT * FROM Farmaceutica WHERE RUC=@RUC)
 	BEGIN
 		DELETE Farmaceutica WHERE RUC=@RUC
-		RETURN 0
+		RETURN 1
 	END	
 	ELSE
 	BEGIN
@@ -119,7 +119,7 @@ AS BEGIN
 	IF EXISTS(SELECT * FROM Farmaceutica WHERE RUC=@RUC)
 	BEGIN
 		UPDATE Farmaceutica SET Nombre=@Nombre,CorreoElectronico=@CorreoElecctronico,Direccion=@Direccion WHERE RUC=@RUC
-		RETURN 0
+		RETURN 1
 	END	
 	ELSE 
 	BEGIN
@@ -142,7 +142,7 @@ AS BEGIN
 	IF NOT EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo)
 	BEGIN
 		INSERT Medicamento (Codigo,Farmaceutica,Descripcion,Precio,Nombre) VALUES (@Codigo,@Farmaceutica,@Descripcion,@Precio,@Nombre)
-		RETURN 0
+		RETURN 1
 	END
 	ELSE 
 	BEGIN
@@ -159,7 +159,7 @@ AS BEGIN
 	IF EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo)
 	BEGIN
 		DELETE Medicamento WHERE Codigo=@Codigo
-		RETURN 0
+		RETURN 1
 	END
 	ELSE
 	BEGIN
@@ -179,8 +179,8 @@ AS BEGIN
 	--VERIFICAR EXISTENCIA MEDICAMENTO
 	IF EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo)
 	BEGIN
-		UPDATE Medicamento SET Codigo=@Codigo,Farmaceutica=@Farmaceutica,Descripcion=@Descripcion,Precio=@Precio,Nombre=@Nombre
-		RETURN 0
+		UPDATE Medicamento SET Codigo=@Codigo,Farmaceutica=@Farmaceutica,Descripcion=@Descripcion,Precio=@Precio,Nombre=@Nombre WHERE Codigo=@Codigo
+		RETURN 1
 	END
 	ELSE 
 	BEGIN
@@ -201,7 +201,7 @@ AS BEGIN
 	IF NOT EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
 	BEGIN
 		INSERT Usuario (Usuario,Pass,Nombre) VALUES(@Usuario,@Pass,@Nombre)
-		RETURN 0
+		RETURN 1
 	END
 	ELSE 
 	BEGIN
@@ -218,7 +218,7 @@ AS BEGIN
 	IF EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
 	BEGIN
 		DELETE Usuario WHERE Usuario=@Usuario
-		RETURN 0
+		RETURN 1
 	END
 	ELSE
 	BEGIN
@@ -236,8 +236,8 @@ AS BEGIN
 	--VERIFICAR EXISTENCIA USUARIO
 	IF EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
 	BEGIN
-		UPDATE Usuario SET Usuario=@Usuario,Pass=@Pass,Nombre=@Nombre
-		RETURN 0
+		UPDATE Usuario SET Usuario=@Usuario,Pass=@Pass,Nombre=@Nombre WHERE Usuario=@Usuario
+		RETURN 1
 	END
 	ELSE
 	BEGIN
@@ -251,14 +251,30 @@ GO
 --ALTA
 CREATE PROCEDURE AltaCliente
 @Usuario VARCHAR(20),
+@Pass VARCHAR(10),
+@Nombre VARCHAR(50),
 @DireccionFacturacion VARCHAR(50),
 @Telefono VARCHAR(15)
 AS BEGIN
-	--VERIFICAR EXISTENCIA USUARIO
-	IF NOT EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
+	--VERIFICAR EXISTENCIA CLIENTE
+	IF NOT EXISTS(SELECT * FROM Cliente WHERE Usuario=@Usuario)
 	BEGIN
-		INSERT Cliente (Usuario,DireccionFacturacion,Telefono) VALUES(@Usuario,@DireccionFacturacion,@Telefono)
-		RETURN 0
+		BEGIN TRANSACTION
+			INSERT Usuario (Usuario,Pass,Nombre) VALUES(@Usuario,@Pass,@Nombre)
+			IF(@@ERROR!=0)
+				BEGIN
+					ROLLBACK TRANSACTION
+					RETURN 0
+				END
+				
+			INSERT Cliente (Usuario,DireccionFacturacion,Telefono) VALUES(@Usuario,@DireccionFacturacion,@Telefono)
+			IF(@@ERROR!=0)
+				BEGIN
+					ROLLBACK TRANSACTION
+					RETURN 0
+				END
+		COMMIT TRANSACTION
+		RETURN 1
 	END
 	ELSE
 	BEGIN
@@ -271,9 +287,166 @@ GO
 CREATE PROCEDURE BajaCliente
 @Usuario VARCHAR(20)
 AS BEGIN
-	--VERIFICAR EXISTENCIA USUARIO
-	IF EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
+	--VERIFICAR EXISTENCIA CLIENTE
+	IF EXISTS(SELECT * FROM Cliente WHERE Usuario=@Usuario)
 	BEGIN
-		RETURN 0
+		BEGIN TRANSACTION
+			DELETE Cliente WHERE Cliente.Usuario=@Usuario
+			IF(@@ERROR!=0)
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN 0
+			END
+			
+			DELETE Usuario WHERE Usuario.Usuario=@Usuario
+			IF(@@ERROR!=0)
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN 0
+			END
+		COMMIT TRANSACTION
+		RETURN 1
+	END
+	ELSE
+	BEGIN
+		RETURN -1
+	END
+END
+GO
+
+--MODIFICAR
+CREATE PROCEDURE ModificarCliente
+@Usuario VARCHAR(20),
+@Pass VARCHAR(10),
+@Nombre VARCHAR(50),
+@DireccionFacturacion VARCHAR(50),
+@Telefono VARCHAR(15)
+AS BEGIN
+	--VERIFICAR EXISTENCIA CLIENTE
+	IF NOT EXISTS(SELECT * FROM Cliente WHERE Usuario=@Usuario)
+	BEGIN
+		BEGIN TRANSACTION
+			UPDATE Usuario SET Pass=@Pass,Nombre=@Nombre WHERE Usuario=@Usuario
+			IF(@@ERROR!=0)
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN 0
+			END
+			
+			UPDATE Cliente SET DireccionFacturacion=@DireccionFacturacion,Telefono=@Telefono WHERE Usuario=@Usuario
+			IF(@@ERROR!=0)
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN 0
+			END
+		COMMIT TRANSACTION
+		RETURN 1
+	END
+	ELSE
+	BEGIN
+		RETURN -1
+	END
+END
+GO
+
+--EMPLEADO
+--ABM
+--ALTA
+CREATE PROCEDURE AltaEmpleado
+@Usuario VARCHAR(20),
+@Pass VARCHAR(10),
+@Nombre VARCHAR(50),
+@InicioJornada DATE,
+@FinJornada DATE
+AS BEGIN
+	--VERIFICAR EXISTENCIA EMPLEADO
+	IF NOT EXISTS(SELECT * FROM Empleado WHERE Usuario=@Usuario)
+	BEGIN
+		BEGIN TRANSACTION
+			INSERT Usuario (Usuario,Pass,Nombre) VALUES(@Usuario,@Pass,@Nombre)
+			IF(@@ERROR!=0)
+				BEGIN
+					ROLLBACK TRANSACTION
+					RETURN 0
+				END
+				
+			INSERT Empleado(Usuario,InicioJornada,FinJornada) VALUES(@Usuario,@InicioJornada,@FinJornada)
+			IF(@@ERROR!=0)
+				BEGIN
+					ROLLBACK TRANSACTION
+					RETURN 0
+				END
+		COMMIT TRANSACTION
+		RETURN 1
+	END
+	ELSE
+	BEGIN
+		RETURN -1
+	END
+END
+GO
+
+--BAJA
+CREATE PROCEDURE BajaEmpleado
+@Usuario VARCHAR(20)
+AS BEGIN
+	--VERIFICAR EXISTENCIA EMPLEADO
+	IF EXISTS(SELECT * FROM Empleado WHERE Usuario=@Usuario)
+	BEGIN
+		BEGIN TRANSACTION
+			DELETE Empleado WHERE Empleado.Usuario=@Usuario
+			IF(@@ERROR!=0)
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN 0
+			END
+			
+			DELETE Usuario WHERE Usuario.Usuario=@Usuario
+			IF(@@ERROR!=0)
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN 0
+			END
+		COMMIT TRANSACTION
+		RETURN 1
+	END
+	ELSE
+	BEGIN
+		RETURN -1
+	END
+END
+GO
+
+--MODIFICAR
+CREATE PROCEDURE ModificarEmpleado
+@Usuario VARCHAR(20),
+@Pass VARCHAR(10),
+@Nombre VARCHAR(50),
+@InicioJornada DATE,
+@FinJornada DATE
+AS BEGIN
+	--VERIFICAR EXISTENCIA DE EMPLEADO
+	IF NOT EXISTS(SELECT * FROM Empleado WHERE Usuario=@Usuario)
+	BEGIN
+		BEGIN TRANSACTION
+			UPDATE Usuario SET Pass=@Pass,Nombre=@Nombre WHERE Usuario=@Usuario
+			IF(@@ERROR!=0)
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN 0
+			END
+			
+			UPDATE Empleado SET InicioJornada=@InicioJornada,FinJornada=@FinJornada WHERE Usuario=@Usuario
+			IF(@@ERROR!=0)
+			BEGIN
+				ROLLBACK TRANSACTION
+				RETURN 0
+			END
+		COMMIT TRANSACTION
+		RETURN 1
+	END
+	ELSE
+	BEGIN
+		RETURN -1
 	END
 END
