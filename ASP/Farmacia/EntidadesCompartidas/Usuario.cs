@@ -19,10 +19,10 @@ namespace EntidadesCompartidas
             set
             {
                 /*VERIFICAR LONGITUD*/
-                if (value.Trim().Length <= 20)
+                if (value.Trim().Length <= 20 && value.Trim().Length >= 5)
                     NombreUsuario = value.Trim().ToUpper();
                 else
-                    throw new Exception("El nombre usuario debe contener menos de 20 caracteres.");
+                    throw new Exception("El nombre usuario debe tener entre 5 y 20 caracteres.");
             }
         }
 
@@ -32,10 +32,10 @@ namespace EntidadesCompartidas
             set
             {
                 /*VERIFICAR LONGITUD*/
-                if (value.Trim().Length <= 10)
+                if (value.Trim().Length <= 10 && value.Trim().Length >= 5)
                     Pass = value.Trim().ToUpper();
                 else
-                    throw new Exception("La password debe contener menos de 10 caracteres.");
+                    throw new Exception("La password debe tener entre 5 y 10 caracteres.");
             }
         }
 
@@ -45,10 +45,10 @@ namespace EntidadesCompartidas
             set
             {
                 /*VERIFICAR LONGITUD*/
-                if (value.Trim().Length <= 50)
+                if (value.Trim().Length <= 50 && value.Trim().Length >= 3)
                     NombreCompleto = value.Trim().ToUpper();
                 else
-                    throw new Exception("El nombre debe contener menos de 50 caracteres.");
+                    throw new Exception("El nombre debe tener entre 3 y 50 caracteres.");
             }
         }
 

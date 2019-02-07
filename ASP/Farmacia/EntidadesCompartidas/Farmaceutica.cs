@@ -40,10 +40,10 @@ namespace EntidadesCompartidas
             set
             {
                 /*VERIFICAR LONGITUD*/
-                if (value.Trim().Length <= 50)
+                if (value.Trim().Length <= 50 && value.Trim().Length >= 5)
                     Nombre = value.Trim().ToUpper();
                 else
-                    throw new Exception("El nombre debe contener menos de 50 caracteres.");
+                    throw new Exception("El nombre debe tener entre 5 y 50 caracteres.");
             }
         }
 
@@ -53,14 +53,16 @@ namespace EntidadesCompartidas
             set
             {
                 /*VERIFICAR LONGITUD*/
-                if (value.Trim().Length <= 50)
+                if (value.Trim().Length <= 50 && value.Trim().Length >= 6)
                 {
                     /*VERIFICAR PATRON*/
                     if (Regex.Match(value, @"^[_a-z0-9-]+(.[a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$").Success)
                         CorreoElectronico = value.Trim().ToUpper();
                     else
-                        throw new Exception("El correo ingresado no es correcto.");
+                        throw new Exception("El correo ingresado no es un correo.");
                 }
+                else
+                    throw new Exception("El correo debe tener entre 6 y 50 caracteres.");
             }
         }
 
@@ -70,10 +72,10 @@ namespace EntidadesCompartidas
             set
             {
                 /*VERIFICAR LONGITUD*/
-                if (value.Trim().Length <= 50)
+                if (value.Trim().Length <= 50 && value.Trim().Length >= 5)
                     Direccion = value.Trim().ToUpper();
                 else
-                    throw new Exception("La direccion debe contener menos de 50 caracteres.");
+                    throw new Exception("La direccion debe tener entre 5 y 50 caracteres.");
             }
         }
 

@@ -33,10 +33,10 @@ namespace EntidadesCompartidas
             set
             {
                 /*VERIFICAR LONGITUD*/
-                if (value.Trim().Length <= 50)
+                if (value.Trim().Length <= 50 && value.Trim().Length >= 2)
                     Nombre = value.Trim().ToUpper();
                 else
-                    throw new Exception("El nombre debe contener menos de 50 caracteres.");
+                    throw new Exception("El nombre debe tener entre 2 y 50 caracteres.");
             }
         }
 
@@ -46,10 +46,10 @@ namespace EntidadesCompartidas
             set
             {
                 /*VERIFICAR LONGITUD*/
-                if (value.Trim().Length <= 50)
+                if (value.Trim().Length <= 50 && value.Trim().Length >= 5)
                     Descripcion = value.Trim().ToUpper();
                 else
-                    throw new Exception("La descripcion debe contener menos de 50 caracteres.");
+                    throw new Exception("La descripcion debe tener entre 5 y 50 caracteres.");
 
             }
         }

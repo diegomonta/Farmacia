@@ -1,12 +1,12 @@
 Primer tutoria:
 (HECHO) -Modelo conceptual 
-(NO HECHO) -MER // queda para proxima tutoria
-(NO HECHO) -Pasaje a tablas // queda para proxima tutoria
+(HECHO) -MER // queda para proxima tutoria
+(HECHO) -Pasaje a tablas // queda para proxima tutoria
 (HECHO) -Entidades compartidas 
 (HECHO) -Script DB 
 
 Segunda tutoria:
-(NO HECHO) -MER 
+(HECHO) -MER 
 (NO HECHO) -TERMINAR CON EL SCRIPT
 (NO HECHO) -Pasaje a tablas 
 (NO HECHO) -Interfaz grafica completa 

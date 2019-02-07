@@ -21,7 +21,12 @@ namespace EntidadesCompartidas
         public DateTime pFinJornadaLaboral
         {
             get { return FinJornadaLaboral; }
-            set { FinJornadaLaboral = value; }
+            set {
+                if (value > InicioJornadaLaboral)
+                    FinJornadaLaboral = value;
+                else
+                    throw new Exception("El fin de la jornada debe ser mayor al inicio de la jornada.");
+            }
         }
 
         /*CONSTRUCTOR*/

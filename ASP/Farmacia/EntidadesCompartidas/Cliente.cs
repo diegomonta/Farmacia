@@ -15,16 +15,26 @@ namespace EntidadesCompartidas
         public string pDireccionFacturacion
         {
             get { return DireccionFacturacion; }
-            set {
-                /**/
-                DireccionFacturacion = value; 
+            set
+            {
+                /*VERIFICAR LONGITUD*/
+                if (value.Trim().Length <= 50 && value.Trim().Length >= 5)
+                    DireccionFacturacion = value.Trim().ToUpper();
+                else
+                    throw new Exception("La direccion de facturacion debe tener entre 5 y 50 caracteres.");
             }
         }
 
         public string pTelefono
         {
             get { return Telefono; }
-            set { Telefono = value; }
+            set {
+                /*VERIFICAR LONGITUD*/
+                if (value.Trim().Length <= 15 && value.Trim().Length >= 5)
+                    Telefono = value;
+                else
+                    throw new Exception("El numero de telefono debe tener entre 5 y 15 caracteres.");
+            }
         }
 
         /*CONSTRUCTOR*/

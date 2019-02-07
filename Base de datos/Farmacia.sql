@@ -450,3 +450,27 @@ AS BEGIN
 		RETURN -1
 	END
 END
+GO
+
+--LOGEO
+--BUSQUEDAS
+--EMPLEADO
+CREATE PROCEDURE BuscarEmpleado
+@Usuario VARCHAR(20),
+@Pass VARCHAR(10)
+AS BEGIN
+	SELECT * FROM Usuario 
+	INNER JOIN Empleado ON Empleado.Usuario=Usuario.Usuario
+	WHERE Usuario.Usuario=@Usuario AND Pass=@Pass
+END
+GO
+
+--CLIENTE
+CREATE PROCEDURE BuscarCliente
+@Usuario VARCHAR(20),
+@Pass VARCHAR(10)
+AS BEGIN
+	SELECT * FROM Usuario 
+	INNER JOIN Cliente ON Cliente.Usuario=Usuario.Usuario
+	WHERE Usuario.Usuario=@Usuario AND Pass=@Pass
+END

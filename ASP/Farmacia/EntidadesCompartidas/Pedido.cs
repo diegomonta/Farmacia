@@ -42,7 +42,21 @@ namespace EntidadesCompartidas
         public string pEstado
         {
             get { return Estado; }
-            set { Estado = value; }
+            set
+            {
+                switch (value.Trim().ToUpper())
+                {
+                    /*ESTADOS CORRECTOS*/
+                    case "CANCELADO":
+                    case "ACTIVO":
+                    case "ENTREGADO":
+                        Estado = value;
+                        break;
+
+                    default:
+                        throw new Exception("El estado no es correcto.");
+                }
+            }
         }
 
         /*CONSTRUCTOR*/
