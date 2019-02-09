@@ -26,7 +26,7 @@ GO
 --MEDICAMENTO
 CREATE TABLE Medicamento(
 Codigo INT NOT NULL,
-Farmaceutica INT FOREIGN KEY REFERENCES Farmaceutica(RUC) NOT NULL,
+Farmaceutica VARCHAR(13) FOREIGN KEY REFERENCES Farmaceutica(RUC) NOT NULL,
 Descripcion VARCHAR(50) NOT NULL,
 Precio FLOAT NOT NULL,
 Nombre VARCHAR(50) NOT NULL,
@@ -62,9 +62,11 @@ GO
 CREATE TABLE Pedido(
 Numero INT PRIMARY KEY NOT NULL,
 Cliente VARCHAR(20) FOREIGN KEY REFERENCES Usuario(Usuario) NOT NULL,
-Medicamento INT FOREIGN KEY REFERENCES Medicamento(Codigo) NOT NULL,
+MedicamentoCodigo INT,
+MedicamentoFarmaceutica VARCHAR(13),
 CantidadMedicamento INT NOT NULL,
-Estado VARCHAR(50) NOT NULL
+Estado VARCHAR(50) NOT NULL,
+FOREIGN KEY (MedicamentoCodigo,MedicamentoFarmaceutica) REFERENCES Medicamento(Codigo,Farmaceutica)
 );
 GO
 

@@ -9,7 +9,7 @@ namespace EntidadesCompartidas
     {
         /*ATRIBUTOS*/
         private int Codigo;
-        private int Farmaceutica;
+        private Farmaceutica Farmaceutica;
         private string Nombre;
         private string Descripcion;
         private float Precio;
@@ -21,10 +21,17 @@ namespace EntidadesCompartidas
             set { Codigo = value; }
         }
 
-        public int pFarmaceutica
+        public Farmaceutica pFarmaceutica
         {
             get { return Farmaceutica; }
-            set { Farmaceutica = value; }
+            set
+            {
+                /*VERIFICAR NULL*/
+                if (value != null)
+                    Farmaceutica = value;
+                else
+                    throw new Exception("La farmaceutica no existe.");
+            }
         }
 
         public string pNombre
@@ -61,7 +68,7 @@ namespace EntidadesCompartidas
         }
 
         /*CONSTRUCTOR*/
-        public Medicamento(int _Codigo, int _Farmaceutica, string _Nombre, string _Descripcion, float _Precio)
+        public Medicamento(int _Codigo, Farmaceutica _Farmaceutica, string _Nombre, string _Descripcion, float _Precio)
         {
             pCodigo = _Codigo;
             pFarmaceutica = _Farmaceutica;

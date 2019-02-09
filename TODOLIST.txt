@@ -7,7 +7,7 @@ Primer tutoria:
 
 Segunda tutoria:
 (HECHO) -MER 
-(NO HECHO) -TERMINAR CON EL SCRIPT
+(NO SE SABE) -TERMINAR CON EL SCRIPT //creo que ya lo termine
 (NO HECHO) -Pasaje a tablas 
 (NO HECHO) -Interfaz grafica completa 
 (NO HECHO) -Mantenimiento de farmacias y medicamentos (ABM) 

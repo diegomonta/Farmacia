@@ -24,13 +24,27 @@ namespace EntidadesCompartidas
         public Cliente pClienteComprador
         {
             get { return ClienteComprador; }
-            set { ClienteComprador = value; }
+            set
+            {
+                /*VERIFICAR NULL*/
+                if (value != null)
+                    ClienteComprador = value;
+                else
+                    throw new Exception("El cliente no existe.");
+            }
         }
 
         public Medicamento pMedicamentoPedido
         {
             get { return MedicamentoPedido; }
-            set { MedicamentoPedido = value; }
+            set
+            {
+                /*VERIFICAR NULL*/
+                if (value != null)
+                    MedicamentoPedido = value;
+                else
+                    throw new Exception("El medicamento no existe.");
+            }
         }
 
         public int pCantidad
@@ -47,10 +61,10 @@ namespace EntidadesCompartidas
                 switch (value.Trim().ToUpper())
                 {
                     /*ESTADOS CORRECTOS*/
-                    case "CANCELADO":
-                    case "ACTIVO":
+                    case "GENERADO":
+                    case "ENVIADO":
                     case "ENTREGADO":
-                        Estado = value;
+                        Estado = value.Trim().ToUpper();
                         break;
 
                     default:
