@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EntidadesCompartidas
 {
-    class Usuario
+    public class Usuario
     {
         /*ATRIBUTOS*/
         private string NombreUsuario;

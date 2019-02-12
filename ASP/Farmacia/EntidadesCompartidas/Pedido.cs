@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EntidadesCompartidas
 {
-    class Pedido
+    public class Pedido
     {
         /*ATRIBUTOS*/
         private int Numero;

@@ -1,0 +1,5 @@
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Farmacia\bin\Farmacia.dll
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Farmacia\bin\Farmacia.pdb
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Farmacia\obj\Debug\Farmacia.csprojResolveAssemblyReference.cache
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Farmacia\obj\Debug\Farmacia.dll
+C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Farmacia\obj\Debug\Farmacia.pdb

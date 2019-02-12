@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EntidadesCompartidas
 {
-    class Cliente : Usuario
+    public class Cliente : Usuario
     {
         /*ATRIBUTOS*/
         private string DireccionFacturacion;

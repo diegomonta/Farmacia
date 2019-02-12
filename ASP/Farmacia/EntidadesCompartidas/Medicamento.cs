@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EntidadesCompartidas
 {
-    class Medicamento
+    public class Medicamento
     {
         /*ATRIBUTOS*/
         private int Codigo;

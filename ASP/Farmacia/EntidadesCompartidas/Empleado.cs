@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EntidadesCompartidas
 {
-    class Empleado : Usuario
+    public class Empleado : Usuario
     {
         /*ATRIBUTOS*/
         private DateTime InicioJornadaLaboral;

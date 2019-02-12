@@ -45,13 +45,23 @@
         <!--ALTA BAJA MODIFICACION BOTONES-->
         <tr>
             <td>
-                <asp:Button ID="btnAlta" runat="server" />
+                <asp:Button ID="btnAlta" runat="server" Text="Alta" OnClick="btnAlta_Click" />
             </td>
             <td>
-                <asp:Button ID="btnBaja" runat="server" />
+                <asp:Button ID="btnBaja" runat="server" Text="Baja" OnClick="btnBaja_Click" />
             </td>
             <td>
-                <asp:Button ID="btnModificar" runat="server" />
+                <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
+            </td>
+            <td>
+                <asp:Button ID="btnBuscar" Text="Buscar" runat="server" OnClick="btnBuscar_Click" />
+            </td>
+            <td>
+                <asp:Button ID="btnLimpiar" Text="Limpiar" runat="server" 
+                    onclick="btnLimpiar_Click"  />
+            </td>
+            <td>
+                <asp:Button ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
             </td>
         </tr>
     </table>

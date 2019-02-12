@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace EntidadesCompartidas
 {
-    class Farmaceutica
+    public class Farmaceutica
     {
         /*ATRIBUTOS*/
         private string RUC;

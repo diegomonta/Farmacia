@@ -62,6 +62,9 @@
                 <asp:Button ID="btnModificar" Text="Modifciar" runat="server" />
             </td>
             <td>
+                <asp:Button ID="btnBuscar" Text="Buscar" runat="server" />
+            </td>
+            <td>
                 <asp:Button ID="btnCancelar" Text="Cancelar" runat="server" />
             </td>
         </tr>
