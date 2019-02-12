@@ -10,7 +10,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Farmacia", "Farmacia\", "{98E9A4BE-0725-4BCF-8CDA-2DED1D409E09}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{1EEBD3FB-79A8-4628-B934-EC3CA459C3FB}|Logica.dll;{44DCA08A-A184-46D1-B1DB-67626AFE3C5E}|EntidadesCompartidas.dll;"
+		ProjectReferences = "{1EEBD3FB-79A8-4628-B934-EC3CA459C3FB}|Logica.dll;{44DCA08A-A184-46D1-B1DB-67626AFE3C5E}|EntidadesCompartidas.dll;{13FC37AB-FFA5-4E3B-96AA-BCF3EBA13054}|Persistencia.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Farmacia"
 		Debug.AspNetCompiler.PhysicalPath = "Farmacia\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Farmacia\"
