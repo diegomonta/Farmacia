@@ -16,15 +16,21 @@ public partial class MasterPage : System.Web.UI.MasterPage
             LogedOut();
     }
 
-    public static void LogedIn()
+    public void LogedIn()
     {
         //BOTONES 
-        //this.btnLogIn.Enabled = false;
-        //this.btnLogOut.Enabled = true;
+        btnLogIn.Enabled = false;
+        btnLogOut.Enabled = true;
+
     }
 
-    public static void LogedOut() {
-        //this.btnLogIn.Enabled = true;
-        //this.btnLogOut.Enabled = false;
+    public void LogedOut()
+    {
+        btnLogIn.Enabled = true;
+        btnLogOut.Enabled = false;
+    }
+    protected void btnLogIn_Click(object sender, EventArgs e)
+    {
+
     }
 }

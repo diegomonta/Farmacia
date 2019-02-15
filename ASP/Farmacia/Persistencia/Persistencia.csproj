@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion.cs" />
+    <Compile Include="PersistenciaCliente.cs" />
+    <Compile Include="PersistenciaEmpleado.cs" />
     <Compile Include="PersistenciaFarmaceutica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

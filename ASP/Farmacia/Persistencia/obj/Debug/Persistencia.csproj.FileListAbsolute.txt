@@ -5,3 +5,10 @@ C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Persistencia\
 C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Persistencia\obj\Debug\Persistencia.csprojResolveAssemblyReference.cache
 C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Persistencia\bin\Debug\EntidadesCompartidas.dll
 C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Persistencia\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Persistencia\bin\Debug\Persistencia.dll
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Persistencia\bin\Debug\Persistencia.pdb
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Persistencia\bin\Debug\EntidadesCompartidas.dll
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Persistencia\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Persistencia\obj\Debug\Persistencia.csprojResolveAssemblyReference.cache
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Persistencia\obj\Debug\Persistencia.dll
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Persistencia\obj\Debug\Persistencia.pdb

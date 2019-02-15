@@ -60,8 +60,8 @@ GO
 
 --PEDIDO
 CREATE TABLE Pedido(
-Numero INT PRIMARY KEY NOT NULL,
-Cliente VARCHAR(20) FOREIGN KEY REFERENCES Usuario(Usuario) NOT NULL,
+Numero INT PRIMARY KEY,
+Cliente VARCHAR(20) FOREIGN KEY REFERENCES Cliente(Usuario),
 MedicamentoCodigo INT,
 MedicamentoFarmaceutica VARCHAR(13),
 CantidadMedicamento INT NOT NULL,
@@ -73,6 +73,7 @@ GO
 --STORED PROCEDURES
 --FARMACEUTICA
 --ABM
+--LISTAR/BUSCAR
 --ALTA
 CREATE PROCEDURE AltaFarmaceutica
 @RUC INT,
@@ -128,6 +129,21 @@ AS BEGIN
 		RETURN -1
 	END
 END	
+GO
+
+--LISTAR
+CREATE PROCEDURE ListarFarmaceutica
+@RUC VARCHAR(13)
+AS BEGIN
+	SELECT * FROM Farmaceutica WHERE RUC=@RUC
+END
+GO
+
+--BUSCAR 
+CREATE PROCEDURE BuscarFarmaceutica
+AS BEGIN 
+	SELECT * FROM Farmaceutica
+END
 GO
 
 --MEDICAMENTO
@@ -249,6 +265,7 @@ END
 GO
 
 --CLIENTE
+--BUSCAR
 --ABM
 --ALTA
 CREATE PROCEDURE AltaCliente
@@ -348,6 +365,17 @@ AS BEGIN
 	BEGIN
 		RETURN -1
 	END
+END
+GO
+
+--LOGUEO
+CREATE PROCEDURE LogInCliente
+@Usuario VARCHAR(20),
+@Pass VARCHAR(10)
+AS BEGIN
+	SELECT * FROM Usuario 
+	INNER JOIN Cliente ON Cliente.Usuario=Usuario.Usuario
+	WHERE Usuario.Usuario=@Usuario AND Pass=@Pass
 END
 GO
 
@@ -455,9 +483,7 @@ END
 GO
 
 --LOGEO
---BUSQUEDAS
---EMPLEADO
-CREATE PROCEDURE BuscarEmpleado
+CREATE PROCEDURE LogInEmpleado
 @Usuario VARCHAR(20),
 @Pass VARCHAR(10)
 AS BEGIN
@@ -466,13 +492,3 @@ AS BEGIN
 	WHERE Usuario.Usuario=@Usuario AND Pass=@Pass
 END
 GO
-
---CLIENTE
-CREATE PROCEDURE BuscarCliente
-@Usuario VARCHAR(20),
-@Pass VARCHAR(10)
-AS BEGIN
-	SELECT * FROM Usuario 
-	INNER JOIN Cliente ON Cliente.Usuario=Usuario.Usuario
-	WHERE Usuario.Usuario=@Usuario AND Pass=@Pass
-END

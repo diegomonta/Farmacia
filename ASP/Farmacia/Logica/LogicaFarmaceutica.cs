@@ -11,6 +11,9 @@ namespace Logica
         //ALTA FARMACEUTICA
         public static void AltaFarmaceutica(Farmaceutica farmaceutica)
         {
+            /*
+             * 
+             */
         }
 
         //BAJA FARMACEUTICA

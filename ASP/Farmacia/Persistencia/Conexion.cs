@@ -8,12 +8,12 @@ namespace Persistencia
     internal class Conexion
     {
         //ATRIBUTO CONNECTION STRING
-        private string ConnectionString = "Data Source=.; Initial Catalog = Farmacia; Integrated Security = true";
+        private static string _connectionString = "Data Source=.; Initial Catalog = Farmacia; Integrated Security = true";
 
         //PROPIEDAD GET CONNECTION STRING
-        public string connectionString
+        public static string ConnectionString
         {
-            get { return ConnectionString; }
+            get { return _connectionString; }
         }
     }
 }

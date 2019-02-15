@@ -11,12 +11,101 @@ namespace Persistencia
     public class PersistenciaFarmaceutica
     {
         //BUSCAR FARMACEUTICA
+        public Farmaceutica BuscarFarmaceutica(string RUC)
+        {
+            //GET CONNECTION STRING
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand sp = new SqlCommand("BuscarFarmaceutica", connection);
+            sp.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            sp.Parameters.AddWithValue("@RUC", RUC);
+
+            //READER
+            SqlDataReader reader;
+
+            //PREPARAR VARIABLES
+            Farmaceutica farmaceutica;
+            string Nombre;
+            string CorreoElectronico;
+            string Direccion;
+            try
+            {
+                connection.Open();
+                reader = sp.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    Nombre = (string)reader["Nombre"];
+                    CorreoElectronico = (string)reader["CorreoElectronico"];
+                    Direccion = (string)reader["Direccion"];
+
+                    reader.Read();
+                    farmaceutica = new Farmaceutica(RUC, Nombre, CorreoElectronico, Direccion);
+                }
+                else
+                    return null;
+
+                return farmaceutica;
+            }
+            catch { throw; }
+
+            finally { connection.Close(); }
+        }
+
+        //LISTAR FARMACEUTICAS
+        public List<Farmaceutica> ListarFarmaceuticas()
+        {
+            //GET CONNECTION STRING 
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand Command = new SqlCommand("ListarFarmaceutica", connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            //READER
+            SqlDataReader Reader;
+
+            //PREPARAR VARIABLES
+            string RUC;
+            string Nombre;
+            string CorreoElectronico;
+            string Direccion;
+            Farmaceutica farmaceutica = null;
+            List<Farmaceutica> List = new List<Farmaceutica>();
+            try
+            {
+                connection.Open();
+                Reader = Command.ExecuteReader();
+                while (Reader.Read())
+                {
+                    RUC = (string)Reader["RUC"];
+                    Nombre = (string)Reader["Nombre"];
+                    CorreoElectronico = (string)Reader["CorreoElectronico"];
+                    Direccion = (string)Reader["Direccion"];
+                    farmaceutica = new Farmaceutica(RUC, Nombre, CorreoElectronico, Direccion);
+                    List.Add(farmaceutica);
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error en la base de datos: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return List;
+        }
 
         //ALTA FARMACEUTICA
         public void AltaFarmaceutica(Farmaceutica farmaceutica)
         {
             //GET CONNECTION STRING
-            SqlConnection connection = new SqlConnection(@"Data Source=.; Initial Catalog=Farmacia; Integrated Security=true");
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
 
             //STORED PROCEDURE
             SqlCommand sp = new SqlCommand("AltaFarmaceutica", connection);
@@ -63,7 +152,7 @@ namespace Persistencia
         public void BajaFarmaceutica(Farmaceutica farmaceutica)
         {
             //GET CONNECTION STRING
-            SqlConnection connection = new SqlConnection(@"Data Source=.; Initial Catalog=Farmacia; Integrated Security=true");
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
 
             //STORED PROCEDURE
             SqlCommand sp = new SqlCommand("BajaFarmacecutica", connection);
@@ -107,7 +196,7 @@ namespace Persistencia
         public void ModificarFarmaceutica(Farmaceutica farmaceutica)
         {
             //GET CONNECTION STRING
-            SqlConnection connection = new SqlConnection(@"Data Source=.; Initial Catalog=Farmacia; Integrated Security=true");
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
 
             //STORED PROCEDURE
             SqlCommand sp = new SqlCommand("ModificarFarmaceutica", connection);

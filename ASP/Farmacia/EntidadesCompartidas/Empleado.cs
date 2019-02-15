@@ -8,28 +8,23 @@ namespace EntidadesCompartidas
     public class Empleado : Usuario
     {
         /*ATRIBUTOS*/
-        private DateTime InicioJornadaLaboral;
-        private DateTime FinJornadaLaboral;
+        private string InicioJornadaLaboral;
+        private string FinJornadaLaboral;
 
         /*PROPIEDADES*/
-        public DateTime pInicioJornadaLaboral
+        public string pInicioJornadaLaboral
         {
             get { return InicioJornadaLaboral; }
             set { InicioJornadaLaboral = value; }
         }
 
-        public DateTime pFinJornadaLaboral
+        public string pFinJornadaLaboral
         {
             get { return FinJornadaLaboral; }
-            set {
-                if (value > InicioJornadaLaboral)
-                    FinJornadaLaboral = value;
-                else
-                    throw new Exception("El fin de la jornada debe ser mayor al inicio de la jornada.");
-            }
+            set { FinJornadaLaboral = value; }
         }
 
         /*CONSTRUCTOR*/
-        public Empleado(string _NombreUsuario, string _Pass, string _NombreCompleto, DateTime _InicioJornadaLaboral, DateTime _FinJornadaLaboral) : base(_NombreUsuario, _Pass, _NombreCompleto) { }
+        public Empleado(string _NombreUsuario, string _Pass, string _NombreCompleto, string _InicioJornadaLaboral, string _FinJornadaLaboral) : base(_NombreUsuario, _Pass, _NombreCompleto) { }
     }
 }

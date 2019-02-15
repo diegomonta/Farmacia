@@ -7,3 +7,12 @@ C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Logica\bin\De
 C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Logica\bin\Debug\EntidadesCompartidas.pdb
 C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Logica\bin\Debug\Persistencia.pdb
 C:\Users\Nicolas\Documents\BIOS\Primero\ProyectoFinal\ASP\Farmacia\Logica\obj\Debug\Logica.csprojResolveAssemblyReference.cache
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\bin\Debug\Logica.dll
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\bin\Debug\Logica.pdb
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\bin\Debug\EntidadesCompartidas.dll
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\bin\Debug\Persistencia.dll
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\bin\Debug\Persistencia.pdb
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\obj\Debug\Logica.csprojResolveAssemblyReference.cache
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\obj\Debug\Logica.dll
+C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\obj\Debug\Logica.pdb
