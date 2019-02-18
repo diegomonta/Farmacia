@@ -37,14 +37,14 @@ namespace Persistencia
                 connection.Open();
                 reader = sp.ExecuteReader();
 
-                if (reader.HasRows)
+                if (reader.Read())
                 {
                     Nombre = (string)reader["Nombre"];
                     DireccionFacturacion = (string)reader["DireccionFacturacion"];
                     Telefono = (string)reader["Telefono"];
 
-                    reader.Read();
                     cliente = new Cliente(Usuario, Pass, Nombre, DireccionFacturacion, Telefono);
+                    reader.Close();
                 }
                 else
                     return null;

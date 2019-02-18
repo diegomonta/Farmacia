@@ -264,6 +264,16 @@ AS BEGIN
 END
 GO
 
+--LOGUEO
+CREATE PROCEDURE BuscarUsuario
+@Usuario VARCHAR(20),
+@Pass VARCHAR(10)
+AS BEGIN
+	SELECT * FROM Usuario 
+	WHERE Usuario.Usuario=@Usuario AND Pass=@Pass
+END
+GO
+
 --CLIENTE
 --BUSCAR
 --ABM

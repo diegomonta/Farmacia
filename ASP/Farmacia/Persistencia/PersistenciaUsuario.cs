@@ -8,16 +8,16 @@ using System.Data;
 
 namespace Persistencia
 {
-    public class PersistenciaEmpleado
+    public class PersistenciaUsuario
     {
-        //BUSCAR CLIENTE
-        public Empleado LogInEmpleado(string Usuario, string Pass)
+        //BUSCAR USUARIO
+        public Usuario BuscarUsuario(string Usuario, string Pass)
         {
             //GET CONNECTION STRING
             SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
 
             //STORED PROCEDURE
-            SqlCommand sp = new SqlCommand("LogInEmpleado", connection);
+            SqlCommand sp = new SqlCommand("BuscarUsuario", connection);
             sp.CommandType = CommandType.StoredProcedure;
 
             //PARAMETROS
@@ -28,10 +28,8 @@ namespace Persistencia
             SqlDataReader reader;
 
             //PREPARAR VARIABLES
-            Empleado empleado;
+            Usuario cliente;
             string Nombre;
-            string InicioJornada;
-            string FinJornada;
             try
             {
                 connection.Open();
@@ -40,16 +38,14 @@ namespace Persistencia
                 if (reader.Read())
                 {
                     Nombre = (string)reader["Nombre"];
-                    InicioJornada = (string)reader["InicioJornada"];
-                    FinJornada = (string)reader["FinJornada"];
 
-                    empleado = new Empleado(Usuario, Pass, Nombre, InicioJornada, FinJornada);
+                    cliente = new Usuario(Usuario, Pass, Nombre);
                     reader.Close();
                 }
                 else
                     return null;
 
-                return empleado;
+                return cliente;
             }
             catch { throw; }
 
