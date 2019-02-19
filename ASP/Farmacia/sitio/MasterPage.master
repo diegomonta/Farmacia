@@ -10,9 +10,10 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:Button ID="btnLogOut" runat="server" Text="LogOut" Style="float: right;" />
-        <asp:Button ID="btnLogIn" runat="server" Text="LogIn" Style="float: right;" 
-            onclick="btnLogIn_Click" />
+        <asp:LinkButton ID="btnABMFarmaceutica" Text="ABMFarmaceuticas" runat="server" 
+            onclick="btnABMFarmaceutica_Click" />
+        <asp:Button ID="btnLogOut" runat="server" Text="LogOut" Style="float: right;" OnClick="btnLogOut_Click" />
+        <asp:Button ID="btnLogIn" runat="server" Text="LogIn" Style="float: right;" OnClick="btnLogIn_Click" />
         <br />
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>

@@ -15,16 +15,33 @@ namespace EntidadesCompartidas
         public string pInicioJornadaLaboral
         {
             get { return InicioJornadaLaboral; }
-            set { InicioJornadaLaboral = value; }
+            set
+            {
+                if (value.Length == 5)
+                    InicioJornadaLaboral = value;
+                else
+                    throw new Exception("Ha ocurrido un error intentelo mas tarde.");
+            }
         }
 
         public string pFinJornadaLaboral
         {
             get { return FinJornadaLaboral; }
-            set { FinJornadaLaboral = value; }
+            set
+            {
+                if (value.Length == 5)
+                    FinJornadaLaboral = value;
+                else
+                    throw new Exception("Ha ocurrido un error intentelo mas tarde.");
+            }
         }
 
         /*CONSTRUCTOR*/
-        public Empleado(string _NombreUsuario, string _Pass, string _NombreCompleto, string _InicioJornadaLaboral, string _FinJornadaLaboral) : base(_NombreUsuario, _Pass, _NombreCompleto) { }
+        public Empleado(string _NombreUsuario, string _Pass, string _NombreCompleto, string _InicioJornadaLaboral, string _FinJornadaLaboral)
+            : base(_NombreUsuario, _Pass, _NombreCompleto)
+        {
+            pInicioJornadaLaboral = _InicioJornadaLaboral;
+            pFinJornadaLaboral = _FinJornadaLaboral;
+        }
     }
 }

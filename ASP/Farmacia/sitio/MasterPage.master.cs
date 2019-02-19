@@ -28,9 +28,18 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         btnLogIn.Enabled = true;
         btnLogOut.Enabled = false;
+        Response.Redirect("LogIn.aspx");
     }
     protected void btnLogIn_Click(object sender, EventArgs e)
     {
 
+    }
+    protected void btnLogOut_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("LogIn.aspx");
+    }
+    protected void btnABMFarmaceutica_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ABMFarmaceuticas.aspx");
     }
 }

@@ -36,14 +36,14 @@ namespace Persistencia
                 connection.Open();
                 reader = sp.ExecuteReader();
 
-                if (reader.HasRows)
+                if (reader.Read())
                 {
                     Nombre = (string)reader["Nombre"];
                     CorreoElectronico = (string)reader["CorreoElectronico"];
                     Direccion = (string)reader["Direccion"];
 
-                    reader.Read();
                     farmaceutica = new Farmaceutica(RUC, Nombre, CorreoElectronico, Direccion);
+                    reader.Close();
                 }
                 else
                     return null;

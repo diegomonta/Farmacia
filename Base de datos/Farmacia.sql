@@ -53,8 +53,8 @@ GO
 --EMPLEADO
 CREATE TABLE Empleado(
 Usuario VARCHAR(20) PRIMARY KEY FOREIGN KEY REFERENCES Usuario(Usuario),
-InicioJornada DATE NOT NULL,
-FinJornada DATE NOT NULL
+InicioJornada VARCHAR(5) NOT NULL,
+FinJornada VARCHAR(5) NOT NULL
 );
 GO
 
@@ -132,7 +132,7 @@ END
 GO
 
 --LISTAR
-CREATE PROCEDURE ListarFarmaceutica
+CREATE PROCEDURE BuscarFarmaceutica
 @RUC VARCHAR(13)
 AS BEGIN
 	SELECT * FROM Farmaceutica WHERE RUC=@RUC
@@ -140,7 +140,7 @@ END
 GO
 
 --BUSCAR 
-CREATE PROCEDURE BuscarFarmaceutica
+CREATE PROCEDURE ListarFarmaceutica
 AS BEGIN 
 	SELECT * FROM Farmaceutica
 END
@@ -502,3 +502,5 @@ AS BEGIN
 	WHERE Usuario.Usuario=@Usuario AND Pass=@Pass
 END
 GO
+
+exec AltaEmpleado 'nicolas', 'nicolas', 'nicolas','00:00', '00:00'

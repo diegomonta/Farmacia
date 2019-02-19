@@ -1,22 +1,28 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ABMFarmaceuticas.aspx.cs"
-    MasterPageFile="~/MasterPage.master" Inherits="ABMFarmacias" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ABMEmpleados.aspx.cs" Inherits="ABMEmpleados"
+    MasterPageFile="~/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!--TABLA ABM FARMACEUTICAS-->
     <table border="0" cellpadding="0" cellspacing="0">
-        <strong>A.B.M FARMACEUTICAS</strong>
+        <strong>A.B.M EMPLEADOS</strong>
         <!--FORMULARIO-->
         <tr>
             <td>
-                <asp:Label ID="lblRuc" runat="server" Text="RUC:" />
+                <asp:Label ID="lblUsuario" runat="server" Text="Usuario:" />
             </td>
             <td>
-                <asp:TextBox ID="txtRuc" runat="server" />
-            </td>
-            <td>
+                <asp:TextBox ID="txtUsuario" runat="server" />
                 <asp:Button ID="btnBuscar" Text="Buscar" runat="server" OnClick="btnBuscar_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblPass" runat="server" Text="Password:" />
+            </td>
+            <td>
+                <asp:TextBox ID="txtPass" runat="server" />
             </td>
         </tr>
         <tr>
@@ -29,18 +35,24 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblCorreoElectronico" runat="server" Text="Correo electronico:" />
+                <asp:Label ID="lblInicioJornada" runat="server" Text="Inicio jornada:" />
             </td>
             <td>
-                <asp:TextBox ID="txtCorreoElectronico" runat="server" />
+                <asp:Label ID="lblInicioJornadaHoras" runat="server" Text="Horas: " />
+                <asp:DropDownList ID="ddlInicioJornadaHoras" runat="server" />
+                <asp:Label ID="lblInicioJornadaMinutos" runat="server" Text="Minutos: " />
+                <asp:DropDownList ID="ddlInicioJornadaMinutos" runat="server" />
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblDireccion" runat="server" Text="Direccion:" />
+                <asp:Label ID="lblFinJornada" runat="server" Text="Fin jornada:" />
             </td>
             <td>
-                <asp:TextBox ID="txtDireccion" runat="server" />
+                <asp:Label ID="lblFinJornadaHoras" runat="server" Text="Horas: " />
+                <asp:DropDownList ID="ddlFinJornadaHoras" runat="server" />
+                <asp:Label ID="lblFinJornadaMinutos" runat="server" Text="Minutos: " />
+                <asp:DropDownList ID="ddlFinJornadaMinutos" runat="server" />
             </td>
         </tr>
     </table>

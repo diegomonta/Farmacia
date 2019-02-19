@@ -14,13 +14,29 @@ public partial class LogIn : System.Web.UI.Page
     }
     protected void btnLogIn_Click(object sender, EventArgs e)
     {
-        Logica.LogicaUsuario lusu = new Logica.LogicaUsuario();
-        Usuario usu = lusu.LoginUsuario(txtUsuario.Text, txtPass.Text);
-        if (usu is Cliente)
-            lblERROR.Text = "CLIENTE";
-        else if (usu is Empleado)
-            lblERROR.Text = "EMPLEADO";
-        else
-            lblERROR.Text = "NO EXISTE";
+        try
+        {
+            Logica.LogicaUsuario lusu = new Logica.LogicaUsuario();
+            Usuario usu = lusu.LoginUsuario(txtUsuario.Text, txtPass.Text);
+            if (usu is Cliente)
+            {
+                Session["USUARIO"] = usu;
+                //CAMBIAR REDIRECT A DEFAULT CLIENTE CUANDO EXISTA
+                Response.Redirect("DefaultEmpleado.aspx");
+            }
+            else if (usu is Empleado)
+            {
+                Session["USUARIO"] = usu;
+                Response.Redirect("DefaultEmpleado.aspx");
+            }
+            else
+            {
+                Session["USUARIO"] = usu;
+            }
+        }
+        catch (Exception ex)
+        {
+            lblERROR.Text = ex.Message;
+        }
     }
 }

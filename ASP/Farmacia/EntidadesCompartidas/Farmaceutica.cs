@@ -24,7 +24,7 @@ namespace EntidadesCompartidas
                 if (value.Trim().Length == 13)
                 {
                     /*VERIFICAR PATRON*/
-                    if (!Regex.Match(value, @"[A-Za-z]").Success)
+                    if (Regex.Match(value, @"[0-9]+").Success)
                         RUC = value.Trim();
                     else
                         throw new Exception("No se admiten letras en el RUC.");
