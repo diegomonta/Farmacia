@@ -120,7 +120,7 @@ namespace Persistencia
             //RETORNO
             SqlParameter retorno = new SqlParameter("@retorno", SqlDbType.Int);
             retorno.Direction = ParameterDirection.ReturnValue;
-            sp.Parameters.AddWithValue("@retorno", retorno);
+            sp.Parameters.Add(retorno);
 
             try
             {
@@ -164,7 +164,7 @@ namespace Persistencia
             //RETORNO
             SqlParameter retorno = new SqlParameter("@retorno", SqlDbType.Int);
             retorno.Direction = ParameterDirection.ReturnValue;
-            sp.Parameters.AddWithValue("@retorno", retorno);
+            sp.Parameters.Add(retorno);
 
             try
             {
@@ -205,13 +205,13 @@ namespace Persistencia
             //PARAMETROS
             sp.Parameters.AddWithValue("@RUC", farmaceutica.pRUC);
             sp.Parameters.AddWithValue("@Nombre", farmaceutica.pNombre);
-            sp.Parameters.AddWithValue("@CorreoElecctronico", farmaceutica.pCorreoElectronico);
+            sp.Parameters.AddWithValue("@CorreoElectronico", farmaceutica.pCorreoElectronico);
             sp.Parameters.AddWithValue("@Direccion", farmaceutica.pDireccion);
 
             //RETORNO
             SqlParameter retorno = new SqlParameter("@retorno", SqlDbType.Int);
             retorno.Direction = ParameterDirection.ReturnValue;
-            sp.Parameters.AddWithValue("@retorno", retorno);
+            sp.Parameters.Add(retorno);
 
             try
             {

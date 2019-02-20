@@ -28,7 +28,7 @@ namespace Persistencia
             SqlDataReader reader;
 
             //PREPARAR VARIABLES
-            Usuario cliente;
+            Usuario usu;
             string Nombre;
             try
             {
@@ -39,13 +39,13 @@ namespace Persistencia
                 {
                     Nombre = (string)reader["Nombre"];
 
-                    cliente = new Usuario(Usuario, Pass, Nombre);
+                    usu = new Usuario(Usuario, Pass, Nombre);
                     reader.Close();
                 }
                 else
                     return null;
 
-                return cliente;
+                return usu;
             }
             catch { throw; }
 

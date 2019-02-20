@@ -11,7 +11,10 @@ public partial class ABMFarmacias : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!Page.IsPostBack)
+        {
+            FormularioDefault();
+        }
     }
 
     //FORMULARIO ESTADO DEFAULT
@@ -26,9 +29,18 @@ public partial class ABMFarmacias : System.Web.UI.Page
 
         //BOQUEAR TEXTBOXES
         txtCorreoElectronico.Enabled = false;
+        txtCorreoElectronico.Text = "";
+
         txtDireccion.Enabled = false;
+        txtDireccion.Text = "";
+
         txtNombre.Enabled = false;
+        txtNombre.Text = "";
+
         txtRuc.Enabled = true;
+        txtRuc.Text = "";
+
+        lblERROR.Text = "";
     }
 
     //FORMULARIO ESTADO ALTA
@@ -52,16 +64,22 @@ public partial class ABMFarmacias : System.Web.UI.Page
     private void FormularioModificarCancelar()
     {
         //BLOQUEAR BOTONES
-        btnAlta.Enabled = true;
-        btnBaja.Enabled = false;
-        btnModificar.Enabled = false;
+        btnAlta.Enabled = false;
+        btnBaja.Enabled = true;
+        btnModificar.Enabled = true;
         btnCancelar.Enabled = true;
         btnBuscar.Enabled = true;
 
         //BOQUEAR TEXTBOXES
         txtCorreoElectronico.Enabled = true;
+        txtCorreoElectronico.Text = ((Farmaceutica)Session["Farmaceutica"]).pCorreoElectronico;
+
         txtDireccion.Enabled = true;
+        txtDireccion.Text = ((Farmaceutica)Session["Farmaceutica"]).pDireccion;
+
         txtNombre.Enabled = true;
+        txtNombre.Text = ((Farmaceutica)Session["Farmaceutica"]).pNombre;
+
         txtRuc.Enabled = false;
     }
     //ALTA FARMACEUTICA
@@ -77,22 +95,60 @@ public partial class ABMFarmacias : System.Web.UI.Page
             Farmaceutica farmaceutica = new Farmaceutica(RUC, Nombre, CorreoElectronio, Direccion);
 
             logicaFarmaceutica.AltaFarmaceutica(farmaceutica);
+
+            //EXITO
+            lblERROR.ForeColor = System.Drawing.Color.Green;
+            lblERROR.Text = "Alta exitosa.";
         }
-        catch (Exception ex) { lblERROR.Text = ex.Message; }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
+        }
     }
 
     //BAJA FARMACEUTICA
     protected void btnBaja_Click(object sender, EventArgs e)
     {
-        try { }
-        catch (Exception ex) { lblERROR.Text = ex.Message; }
+        try
+        {
+            Logica.LogicaFarmaceutica logicaFarmaceutica = new Logica.LogicaFarmaceutica();
+            logicaFarmaceutica.BajaFarmaceutica((Farmaceutica)Session["Farmaceutica"]);
+
+            //EXITO
+            lblERROR.ForeColor = System.Drawing.Color.Green;
+            lblERROR.Text = "Baja exitosa.";
+        }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
+        }
     }
 
     //MODIFICAR FARMACEUTICA
     protected void btnModificar_Click(object sender, EventArgs e)
     {
-        try { }
-        catch (Exception ex) { lblERROR.Text = ex.Message; }
+        try
+        {
+            Logica.LogicaFarmaceutica logicaFarmaceutica = new Logica.LogicaFarmaceutica();
+            string RUC = ((Farmaceutica)Session["Farmaceutica"]).pRUC;
+            string Nombre = txtNombre.Text;
+            string CorreoElectronico = txtCorreoElectronico.Text;
+            string Direccion = txtDireccion.Text;
+
+            Farmaceutica farmaceutica = new Farmaceutica(RUC, Nombre, CorreoElectronico, Direccion);
+            logicaFarmaceutica.ModificarFarmaceutica(farmaceutica);
+
+            //EXITO
+            lblERROR.ForeColor = System.Drawing.Color.Green;
+            lblERROR.Text = "Modificacion exitosa.";
+        }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
+        }
     }
 
     //BUSCAR FARMACEUTICA
@@ -108,14 +164,22 @@ public partial class ABMFarmacias : System.Web.UI.Page
             else
                 FormularioModificarCancelar();
         }
-        catch (Exception ex) { lblERROR.Text = ex.Message; }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
+        }
     }
 
     //CANCELAR (RESPONSE REDIRECT HOMEPAGE)
     protected void btnCancelar_Click(object sender, EventArgs e)
     {
-        try { }
-        catch (Exception ex) { lblERROR.Text = ex.Message; }
+        try { Response.Redirect("DefaultEmpleado.aspx"); }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
+        }
     }
 
     //LIMPIAR FORMULARIO

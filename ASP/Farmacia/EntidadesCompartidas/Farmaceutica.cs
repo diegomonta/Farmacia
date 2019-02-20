@@ -54,13 +54,7 @@ namespace EntidadesCompartidas
             {
                 /*VERIFICAR LONGITUD*/
                 if (value.Trim().Length <= 50 && value.Trim().Length >= 6)
-                {
-                    /*VERIFICAR PATRON*/
-                    if (Regex.Match(value, @"^[_a-z0-9-]+(.[a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$").Success)
-                        CorreoElectronico = value.Trim().ToUpper();
-                    else
-                        throw new Exception("El correo ingresado no es un correo.");
-                }
+                    CorreoElectronico = value.Trim().ToUpper();
                 else
                     throw new Exception("El correo debe tener entre 6 y 50 caracteres.");
             }

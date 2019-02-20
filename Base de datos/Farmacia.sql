@@ -16,7 +16,7 @@ GO
 --TABLAS
 --FARMACEUTICA
 CREATE TABLE Farmaceutica(
-RUC VARCHAR(13) PRIMARY KEY NOT NULL,
+RUC VARCHAR(13) PRIMARY KEY,
 Nombre VARCHAR(50) NOT NULL,
 CorreoElectronico VARCHAR(50) NOT NULL,
 Direccion VARCHAR(50) NOT NULL
@@ -76,15 +76,15 @@ GO
 --LISTAR/BUSCAR
 --ALTA
 CREATE PROCEDURE AltaFarmaceutica
-@RUC INT,
+@RUC VARCHAR(13),
 @Nombre VARCHAR(50),
-@CorreoElecctronico VARCHAR(50),
+@CorreoElectronico VARCHAR(50),
 @Direccion VARCHAR (50)
 AS BEGIN
 	--VERIFICAR EXITENCIA FARMACEUTICA 
 	IF NOT EXISTS(SELECT * FROM Farmaceutica WHERE RUC=@RUC)
 	BEGIN
-		INSERT Farmaceutica (RUC,Nombre,CorreoElectronico,Direccion) VALUES (@RUC,@Nombre,@CorreoElecctronico,@Direccion) 
+		INSERT Farmaceutica (RUC,Nombre,CorreoElectronico,Direccion) VALUES (@RUC,@Nombre,@CorreoElectronico,@Direccion) 
 		RETURN 1
 	END	
 	ELSE 
@@ -96,7 +96,7 @@ GO
 
 --BAJA
 CREATE PROCEDURE BajaFarmacecutica
-@RUC INT
+@RUC VARCHAR(13)
 AS BEGIN
 	--VERIFICAR EXISTENCIA FARMACEUTICA
 	IF EXISTS (SELECT * FROM Farmaceutica WHERE RUC=@RUC)
@@ -113,15 +113,15 @@ GO
 
 --MODIFICAR 
 CREATE PROCEDURE ModificarFarmaceutica
-@RUC INT,
+@RUC VARCHAR(13),
 @Nombre VARCHAR(50),
-@CorreoElecctronico VARCHAR(50),
+@CorreoElectronico VARCHAR(50),
 @Direccion VARCHAR (50)
 AS BEGIN
 	--VERIFICAR EXISTENCIA FARMACEUTICA 
 	IF EXISTS(SELECT * FROM Farmaceutica WHERE RUC=@RUC)
 	BEGIN
-		UPDATE Farmaceutica SET Nombre=@Nombre,CorreoElectronico=@CorreoElecctronico,Direccion=@Direccion WHERE RUC=@RUC
+		UPDATE Farmaceutica SET Nombre=@Nombre,CorreoElectronico=@CorreoElectronico,Direccion=@Direccion WHERE RUC=@RUC
 		RETURN 1
 	END	
 	ELSE 
@@ -504,3 +504,5 @@ END
 GO
 
 exec AltaEmpleado 'nicolas', 'nicolas', 'nicolas','00:00', '00:00'
+GO
+EXEC AltaFarmaceutica '1231231231231','FARMACEUTICA','ASDDAS','ASDASD'
