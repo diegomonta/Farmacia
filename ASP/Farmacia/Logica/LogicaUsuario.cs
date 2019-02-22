@@ -44,5 +44,24 @@ namespace Logica
                 throw new Exception("Ha ocurrido un error vuelva a intentarlo mas tarde.");
             }
         }
+
+        //ALTA USUARIO
+        public void AltaUsuario(Usuario usuario)
+        {
+            try
+            {
+                if (usuario is Empleado)
+                {
+                    Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
+                    persistenciaEmpleado.AltaEmpleado((Empleado)usuario);
+                }
+                else
+                {
+                    Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+                    persistenciaCliente.AltaCliente((Cliente)usuario);
+                }
+            }
+            catch { throw; }
+        }
     }
 }

@@ -55,5 +55,145 @@ namespace Persistencia
 
             finally { connection.Close(); }
         }
+
+        //ALTA EMPLEADO
+        public void AltaEmpleado(Empleado empleado)
+        {
+            //GET CONNECTION STRING
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand sp = new SqlCommand("AltaEmpleado", connection);
+            sp.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            sp.Parameters.AddWithValue("@Usuario", empleado.pNombreUsuario);
+            sp.Parameters.AddWithValue("@Pass", empleado.pPass);
+            sp.Parameters.AddWithValue("@Nombre", empleado.pNombreCompleto);
+            sp.Parameters.AddWithValue("@InicioJornada", empleado.pInicioJornadaLaboral);
+            sp.Parameters.AddWithValue("@FinJornada", empleado.pFinJornadaLaboral);
+
+            //RETORNO
+            SqlParameter retorno = new SqlParameter("@retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            sp.Parameters.Add(retorno);
+
+            try
+            {
+                connection.Open();
+
+                //ALTA EMPLEADO
+                sp.ExecuteNonQuery();
+
+                //RETORNO
+                switch ((int)retorno.Value)
+                {
+                    case 1:
+                        //EXITO
+                        break;
+                    //USUARIO YA EXISTE
+                    case -1:
+                        throw new Exception("El usuario ya ha sido tomado.");
+                    //EXCEPCION NO CONTROLADA
+                    default:
+                        throw new Exception("Ha ocurrido un error vuelva a intentarlo mas tarde.");
+                }
+            }
+            catch { throw; }
+
+            finally { connection.Close(); }
+        }
+
+        //BAJA EMPLEADO
+        public void BajaEmpleado(Empleado empleado)
+        {
+            //GET CONNECTION STRING
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand sp = new SqlCommand("BajaEmpleado", connection);
+            sp.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            sp.Parameters.AddWithValue("@Usuario", empleado.pNombreUsuario);
+
+            //RETORNO
+            SqlParameter retorno = new SqlParameter("@retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            sp.Parameters.Add(retorno);
+
+            try
+            {
+                connection.Open();
+
+                //BAJA EMPLEADO
+                sp.ExecuteNonQuery();
+
+                //RETORNO
+                switch ((int)retorno.Value)
+                {
+                    case 1:
+                        //EXITO
+                        break;
+                    //EMPLEADO NO EXISTE
+                    case -1:
+                        throw new Exception("El usuario no existe.");
+                    //EXCEPCION NO CONTROLADA
+                    default:
+                        throw new Exception("Ha ocurrido un error vuelva a intentarlo mas tarde.");
+                }
+            }
+            catch { throw; }
+
+            finally { connection.Close(); }
+        }
+
+        //MODIFICAR EMPLEADO
+        public void ModificarEmpleado(Empleado empleado)
+        {
+            //GET CONNECTION STRING
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand sp = new SqlCommand("ModificarEmpleado", connection);
+            sp.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            sp.Parameters.AddWithValue("@Usuario", empleado.pNombreUsuario);
+            sp.Parameters.AddWithValue("@Pass", empleado.pPass);
+            sp.Parameters.AddWithValue("@Nombre", empleado.pNombreCompleto);
+            sp.Parameters.AddWithValue("@InicioJornada", empleado.pInicioJornadaLaboral);
+            sp.Parameters.AddWithValue("@FinJornada", empleado.pFinJornadaLaboral);
+
+            //RETORNO
+            SqlParameter retorno = new SqlParameter("@retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            sp.Parameters.Add(retorno);
+
+            try
+            {
+                connection.Open();
+
+                //MODIFICAR EMPLEADO
+                sp.ExecuteNonQuery();
+
+                //RETORNO
+                switch ((int)retorno.Value)
+                {
+                    case 1:
+                        //EXITO
+                        break;
+                    //EMPLEADO NO EXISTE
+                    case -1:
+                        throw new Exception("El usuario no existe.");
+                    //EXCEPCION NO CONTROLADA
+                    default:
+                        throw new Exception("Ha ocurrido un error vuelva a intentarlo mas tarde.");
+                }
+            }
+            catch { throw; }
+
+            finally { connection.Close(); }
+        }
     }
 }

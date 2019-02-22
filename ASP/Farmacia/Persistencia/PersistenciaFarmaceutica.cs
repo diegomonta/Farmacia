@@ -170,7 +170,7 @@ namespace Persistencia
             {
                 connection.Open();
 
-                //ALTA FARMACEUTICA
+                //BAJA FARMACEUTICA
                 sp.ExecuteNonQuery();
 
                 //RETORNO
@@ -179,7 +179,7 @@ namespace Persistencia
                     case 1:
                         //EXITO
                         break;
-                    //FARMACEUTICA YA EXISTE
+                    //FARMACEUTICA NO EXISTE
                     case -1:
                         throw new Exception("El RUC no existe.");
                     //EXCEPCION NO CONTROLADA
@@ -217,7 +217,7 @@ namespace Persistencia
             {
                 connection.Open();
 
-                //ALTA FARMACEUTICA
+                //MODIFICAR FARMACEUTICA
                 sp.ExecuteNonQuery();
 
                 //RETORNO
@@ -226,7 +226,7 @@ namespace Persistencia
                     case 1:
                         //EXITO
                         break;
-                    //FARMACEUTICA YA EXISTE
+                    //FARMACEUTICA NO EXISTE
                     case -1:
                         throw new Exception("El RUC no existe.");
                     //EXCEPCION NO CONTROLADA

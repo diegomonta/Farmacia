@@ -39,4 +39,9 @@ public partial class LogIn : System.Web.UI.Page
             lblERROR.Text = ex.Message;
         }
     }
+
+    protected void btnRegistrarCliente_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("LACONCHADETUVIEJA.aspx");
+    }
 }

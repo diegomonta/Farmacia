@@ -286,7 +286,7 @@ CREATE PROCEDURE AltaCliente
 @Telefono VARCHAR(15)
 AS BEGIN
 	--VERIFICAR EXISTENCIA CLIENTE
-	IF NOT EXISTS(SELECT * FROM Cliente WHERE Usuario=@Usuario)
+	IF NOT EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
 	BEGIN
 		BEGIN TRANSACTION
 			INSERT Usuario (Usuario,Pass,Nombre) VALUES(@Usuario,@Pass,@Nombre)
@@ -396,11 +396,11 @@ CREATE PROCEDURE AltaEmpleado
 @Usuario VARCHAR(20),
 @Pass VARCHAR(10),
 @Nombre VARCHAR(50),
-@InicioJornada DATE,
-@FinJornada DATE
+@InicioJornada VARCHAR(5),
+@FinJornada VARCHAR(5)
 AS BEGIN
 	--VERIFICAR EXISTENCIA EMPLEADO
-	IF NOT EXISTS(SELECT * FROM Empleado WHERE Usuario=@Usuario)
+	IF NOT EXISTS(SELECT * FROM Usuario WHERE Usuario=@Usuario)
 	BEGIN
 		BEGIN TRANSACTION
 			INSERT Usuario (Usuario,Pass,Nombre) VALUES(@Usuario,@Pass,@Nombre)
@@ -462,8 +462,8 @@ CREATE PROCEDURE ModificarEmpleado
 @Usuario VARCHAR(20),
 @Pass VARCHAR(10),
 @Nombre VARCHAR(50),
-@InicioJornada DATE,
-@FinJornada DATE
+@InicioJornada VARCHAR(5),
+@FinJornada VARCHAR(5)
 AS BEGIN
 	--VERIFICAR EXISTENCIA DE EMPLEADO
 	IF NOT EXISTS(SELECT * FROM Empleado WHERE Usuario=@Usuario)

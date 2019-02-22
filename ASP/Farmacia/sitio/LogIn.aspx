@@ -33,6 +33,12 @@
                 <asp:Label ID="lblERROR" runat="server" />
             </td>
         </tr>
+        <tr>
+            <td>
+                <asp:LinkButton ID="btnRegistrarCliente" runat="server" Text="Registro cliente" 
+                    onclick="btnRegistrarCliente_Click" />
+            </td>
+        </tr>
     </table>
     </form>
 </body>

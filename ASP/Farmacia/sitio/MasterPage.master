@@ -10,10 +10,20 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:LinkButton ID="btnABMFarmaceutica" Text="ABMFarmaceuticas" runat="server" 
-            onclick="btnABMFarmaceutica_Click" />
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    <asp:LinkButton ID="btnABMFarmaceutica" Text="ABMFarmaceuticas" runat="server" OnClick="btnABMFarmaceutica_Click" />
+                </td>
+                <td>
+                </td>
+                <td>
+                    <asp:LinkButton ID="btnABMEmpleado" Text="ABMEmpleados" runat="server" 
+                        onclick="btnABMEmpleado_Click"  />
+                </td>
+            </tr>
+        </table>
         <asp:Button ID="btnLogOut" runat="server" Text="LogOut" Style="float: right;" OnClick="btnLogOut_Click" />
-        <asp:Button ID="btnLogIn" runat="server" Text="LogIn" Style="float: right;" OnClick="btnLogIn_Click" />
         <br />
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
