@@ -10,8 +10,55 @@ namespace Persistencia
 {
     public class PersistenciaEmpleado
     {
-        //BUSCAR CLIENTE
-        public Empleado LogInEmpleado(string Usuario, string Pass)
+        //BUSCAR EMPLEADO
+        public Empleado BuscarEmpleado(string usuario)
+        {
+            //GET CONNECTION STRING
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand sp = new SqlCommand("BuscarEmpleado", connection);
+            sp.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            sp.Parameters.AddWithValue("@Usuario", usuario);
+
+            //READER
+            SqlDataReader reader;
+
+            //PREPARAR VARIABLES
+            Empleado empleado;
+            string Pass;
+            string Nombre;
+            string InicioJornada;
+            string FinJornada;
+            try
+            {
+                connection.Open();
+                reader = sp.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    Nombre = (string)reader["Nombre"];
+                    Pass = (string)reader["Pass"];
+                    InicioJornada = (string)reader["InicioJornada"];
+                    FinJornada = (string)reader["FinJornada"];
+
+                    empleado = new Empleado(usuario, Pass, Nombre, InicioJornada, FinJornada);
+                    reader.Close();
+                }
+                else
+                    return null;
+
+                return empleado;
+            }
+            catch { throw; }
+
+            finally { connection.Close(); }
+        }
+
+        //LOGIN EMPLEADO
+        public Empleado LogInEmpleado(string usuario, string Pass)
         {
             //GET CONNECTION STRING
             SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
@@ -21,7 +68,7 @@ namespace Persistencia
             sp.CommandType = CommandType.StoredProcedure;
 
             //PARAMETROS
-            sp.Parameters.AddWithValue("@Usuario", Usuario);
+            sp.Parameters.AddWithValue("@Usuario", usuario);
             sp.Parameters.AddWithValue("@Pass", Pass);
 
             //READER
@@ -43,7 +90,7 @@ namespace Persistencia
                     InicioJornada = (string)reader["InicioJornada"];
                     FinJornada = (string)reader["FinJornada"];
 
-                    empleado = new Empleado(Usuario, Pass, Nombre, InicioJornada, FinJornada);
+                    empleado = new Empleado(usuario, Pass, Nombre, InicioJornada, FinJornada);
                     reader.Close();
                 }
                 else

@@ -12,7 +12,7 @@ namespace EntidadesCompartidas
         private Farmaceutica Farmaceutica;
         private string Nombre;
         private string Descripcion;
-        private float Precio;
+        private double Precio;
 
         /*PROPIEDADES*/
         public int pCodigo
@@ -61,14 +61,14 @@ namespace EntidadesCompartidas
             }
         }
 
-        public float pPrecio
+        public double pPrecio
         {
             get { return Precio; }
             set { Precio = value; }
         }
 
         /*CONSTRUCTOR*/
-        public Medicamento(int _Codigo, Farmaceutica _Farmaceutica, string _Nombre, string _Descripcion, float _Precio)
+        public Medicamento(int _Codigo, Farmaceutica _Farmaceutica, string _Nombre, string _Descripcion, double _Precio)
         {
             pCodigo = _Codigo;
             pFarmaceutica = _Farmaceutica;

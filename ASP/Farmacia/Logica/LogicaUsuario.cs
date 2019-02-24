@@ -9,6 +9,25 @@ namespace Logica
 {
     public class LogicaUsuario
     {
+        //BUSCAR USUARIO
+        public Usuario BuscarUsuario(string usuario)
+        {
+            try
+            {
+                Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
+                Empleado empleado = persistenciaEmpleado.BuscarEmpleado(usuario);
+                if (empleado == null)
+                {
+                    Persistencia.PersistenciaCliente persisteniaCliente = new PersistenciaCliente();
+                    Cliente cliente = persisteniaCliente.BuscarCliente(usuario);
+                    return cliente;
+                }
+                else
+                    return empleado;
+            }
+            catch { throw; }
+        }
+
         //LOGIN USUARIO
         public Usuario LoginUsuario(string usu, string pass)
         {
@@ -59,6 +78,46 @@ namespace Logica
                 {
                     Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
                     persistenciaCliente.AltaCliente((Cliente)usuario);
+                }
+            }
+            catch { throw; }
+        }
+
+        //MODIFCAR USUARIO
+        public void ModificarUsuario(Usuario usuario)
+        {
+            try
+            {
+                if (usuario is Empleado)
+                {
+                    Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
+                    persistenciaEmpleado.ModificarEmpleado((Empleado)usuario);
+                }
+                else
+                {
+                    //??????
+                    //Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+                    //persistenciaCliente.ModificarCliente((Cliente)usuario);
+                }
+            }
+            catch { throw; }
+        }
+
+        //BAJA USUARIO
+        public void BajaUsuario(Usuario usuario)
+        {
+            try
+            {
+                if (usuario is Empleado)
+                {
+                    Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
+                    persistenciaEmpleado.BajaEmpleado((Empleado)usuario);
+                }
+                else
+                {
+                    //??????
+                    //Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+                    //persistenciaCliente.BajaCliente((Cliente)usuario);
                 }
             }
             catch { throw; }

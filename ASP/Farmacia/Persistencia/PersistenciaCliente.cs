@@ -11,6 +11,53 @@ namespace Persistencia
     public class PersistenciaCliente
     {
         //BUSCAR CLIENTE
+        public Cliente BuscarCliente(string usuario)
+        {
+            //GET CONNECTION STRING
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand sp = new SqlCommand("Buscarcliente", connection);
+            sp.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            sp.Parameters.AddWithValue("@Usuario", usuario);
+
+            //READER
+            SqlDataReader reader;
+
+            //PREPARAR VARIABLES
+            Cliente cliente;
+            string Pass;
+            string Nombre;
+            string DireccionFacturacion;
+            string Telefono;
+            try
+            {
+                connection.Open();
+                reader = sp.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    Nombre = (string)reader["Nombre"];
+                    Pass = (string)reader["Pass"];
+                    DireccionFacturacion = (string)reader["DireccionFacturacion"];
+                    Telefono = (string)reader["Telefono"];
+
+                    cliente = new Cliente(usuario, Pass, Nombre, DireccionFacturacion, Telefono);
+                    reader.Close();
+                }
+                else
+                    return null;
+
+                return cliente;
+            }
+            catch { throw; }
+
+            finally { connection.Close(); }
+        }
+
+        //LOGIN CLIENTE
         public Cliente LogInCliente(string Usuario, string Pass)
         {
             //GET CONNECTION STRING

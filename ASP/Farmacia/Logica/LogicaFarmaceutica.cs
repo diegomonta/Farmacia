@@ -59,7 +59,12 @@ namespace Logica
 
         public List<Farmaceutica> ListarFarmaceutica()
         {
-            return null;
+            try
+            {
+                Persistencia.PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
+                return persistenciaFarmaceutica.ListarFarmaceuticas();
+            }
+            catch { throw; }
         }
     }
 }

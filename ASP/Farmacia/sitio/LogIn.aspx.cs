@@ -42,6 +42,11 @@ public partial class LogIn : System.Web.UI.Page
 
     protected void btnRegistrarCliente_Click(object sender, EventArgs e)
     {
-        Response.Redirect("LACONCHADETUVIEJA.aspx");
+        Response.Redirect("RegistroCliente.aspx");
+    }
+
+    protected void btnConsultaPedido_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ConsultaPedido.aspx");
     }
 }

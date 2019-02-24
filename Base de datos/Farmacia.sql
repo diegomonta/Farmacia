@@ -60,7 +60,7 @@ GO
 
 --PEDIDO
 CREATE TABLE Pedido(
-Numero INT PRIMARY KEY,
+Numero INT PRIMARY KEY IDENTITY(1,1),
 Cliente VARCHAR(20) FOREIGN KEY REFERENCES Cliente(Usuario),
 MedicamentoCodigo INT,
 MedicamentoFarmaceutica VARCHAR(13),
@@ -151,13 +151,13 @@ GO
 --ALTA
 CREATE PROCEDURE AltaMedicamento
 @Codigo INT,
-@Farmaceutica INT,
+@Farmaceutica VARCHAR(13),
 @Descripcion VARCHAR(50),
 @Precio FLOAT,
 @Nombre VARCHAR(50)
 AS BEGIN
 	--VERIFICAR EXISTENCIA DEL MEDICAMENTO 
-	IF NOT EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo)
+	IF NOT EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo AND Farmaceutica=@Farmaceutica)
 	BEGIN
 		INSERT Medicamento (Codigo,Farmaceutica,Descripcion,Precio,Nombre) VALUES (@Codigo,@Farmaceutica,@Descripcion,@Precio,@Nombre)
 		RETURN 1
@@ -171,12 +171,13 @@ GO
 
 --BAJA
 CREATE PROCEDURE BajaMedicamento
-@Codigo INT
+@Codigo INT,
+@Farmaceutica VARCHAR(13)
 AS BEGIN
 	--VERIFICAR EXISTENCIA DEL MEDICAMENTO 
-	IF EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo)
+	IF EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo AND Farmaceutica=@Farmaceutica)
 	BEGIN
-		DELETE Medicamento WHERE Codigo=@Codigo
+		DELETE Medicamento WHERE Codigo=@Codigo AND Farmaceutica=@Farmaceutica
 		RETURN 1
 	END
 	ELSE
@@ -189,21 +190,31 @@ GO
 ---MODIFICACION
 CREATE PROCEDURE ModificarMedicamento
 @Codigo INT,
-@Farmaceutica INT,
+@Farmaceutica VARCHAR(13),
 @Descripcion VARCHAR(50),
 @Precio FLOAT,
 @Nombre VARCHAR(50)
 AS BEGIN
 	--VERIFICAR EXISTENCIA MEDICAMENTO
-	IF EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo)
+	IF EXISTS(SELECT * FROM Medicamento WHERE Codigo=@Codigo AND Farmaceutica=@Farmaceutica)
 	BEGIN
-		UPDATE Medicamento SET Codigo=@Codigo,Farmaceutica=@Farmaceutica,Descripcion=@Descripcion,Precio=@Precio,Nombre=@Nombre WHERE Codigo=@Codigo
+		UPDATE Medicamento SET Codigo=@Codigo,Farmaceutica=@Farmaceutica,Descripcion=@Descripcion,Precio=@Precio,Nombre=@Nombre 
+		WHERE Codigo=@Codigo AND Farmaceutica=@Farmaceutica
 		RETURN 1
 	END
 	ELSE 
 	BEGIN
 		RETURN -1
 	END
+END
+GO
+
+--BUSCAR 
+CREATE PROCEDURE BuscarMedicamento
+@Codigo INT,
+@Farmaceutica VARCHAR(13)
+AS BEGIN
+	SELECT * FROM Medicamento WHERE Codigo=@Codigo AND Farmaceutica=@Farmaceutica
 END
 GO
 
@@ -352,7 +363,7 @@ CREATE PROCEDURE ModificarCliente
 @Telefono VARCHAR(15)
 AS BEGIN
 	--VERIFICAR EXISTENCIA CLIENTE
-	IF NOT EXISTS(SELECT * FROM Cliente WHERE Usuario=@Usuario)
+	IF EXISTS(SELECT * FROM Cliente WHERE Usuario=@Usuario)
 	BEGIN
 		BEGIN TRANSACTION
 			UPDATE Usuario SET Pass=@Pass,Nombre=@Nombre WHERE Usuario=@Usuario
@@ -375,6 +386,14 @@ AS BEGIN
 	BEGIN
 		RETURN -1
 	END
+END
+GO
+
+--BUSCAR
+CREATE PROCEDURE Buscarcliente
+@Usuario VARCHAR(20)
+AS BEGIN
+	SELECT * FROM Cliente INNER JOIN Usuario ON Usuario.Usuario=Cliente.Usuario WHERE Cliente.Usuario=@Usuario
 END
 GO
 
@@ -466,7 +485,7 @@ CREATE PROCEDURE ModificarEmpleado
 @FinJornada VARCHAR(5)
 AS BEGIN
 	--VERIFICAR EXISTENCIA DE EMPLEADO
-	IF NOT EXISTS(SELECT * FROM Empleado WHERE Usuario=@Usuario)
+	IF EXISTS(SELECT * FROM Empleado WHERE Usuario=@Usuario)
 	BEGIN
 		BEGIN TRANSACTION
 			UPDATE Usuario SET Pass=@Pass,Nombre=@Nombre WHERE Usuario=@Usuario
@@ -492,6 +511,14 @@ AS BEGIN
 END
 GO
 
+--BUSCAR
+CREATE PROCEDURE BuscarEmpleado
+@Usuario VARCHAR(20)
+AS BEGIN
+	SELECT * FROM Empleado INNER JOIN Usuario ON Usuario.Usuario=Empleado.Usuario WHERE Empleado.Usuario=@Usuario
+END
+GO
+
 --LOGEO
 CREATE PROCEDURE LogInEmpleado
 @Usuario VARCHAR(20),
@@ -503,6 +530,117 @@ AS BEGIN
 END
 GO
 
-exec AltaEmpleado 'nicolas', 'nicolas', 'nicolas','00:00', '00:00'
+/*
+CREATE TABLE Pedido(
+Numero INT PRIMARY KEY IDENTITY(1,1),
+Cliente VARCHAR(20) FOREIGN KEY REFERENCES Cliente(Usuario),
+MedicamentoCodigo INT,
+MedicamentoFarmaceutica VARCHAR(13),
+CantidadMedicamento INT NOT NULL,
+Estado VARCHAR(50) NOT NULL,
+FOREIGN KEY (MedicamentoCodigo,MedicamentoFarmaceutica) REFERENCES Medicamento(Codigo,Farmaceutica)
+);
+*/
+CREATE PROCEDURE AltaPedido
+@Cliente VARCHAR(20),
+@MedicamentoCodigo INT,
+@MedicamentoFarmaceutica VARCHAR(13),
+@CantidadMedicamento INT,
+@Estado VARCHAR(50)
+AS BEGIN
+	--VERIFICAR EXISTENCIA CLIENTE
+	IF EXISTS(SELECT * FROM Cliente WHERE Cliente.Usuario=@Cliente)
+	BEGIN
+		--VERIFICAR EXISTENCIA FARMACEUTICA
+		IF EXISTS(SELECT * FROM Farmaceutica WHERE Farmaceutica.RUC=@MedicamentoFarmaceutica)
+		BEGIN
+			--VERIFICAR EXISTENCIA MEDICAMENTO
+			IF EXISTS(SELECT * FROM Medicamento WHERE Medicamento.Codigo=@MedicamentoCodigo AND Medicamento.Farmaceutica=@MedicamentoFarmaceutica)
+			BEGIN
+				INSERT INTO Pedido (Cliente,MedicamentoCodigo,MedicamentoFarmaceutica,CantidadMedicamento,Estado) VALUES (@Cliente,@MedicamentoCodigo,@MedicamentoFarmaceutica,@CantidadMedicamento,@Estado)
+				RETURN 1
+			END
+			ELSE
+			BEGIN
+				--NO EXISTE MEDICAMENTO
+				RETURN -3
+			END
+		END
+		ELSE
+		BEGIN
+		--FARMACEUTICA NO EXISTE
+			RETURN -2
+		END
+	END
+	ELSE
+	BEGIN
+		--CLIETNE NO EXISTE
+		RETURN -1
+	END
+END
 GO
-EXEC AltaFarmaceutica '1231231231231','FARMACEUTICA','ASDDAS','ASDASD'
+
+CREATE PROCEDURE BajaPedido
+@Numero INT
+AS BEGIN
+
+END
+GO
+
+CREATE PROCEDURE ModificarPedido
+@Cliente VARCHAR(20),
+@MedicamentoCodigo INT,
+@MedicamentoFarmaceutica VARCHAR(13),
+@CantidadMedicamento INT,
+@Estado VARCHAR(50)
+AS BEGIN
+
+END
+GO
+--EMPLEADOS DATA DE PRUEBA
+exec AltaEmpleado 'NICOLAS', 'NICOLAS', 'NICOLAS','09:00', '17:45'
+GO
+exec AltaEmpleado 'VICTORIA', 'VICTORIA', 'VICTORIA','09:00', '17:45'
+GO
+exec AltaEmpleado 'JORGE', 'JORGE', 'JORGE','10:00', '18:45'
+GO
+
+--CLIENTES DATA DE PRUEBA
+EXEC AltaCliente 'ANDRES', 'ANDRES', 'ANDRES', 'DIRECCION ANDRES','+594 114540'
+GO
+EXEC AltaCliente 'AGUSTIN', 'AGUSTIN', 'AGUSTIN', 'DIRECCION AGUSTIN','+594 421610'
+GO
+EXEC AltaCliente 'SOLEDAD', 'SOLEDAD', 'SOLEDAD', 'DIRECCION SOLEDAD','+594 231567'
+GO 
+
+--FARMACEUTICAS DATA DE PRUEBA
+EXEC AltaFarmaceutica '1231231231231','FARMACEUTICA SOL','FSOL@FARMACIA.COM','DIRECCION FSOL'
+GO
+EXEC AltaFarmaceutica '3213213213213','FARMACEUTICA PIEDRAS','FPIEDRAS@FARMACIA.COM','DIRECCION FPIEDRAS'
+GO
+EXEC AltaFarmaceutica '2342342342342','FARMACEUTICA MAR','FMAR@FARMACIA.COM','DIRECCION FMAR'
+GO
+
+--MEDICAMENTOS DATA DE PRUEBA
+--MEDICAMENTOS FARMACEUTICA 1231231231231
+EXEC AltaMedicamento 0,'1231231231231','DESCRIPCION MEDICAMENTO 0',10,'NOMBRE'
+GO
+EXEC AltaMedicamento 1,'1231231231231','DESCRIPCION MEDICAMENTO 1',20,'NOMBRE'
+GO
+EXEC AltaMedicamento 2,'1231231231231','DESCRIPCION MEDICAMENTO 2',35,'NOMBRE'
+GO
+
+--MEDICAMENTOS FARMACEUTICA 3213213213213
+EXEC AltaMedicamento 0,'3213213213213','DESCRIPCION MEDICAMENTO 0',15,'NOMBRE'
+GO
+EXEC AltaMedicamento 1,'3213213213213','DESCRIPCION MEDICAMENTO 1',25,'NOMBRE'
+GO
+EXEC AltaMedicamento 2,'3213213213213','DESCRIPCION MEDICAMENTO 2',10,'NOMBRE'
+GO
+
+--MEDICAMENTOS FARMACEUTICA 2342342342342
+EXEC AltaMedicamento 0,'2342342342342','DESCRIPCION MEDICAMENTO 0',15,'NOMBRE'
+GO
+EXEC AltaMedicamento 1,'2342342342342','DESCRIPCION MEDICAMENTO 1',10,'NOMBRE'
+GO
+EXEC AltaMedicamento 2,'2342342342342','DESCRIPCION MEDICAMENTO 2',15,'NOMBRE'

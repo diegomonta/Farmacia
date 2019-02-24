@@ -35,11 +35,12 @@
         </tr>
         <tr>
             <td>
-                <asp:LinkButton ID="btnRegistrarCliente" runat="server" Text="Registro cliente" 
-                    onclick="btnRegistrarCliente_Click" />
+                <asp:LinkButton ID="btnRegistrarCliente" runat="server" Text="Registro cliente" OnClick="btnRegistrarCliente_Click" />
             </td>
         </tr>
     </table>
+    <asp:Button ID="btnConsultaPedido" runat="server" Text="Consulta pedido" 
+        onclick="btnConsultaPedido_Click" />
     </form>
 </body>
 </html>

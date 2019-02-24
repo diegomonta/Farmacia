@@ -10,7 +10,7 @@
         <!--FORMULARIO-->
         <tr>
             <td>
-                <asp:Label ID="lblCodigo" runat="server" />
+                <asp:Label ID="lblCodigo" runat="server" Text="Codigo:" />
             </td>
             <td>
                 <asp:TextBox ID="txtCodigo" runat="server" />
@@ -18,15 +18,16 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblRuc" runat="server" />
+                <asp:Label ID="lblRuc" runat="server" Text="Farmaceutica:" />
             </td>
             <td>
                 <asp:DropDownList ID="ddlFarmaceuticas" runat="server" />
+                <asp:Button ID="btnBuscar" Text="Buscar" runat="server" OnClick="btnBuscar_Click" />
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblDescripcion" runat="server" />
+                <asp:Label ID="lblDescripcion" runat="server" Text="Descripcion:" />
             </td>
             <td>
                 <asp:TextBox ID="txtDescripcion" runat="server" />
@@ -34,7 +35,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblPrecio" runat="server" />
+                <asp:Label ID="lblPrecio" runat="server" Text="Precio:" />
             </td>
             <td>
                 <asp:TextBox ID="txtPrecio" runat="server" />
@@ -42,7 +43,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblNombre" runat="server" />
+                <asp:Label ID="lblNombre" runat="server" Text="Nombre:" />
             </td>
             <td>
                 <asp:TextBox ID="txtNombre" runat="server" />
@@ -53,20 +54,21 @@
     <table>
         <tr>
             <td>
-                <asp:Button ID="btnAlta" Text="Alta" runat="server" />
+                <asp:Button ID="btnAlta" Text="Alta" runat="server" OnClick="btnAlta_Click" />
             </td>
             <td>
-                <asp:Button ID="btnBaja" Text="Baja" runat="server" />
+                <asp:Button ID="btnBaja" Text="Baja" runat="server" OnClick="btnBaja_Click" />
             </td>
             <td>
-                <asp:Button ID="btnModificar" Text="Modifciar" runat="server" />
+                <asp:Button ID="btnModificar" Text="Modifciar" runat="server" OnClick="btnModificar_Click" />
             </td>
             <td>
-                <asp:Button ID="btnBuscar" Text="Buscar" runat="server" />
+                <asp:Button ID="btnLimpiar" Text="Limpiar" runat="server" OnClick="btnLimpiar_Click" />
             </td>
             <td>
-                <asp:Button ID="btnCancelar" Text="Cancelar" runat="server" />
+                <asp:Button ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
             </td>
         </tr>
     </table>
+    <asp:Label ID="lblERROR" runat="server" Text="" />
 </asp:Content>

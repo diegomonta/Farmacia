@@ -14,16 +14,16 @@
             <tr>
                 <td>
                     <asp:LinkButton ID="btnABMFarmaceutica" Text="ABMFarmaceuticas" runat="server" OnClick="btnABMFarmaceutica_Click" />
-                </td>
-                <td>
-                </td>
-                <td>
-                    <asp:LinkButton ID="btnABMEmpleado" Text="ABMEmpleados" runat="server" 
-                        onclick="btnABMEmpleado_Click"  />
+                    <br />
+                    <asp:LinkButton ID="btnABMMedicamento" Text="ABMMedicamentos" runat="server" OnClick="btnABMMedicamento_Click" />
+                    <br />
+                    <asp:LinkButton ID="btnABMEmpleado" Text="ABMEmpleados" runat="server" OnClick="btnABMEmpleado_Click" />
                 </td>
             </tr>
         </table>
         <asp:Button ID="btnLogOut" runat="server" Text="LogOut" Style="float: right;" OnClick="btnLogOut_Click" />
+        <br />
+        <asp:Label ID="lblUsuario" runat="server" Text="" Style="margin-left:50%;" />
         <br />
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>

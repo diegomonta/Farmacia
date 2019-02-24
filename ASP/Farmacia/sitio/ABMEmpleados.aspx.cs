@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica;
+using EntidadesCompartidas;
+using System.Text.RegularExpressions;
 
 public partial class ABMEmpleados : System.Web.UI.Page
 {
@@ -46,7 +49,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
         btnCancelar.Enabled = true;
         btnBuscar.Enabled = true;
 
-        //BOQUEAR TEXTBOXES
+        //BLOQUEAR TEXTBOXES
         txtUsuario.Enabled = true;
         txtUsuario.Text = "";
 
@@ -55,6 +58,9 @@ public partial class ABMEmpleados : System.Web.UI.Page
 
         txtNombre.Enabled = false;
         txtNombre.Text = "";
+
+        lblERROR.Text = "";
+
         ddlFinJornadaHoras.Enabled = false;
         ddlFinJornadaMinutos.Enabled = false;
         ddlInicioJornadaHoras.Enabled = false;
@@ -93,59 +99,138 @@ public partial class ABMEmpleados : System.Web.UI.Page
 
         //BOQUEAR TEXTBOXES
         txtUsuario.Enabled = false;
+
         txtPass.Enabled = true;
+        txtPass.Text = ((Empleado)Session["Empleado"]).pPass;
+
         txtNombre.Enabled = true;
+        txtNombre.Text = ((Empleado)Session["Empleado"]).pNombreCompleto;
+
         ddlFinJornadaHoras.Enabled = true;
+        ddlFinJornadaHoras.SelectedValue = (Regex.Match(((Empleado)Session["Empleado"]).pFinJornadaLaboral, @"[0-9]+(?=:)")).ToString();
+
         ddlFinJornadaMinutos.Enabled = true;
+        ddlFinJornadaMinutos.SelectedValue = (Regex.Match(((Empleado)Session["Empleado"]).pFinJornadaLaboral, @"(?<=:)[0-9]+")).ToString();
+
         ddlInicioJornadaHoras.Enabled = true;
+        ddlInicioJornadaHoras.SelectedValue = (Regex.Match(((Empleado)Session["Empleado"]).pInicioJornadaLaboral, @"[0-9]+(?=:)")).ToString();
+
         ddlInicioJornadaMinutos.Enabled = true;
+        ddlInicioJornadaMinutos.SelectedValue = (Regex.Match(((Empleado)Session["Empleado"]).pInicioJornadaLaboral, @"(?<=:)[0-9]+")).ToString();
+
     }
 
     protected void btnBuscar_Click(object sender, EventArgs e)
     {
-        try { }
+        try
+        {
+            Logica.LogicaUsuario logicaUsuario = new Logica.LogicaUsuario();
+            Session["Empleado"] = logicaUsuario.BuscarUsuario(txtUsuario.Text);
+
+            if (!((Usuario)Session["Empleado"] is Cliente))
+                if ((Usuario)Session["Empleado"] == null)
+                    FormularioAlta();
+                else
+                    FormularioModificarCancelar();
+            else
+                throw new Exception("Este usuario pertenece a un cliente.");
+        }
         catch (Exception ex)
         {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
             lblERROR.Text = ex.Message;
         }
     }
     protected void btnCancelar_Click(object sender, EventArgs e)
     {
-        try { }
+        try
+        {
+            Response.Redirect("DefaultEmpleado.aspx");
+        }
         catch (Exception ex)
         {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
             lblERROR.Text = ex.Message;
         }
     }
     protected void btnLimpiar_Click(object sender, EventArgs e)
     {
-        try { }
+        try
+        {
+            FormularioDefault();
+        }
         catch (Exception ex)
         {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
             lblERROR.Text = ex.Message;
         }
     }
     protected void btnModificar_Click(object sender, EventArgs e)
     {
-        try { }
+        try
+        {
+            string usuario = txtUsuario.Text;
+            string pass = txtPass.Text;
+            string nombre = txtNombre.Text;
+            string inicioJornada = (ddlInicioJornadaHoras.SelectedItem.Text + ":" + ddlInicioJornadaMinutos.SelectedItem.Text);
+            string finJornada = (ddlFinJornadaHoras.SelectedItem.Text + ":" + ddlFinJornadaMinutos.SelectedItem.Text);
+            Empleado empleado = new Empleado(usuario, pass, nombre, inicioJornada, finJornada);
+
+            Logica.LogicaUsuario logicaUsuario = new LogicaUsuario();
+            logicaUsuario.ModificarUsuario(empleado);
+
+            lblERROR.ForeColor = System.Drawing.Color.Green;
+            lblERROR.Text = "Modificacion exitosa.";
+        }
         catch (Exception ex)
         {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
             lblERROR.Text = ex.Message;
         }
     }
     protected void btnBaja_Click(object sender, EventArgs e)
     {
-        try { }
+        try
+        {
+            string usuario = txtUsuario.Text;
+            string pass = txtPass.Text;
+            string nombre = txtNombre.Text;
+            string inicioJornada = (ddlInicioJornadaHoras.SelectedItem.Text + ":" + ddlInicioJornadaMinutos.SelectedItem.Text);
+            string finJornada = (ddlFinJornadaHoras.SelectedItem.Text + ":" + ddlFinJornadaMinutos.SelectedItem.Text);
+            Empleado empleado = new Empleado(usuario, pass, nombre, inicioJornada, finJornada);
+
+            Logica.LogicaUsuario logicaUsuario = new LogicaUsuario();
+            logicaUsuario.BajaUsuario(empleado);
+
+            lblERROR.ForeColor = System.Drawing.Color.Green;
+            lblERROR.Text = "Baja exitosa.";
+        }
         catch (Exception ex)
         {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
             lblERROR.Text = ex.Message;
         }
     }
     protected void btnAlta_Click(object sender, EventArgs e)
     {
-        try { }
+        try
+        {
+            string usuario = txtUsuario.Text;
+            string pass = txtPass.Text;
+            string nombre = txtNombre.Text;
+            string inicioJornada = (ddlInicioJornadaHoras.SelectedItem.Text + ":" + ddlInicioJornadaMinutos.SelectedItem.Text);
+            string finJornada = (ddlFinJornadaHoras.SelectedItem.Text + ":" + ddlFinJornadaMinutos.SelectedItem.Text);
+            Empleado empleado = new Empleado(usuario, pass, nombre, inicioJornada, finJornada);
+
+            Logica.LogicaUsuario logicaUsuario = new LogicaUsuario();
+            logicaUsuario.AltaUsuario(empleado);
+
+            lblERROR.ForeColor = System.Drawing.Color.Green;
+            lblERROR.Text = "Alta exitosa.";
+        }
         catch (Exception ex)
         {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
             lblERROR.Text = ex.Message;
         }
     }

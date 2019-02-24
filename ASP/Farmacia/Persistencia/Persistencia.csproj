@@ -44,6 +44,7 @@
     <Compile Include="PersistenciaCliente.cs" />
     <Compile Include="PersistenciaEmpleado.cs" />
     <Compile Include="PersistenciaFarmaceutica.cs" />
+    <Compile Include="PersistenciaMedicamento.cs" />
     <Compile Include="PersistenciaUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

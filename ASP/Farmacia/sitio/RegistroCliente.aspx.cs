@@ -26,12 +26,18 @@ public partial class RegistroCliente : System.Web.UI.Page
             string telefono = txtTelefono.Text;
             Cliente cliente = new Cliente(usuario, pass, nombre, direccionFacturacion, telefono);
 
+            logicaUsuario.AltaUsuario(cliente);
+
             //SIGNED IN
             Session["USUARIO"] = cliente;
             //REDIRECT
             Response.Redirect("DefaultCliente.aspx");
 
         }
-        catch (Exception ex) { lblERROR.Text = ex.Message; }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
+        }
     }
 }
