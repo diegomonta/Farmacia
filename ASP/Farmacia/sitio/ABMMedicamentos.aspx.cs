@@ -128,7 +128,7 @@ public partial class ABMMedicamentos : System.Web.UI.Page
             else
                 throw new Exception("El codigo debe ser un numero.");
 
-            //VERIFICAR double
+            //VERIFICAR DOUBLE
             if (double.TryParse(txtPrecio.Text, out doublevalue))
                 precio = double.Parse(txtPrecio.Text);
             else

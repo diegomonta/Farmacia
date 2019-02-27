@@ -13,17 +13,22 @@
         <table border="0" cellpadding="0" cellspacing="0">
             <tr>
                 <td>
-                    <asp:LinkButton ID="btnABMFarmaceutica" Text="ABMFarmaceuticas" runat="server" OnClick="btnABMFarmaceutica_Click" />
-                    <br />
-                    <asp:LinkButton ID="btnABMMedicamento" Text="ABMMedicamentos" runat="server" OnClick="btnABMMedicamento_Click" />
-                    <br />
-                    <asp:LinkButton ID="btnABMEmpleado" Text="ABMEmpleados" runat="server" OnClick="btnABMEmpleado_Click" />
+                    <asp:LinkButton ID="btnABMFarmaceutica" Text="Mantenimiento farmaceuticas<br/>" runat="server"
+                        OnClick="btnABMFarmaceutica_Click" />
+                    <asp:LinkButton ID="btnABMMedicamento" Text="Mantenimiento medicamentos<br/>" runat="server"
+                        OnClick="btnABMMedicamento_Click" />
+                    <asp:LinkButton ID="btnABMEmpleado" Text="Mantenimiento empleados<br/>" runat="server"
+                        OnClick="btnABMEmpleado_Click" />
+                    <asp:LinkButton ID="btnCambiarEstadoPedido" runat="server" Text="Cambiar estado pedido<br/>" />
+                    <asp:LinkButton ID="btnRealizarPedido" runat="server" Text="Realizar pedido<br/>" />
+                    <asp:LinkButton ID="btnListarPedidoCliente" runat="server" 
+                        Text="Listar pedidos generados<br/>" onclick="btnListarPedidoCliente_Click" />
                 </td>
             </tr>
         </table>
         <asp:Button ID="btnLogOut" runat="server" Text="LogOut" Style="float: right;" OnClick="btnLogOut_Click" />
         <br />
-        <asp:Label ID="lblUsuario" runat="server" Text="" Style="margin-left:50%;" />
+        <asp:Label ID="lblUsuario" runat="server" Text="" Style="margin-left: 50%;" />
         <br />
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>

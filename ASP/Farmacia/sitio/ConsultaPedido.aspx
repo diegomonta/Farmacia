@@ -8,6 +8,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <asp:Button ID="btnAtras" runat="server" Text="Atras" Style="float: right;" 
+            onclick="btnAtras_Click" />
         <table>
             <strong>CONSULTAR ESTADO PEDIDO</strong>
             <tr>

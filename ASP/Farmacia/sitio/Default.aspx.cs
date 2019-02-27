@@ -21,13 +21,12 @@ public partial class LogIn : System.Web.UI.Page
             if (usu is Cliente)
             {
                 Session["USUARIO"] = usu;
-                //CAMBIAR REDIRECT A DEFAULT CLIENTE CUANDO EXISTA
-                Response.Redirect("DefaultEmpleado.aspx");
+                Response.Redirect("HomePage.aspx");
             }
             else if (usu is Empleado)
             {
                 Session["USUARIO"] = usu;
-                Response.Redirect("DefaultEmpleado.aspx");
+                Response.Redirect("HomePage.aspx");
             }
             else
             {

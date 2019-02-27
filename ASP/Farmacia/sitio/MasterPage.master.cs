@@ -12,27 +12,49 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         if ((Usuario)Session["USUARIO"] != null)
         {
+            btnLogOut.Enabled = true;
+            lblUsuario.Text = "Usuario: " + ((Usuario)Session["USUARIO"]).pNombreUsuario;
+
             if ((Usuario)Session["USUARIO"] is Empleado)
-                LogedIn();
+                LogedInEmpleado();
             else
-                Response.Redirect("DefaultCliente.aspx");
+                LogedInCliente();
         }
         else
             LogedOut();
     }
 
-    public void LogedIn()
+    public void LogedInEmpleado()
     {
-        //BOTONES 
-        btnLogOut.Enabled = true;
-        lblUsuario.Text = "Usuario: "+((Usuario)Session["USUARIO"]).pNombreUsuario;
+        //BOTONES EMPLEADO
+        btnABMEmpleado.Visible = true;
+        btnABMFarmaceutica.Visible = true;
+        btnABMMedicamento.Visible = true;
+        btnCambiarEstadoPedido.Visible = true;
+
+        //BOTONES CLIENTE
+        btnRealizarPedido.Visible = false;
+        btnListarPedidoCliente.Visible = false;
+    }
+
+    public void LogedInCliente()
+    {
+        //BOTONES EMPLEADO
+        btnABMEmpleado.Visible = false;
+        btnABMFarmaceutica.Visible = false;
+        btnABMMedicamento.Visible = false;
+        btnCambiarEstadoPedido.Visible = false;
+
+        //BOTONES CLIENTE
+        btnRealizarPedido.Visible = true;
+        btnListarPedidoCliente.Visible = true;
     }
 
     public void LogedOut()
     {
         Session["USUARIO"] = null;
         btnLogOut.Enabled = false;
-        Response.Redirect("LogIn.aspx");
+        Response.Redirect("Default.aspx");
     }
 
     protected void btnLogOut_Click(object sender, EventArgs e)
@@ -53,5 +75,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void btnABMMedicamento_Click(object sender, EventArgs e)
     {
         Response.Redirect("ABMMedicamentos.aspx");
+    }
+
+    protected void btnListarPedidoCliente_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ListarPedidosClienteaspx.aspx");
     }
 }

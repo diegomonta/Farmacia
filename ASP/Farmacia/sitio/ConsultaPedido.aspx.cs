@@ -11,4 +11,8 @@ public partial class ConsultaPedido : System.Web.UI.Page
     {
 
     }
+    protected void btnAtras_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Default.aspx");
+    }
 }

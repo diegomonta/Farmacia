@@ -14,49 +14,37 @@ namespace Logica
         {
             try
             {
+                Usuario usu = null;
+                //BUSCAR EMPLEADO
                 Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
-                Empleado empleado = persistenciaEmpleado.BuscarEmpleado(usuario);
-                if (empleado == null)
+                usu = persistenciaEmpleado.BuscarEmpleado(usuario);
+                if (usu == null)
                 {
+                    //BUSCAR CLIENTE
                     Persistencia.PersistenciaCliente persisteniaCliente = new PersistenciaCliente();
-                    Cliente cliente = persisteniaCliente.BuscarCliente(usuario);
-                    return cliente;
+                    usu = persisteniaCliente.BuscarCliente(usuario);
                 }
-                else
-                    return empleado;
+                return usu;
             }
             catch { throw; }
         }
 
         //LOGIN USUARIO
-        public Usuario LoginUsuario(string usu, string pass)
+        public Usuario LoginUsuario(string usuario, string pass)
         {
             try
             {
-                //VERIFICAR EXISTENCIA USUARIO
-                Persistencia.PersistenciaUsuario persistenciaUsuario = new PersistenciaUsuario();
-                Usuario usuario = persistenciaUsuario.BuscarUsuario(usu, pass);
-                if (usuario != null)
+                Usuario usu = null;
+                //VERIFICAR EXISTENCIA EMPLEADO
+                Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
+                usu = persistenciaEmpleado.LogInEmpleado(usuario, pass);
+                if (usu == null)
                 {
-                    //VERIFICAR EXISTENCIA EMPLEADO
-                    Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
-                    Empleado empleado = persistenciaEmpleado.LogInEmpleado(usu, pass);
-                    if (empleado == null)
-                    {
-                        //VERIFICAR EXISTENCIA CLIENTE
-                        Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
-                        Cliente cliente = persistenciaCliente.LogInCliente(usu, pass);
-
-                        if (cliente == null)
-                            return null;
-                        else
-                            return cliente;
-                    }
-                    else
-                        return empleado;
+                    //VERIFICAR EXISTENCIA CLIENTE
+                    Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+                    usu = persistenciaCliente.LogInCliente(usuario, pass);
                 }
-                else
-                    return null;
+                return usu;
             }
             catch
             {
@@ -93,12 +81,6 @@ namespace Logica
                     Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
                     persistenciaEmpleado.ModificarEmpleado((Empleado)usuario);
                 }
-                else
-                {
-                    //??????
-                    //Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
-                    //persistenciaCliente.ModificarCliente((Cliente)usuario);
-                }
             }
             catch { throw; }
         }
@@ -112,12 +94,6 @@ namespace Logica
                 {
                     Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
                     persistenciaEmpleado.BajaEmpleado((Empleado)usuario);
-                }
-                else
-                {
-                    //??????
-                    //Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
-                    //persistenciaCliente.BajaCliente((Cliente)usuario);
                 }
             }
             catch { throw; }

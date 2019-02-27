@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="LogicaFarmaceutica.cs" />
     <Compile Include="LogicaMedicamento.cs" />
+    <Compile Include="LogicaPedido.cs" />
     <Compile Include="LogicaUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
