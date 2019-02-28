@@ -81,4 +81,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         Response.Redirect("ListarPedidosClienteaspx.aspx");
     }
+    protected void btnRealizarPedido_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("RealizarPedido.aspx");
+    }
 }

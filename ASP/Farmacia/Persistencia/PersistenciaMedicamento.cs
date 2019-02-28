@@ -59,51 +59,54 @@ namespace Persistencia
             finally { connection.Close(); }
         }
 
-        ////LISTAR FARMACEUTICAS
-        //public List<Farmaceutica> ListarFarmaceuticas()
-        //{
-        //    //GET CONNECTION STRING 
-        //    SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+        //LISTAR MEDICAMENTO
+        public List<Medicamento> ListarMedicamento()
+        {
+            //GET CONNECTION STRING 
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
 
-        //    //STORED PROCEDURE
-        //    SqlCommand Command = new SqlCommand("ListarFarmaceutica", connection);
-        //    Command.CommandType = CommandType.StoredProcedure;
+            //STORED PROCEDURE
+            SqlCommand Command = new SqlCommand("ListarMedicamento", connection);
+            Command.CommandType = CommandType.StoredProcedure;
 
-        //    //READER
-        //    SqlDataReader Reader;
+            //READER
+            SqlDataReader Reader;
 
-        //    //PREPARAR VARIABLES
-        //    string RUC;
-        //    string Nombre;
-        //    string CorreoElectronico;
-        //    string Direccion;
-        //    Farmaceutica farmaceutica = null;
-        //    List<Farmaceutica> List = new List<Farmaceutica>();
-        //    try
-        //    {
-        //        connection.Open();
-        //        Reader = Command.ExecuteReader();
-        //        while (Reader.Read())
-        //        {
-        //            RUC = (string)Reader["RUC"];
-        //            Nombre = (string)Reader["Nombre"];
-        //            CorreoElectronico = (string)Reader["CorreoElectronico"];
-        //            Direccion = (string)Reader["Direccion"];
-        //            farmaceutica = new Farmaceutica(RUC, Nombre, CorreoElectronico, Direccion);
-        //            List.Add(farmaceutica);
-        //        }
-        //        Reader.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new ApplicationException("Error en la base de datos: " + ex.Message);
-        //    }
-        //    finally
-        //    {
-        //        connection.Close();
-        //    }
-        //    return List;
-        //}
+            //PREPARAR VARIABLES
+            int Codigo;
+            string Descripcion;
+            double Precio;
+            string Nombre;
+            Farmaceutica farmaceutica = null;
+            Medicamento medicamento = null;
+            List<Medicamento> List = new List<Medicamento>();
+            Persistencia.PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
+            try
+            {
+                connection.Open();
+                Reader = Command.ExecuteReader();
+                while (Reader.Read())
+                {
+                    Codigo = (int)Reader["Codigo"];
+                    Descripcion = (string)Reader["Descripcion"];
+                    Precio = (double)Reader["Precio"];
+                    Nombre = (string)Reader["Nombre"];
+                    farmaceutica = persistenciaFarmaceutica.BuscarFarmaceutica((string)Reader["Farmaceutica"]);
+                    medicamento = new Medicamento(Codigo, farmaceutica, Nombre, Descripcion, Precio);
+                    List.Add(medicamento);
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error en la base de datos: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return List;
+        }
 
         //ALTA MEIDICAMENTO
         public void AltaMedicamento(Medicamento medicamento)

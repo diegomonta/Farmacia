@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!--TABLA ABM FARMACEUTICAS-->
+    <!--TABLA ABM EMPLEADOS-->
     <table border="0" cellpadding="0" cellspacing="0">
         <strong>A.B.M EMPLEADOS</strong>
         <!--FORMULARIO-->

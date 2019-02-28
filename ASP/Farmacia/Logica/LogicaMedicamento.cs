@@ -57,14 +57,15 @@ namespace Logica
             { throw ex; }
         }
 
-        //public List<Farmaceutica> ListarFarmaceutica()
-        //{
-        //    try
-        //    {
-        //        Persistencia.PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
-        //        return persistenciaFarmaceutica.ListarFarmaceuticas();
-        //    }
-        //    catch { throw; }
-        //}
+        //LISTAR MEDICAMENTO
+        public List<Medicamento> ListarMedicamento()
+        {
+            try
+            {
+                Persistencia.PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
+                return persistenciaMedicamento.ListarMedicamento();
+            }
+            catch { throw; }
+        }
     }
 }
