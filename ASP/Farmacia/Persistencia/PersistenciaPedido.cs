@@ -64,13 +64,13 @@ namespace Persistencia
         }
 
         //LISTAR FARMACEUTICAS
-        public List<Pedido> ListarPedidoPorCliente(Cliente cliente)
+        public List<Pedido> ListarPedidoPorClienteGenerados(Cliente cliente)
         {
             //GET CONNECTION STRING 
             SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
 
             //STORED PROCEDURE
-            SqlCommand Command = new SqlCommand("ListarPedidoPorCliente", connection);
+            SqlCommand Command = new SqlCommand("ListarPedidoPorClienteGENERADOS", connection);
             Command.CommandType = CommandType.StoredProcedure;
 
             //PARAMETROS
@@ -96,7 +96,7 @@ namespace Persistencia
                 {
                     Numero = (int)Reader["Numero"];
                     Estado = (string)Reader["Estado"];
-                    Cantidad = (int)Reader["Cantidad"];
+                    Cantidad = (int)Reader["CantidadMedicamento"];
                     MedicamentoCodigo = (int)Reader["MedicamentoCodigo"];
                     MedicamentoFarmacia = (string)Reader["MedicamentoFarmaceutica"];
                     medicamento = persistenciaMedicamento.BuscarMedicamento(MedicamentoCodigo, MedicamentoFarmacia);
@@ -114,6 +114,54 @@ namespace Persistencia
                 connection.Close();
             }
             return List;
+        }
+
+        //GET ESTADO PEDIDO
+        public Pedido BuscarPedido(int Numero)
+        {
+            //GET CONNECTION STRING
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand sp = new SqlCommand("BuscarPedido", connection);
+            sp.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            sp.Parameters.AddWithValue("@Numero", Numero);
+
+            //READER
+            SqlDataReader reader;
+
+            //PREPARAR VARIABLES
+            Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+            Persistencia.PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
+            Cliente cliente;
+            Medicamento medicamento;
+            Pedido pedido;
+            int Cantidad;
+            string Estado;
+            try
+            {
+                connection.Open();
+                reader = sp.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    cliente = persistenciaCliente.BuscarCliente((string)reader["Cliente"]);
+                    medicamento = persistenciaMedicamento.BuscarMedicamento((int)reader["MedicamentoCodigo"], (string)reader["MedicamentoFarmaceutica"]);
+                    Cantidad = (int)reader["CantidadMedicamento"];
+                    Estado = (string)reader["Estado"];
+                    pedido = new Pedido(Numero, cliente, medicamento, Cantidad, Estado);
+                    reader.Close();
+                }
+                else
+                    return null;
+
+                return pedido;
+            }
+            catch { throw; }
+
+            finally { connection.Close(); }
         }
     }
 }

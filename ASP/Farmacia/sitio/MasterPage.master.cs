@@ -34,7 +34,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
         //BOTONES CLIENTE
         btnRealizarPedido.Visible = false;
-        btnListarPedidoCliente.Visible = false;
+        btnListarPedidoEliminar.Visible = false;
     }
 
     public void LogedInCliente()
@@ -47,7 +47,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
         //BOTONES CLIENTE
         btnRealizarPedido.Visible = true;
-        btnListarPedidoCliente.Visible = true;
+        btnListarPedidoEliminar.Visible = true;
     }
 
     public void LogedOut()
@@ -77,12 +77,13 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Response.Redirect("ABMMedicamentos.aspx");
     }
 
-    protected void btnListarPedidoCliente_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("ListarPedidosClienteaspx.aspx");
-    }
     protected void btnRealizarPedido_Click(object sender, EventArgs e)
     {
         Response.Redirect("RealizarPedido.aspx");
+    }
+
+    protected void btnListarPedidoEliminar_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ListarPedidoEliminar.aspx");
     }
 }

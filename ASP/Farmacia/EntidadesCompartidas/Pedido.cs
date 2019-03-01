@@ -73,7 +73,7 @@ namespace EntidadesCompartidas
             }
         }
 
-        /*CONSTRUCTOR*/
+        /*CONSTRUCTORES*/
         public Pedido(int _Numero, Cliente _ClienteComprador, Medicamento _MedicamentoPedido, int _Cantidad, string _Estado)
         {
             pNumero = _Numero;
@@ -83,5 +83,12 @@ namespace EntidadesCompartidas
             pEstado = _Estado;
         }
 
+        public Pedido(Cliente _ClienteComprador, Medicamento _MedicamentoPedido, int _Cantidad, string _Estado)
+        {
+            pClienteComprador = _ClienteComprador;
+            pMedicamentoPedido = _MedicamentoPedido;
+            pCantidad = _Cantidad;
+            pEstado = _Estado;
+        }
     }
 }

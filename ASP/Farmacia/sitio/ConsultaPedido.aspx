@@ -20,7 +20,8 @@
                     <asp:TextBox ID="txtNumero" runat="server" />
                 </td>
                 <td>
-                    <asp:Button ID="btnConsultar" runat="server" Text="Consultar" />
+                    <asp:Button ID="btnConsultar" runat="server" Text="Consultar" 
+                        onclick="btnConsultar_Click" />
                 </td>
             </tr>
             <tr>

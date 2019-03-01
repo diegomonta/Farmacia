@@ -20,14 +20,22 @@ namespace Logica
             catch { throw; }
         }
 
-        public List<Pedido> ListarPedidosPorCliente(Cliente cliente)
+        //LISTAR PEDIDO
+        public List<Pedido> ListarPedidosPorClienteGenerados(Cliente cliente)
         {
             try
             {
                 Persistencia.PersistenciaPedido persistenciaPedido = new PersistenciaPedido();
-                return persistenciaPedido.ListarPedidoPorCliente(cliente);
+                return persistenciaPedido.ListarPedidoPorClienteGenerados(cliente);
             }
             catch { throw; }
+        }
+
+        //BUSCAR PEDIDO
+        public Pedido BuscarPedido(int Numero)
+        {
+            Persistencia.PersistenciaPedido persistenciaPedido = new PersistenciaPedido();
+            return persistenciaPedido.BuscarPedido(Numero);
         }
     }
 }
