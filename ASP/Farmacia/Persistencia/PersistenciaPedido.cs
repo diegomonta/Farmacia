@@ -10,6 +10,7 @@ namespace Persistencia
 {
     public class PersistenciaPedido
     {
+        //ALTA PEDIDO
         public void AltaPedido(Pedido pedido)
         {
             //GET CONNECTION STRING
@@ -35,7 +36,7 @@ namespace Persistencia
             {
                 connection.Open();
 
-                //ALTA CLIENTE
+                //ALTA PEDIDO
                 sp.ExecuteNonQuery();
 
                 //RETORNO
@@ -44,7 +45,7 @@ namespace Persistencia
                     case 1:
                         //EXITO
                         break;
-                    //USUARIO YA EXISTE
+                    //USUARIO NO EXISTE
                     case -1:
                         throw new Exception("El cliente no existe.");
                     //LA FARMACEUTICA NO EXISTE
@@ -116,7 +117,7 @@ namespace Persistencia
             return List;
         }
 
-        //GET ESTADO PEDIDO
+        //GET PEDIDO
         public Pedido BuscarPedido(int Numero)
         {
             //GET CONNECTION STRING
@@ -158,6 +159,50 @@ namespace Persistencia
                     return null;
 
                 return pedido;
+            }
+            catch { throw; }
+
+            finally { connection.Close(); }
+        }
+
+        //BAJA PEDIDO
+        public void BajaPedido(Pedido pedido)
+        {
+            //GET CONNECTION STRING
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand sp = new SqlCommand("BajaPedido", connection);
+            sp.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            sp.Parameters.AddWithValue("@Numero", pedido.pNumero);
+
+            //RETORNO
+            SqlParameter retorno = new SqlParameter("@retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            sp.Parameters.Add(retorno);
+
+            try
+            {
+                connection.Open();
+
+                //BAJA PEDIDO
+                sp.ExecuteNonQuery();
+
+                //RETORNO
+                switch ((int)retorno.Value)
+                {
+                    case 1:
+                        //EXITO
+                        break;
+                    //EL PEDIDO NO EXISTE
+                    case -1:
+                        throw new Exception("El pedido no existe.");
+                    //EXCEPCION NO CONTROLADA
+                    default:
+                        throw new Exception("Ha ocurrido un error vuelva a intentarlo mas tarde.");
+                }
             }
             catch { throw; }
 

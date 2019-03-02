@@ -457,7 +457,15 @@ GO
 CREATE PROCEDURE BajaPedido
 @Numero INT
 AS BEGIN
- DELETE Pedido WHERE Numero=@Numero
+	IF EXISTS(SELECT * FROM Pedido WHERE Numero=@Numero)
+	BEGIN
+		DELETE Pedido WHERE Numero=@Numero
+		RETURN 1
+	END
+	ELSE 
+	BEGIN
+		RETURN -1
+	END
 END
 GO
 

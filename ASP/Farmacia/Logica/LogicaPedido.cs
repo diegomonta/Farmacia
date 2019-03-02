@@ -34,8 +34,23 @@ namespace Logica
         //BUSCAR PEDIDO
         public Pedido BuscarPedido(int Numero)
         {
-            Persistencia.PersistenciaPedido persistenciaPedido = new PersistenciaPedido();
-            return persistenciaPedido.BuscarPedido(Numero);
+            try
+            {
+                Persistencia.PersistenciaPedido persistenciaPedido = new PersistenciaPedido();
+                return persistenciaPedido.BuscarPedido(Numero);
+            }
+            catch { throw; }
+        }
+
+        //BAJA PEDIDO
+        public void BajaPedido(Pedido pedido)
+        {
+            try
+            {
+                Persistencia.PersistenciaPedido persistenciaPedido = new PersistenciaPedido();
+                persistenciaPedido.BajaPedido(pedido);
+            }
+            catch { throw; }
         }
     }
 }

@@ -143,7 +143,7 @@ namespace Persistencia
                     case 1:
                         //EXITO
                         break;
-                    //FARMACEUTICA YA EXISTE
+                    //MEDICAMENTO YA EXISTE
                     case -1:
                         throw new Exception("El meidcamento ya existe.");
                     //EXCEPCION NO CONTROLADA
@@ -188,7 +188,7 @@ namespace Persistencia
                     case 1:
                         //EXITO
                         break;
-                    //FARMACEUTICA NO EXISTE
+                    //MEDICAMENTO NO EXISTE
                     case -1:
                         throw new Exception("El medicamento no existe.");
                     //EXCEPCION NO CONTROLADA
@@ -236,7 +236,7 @@ namespace Persistencia
                     case 1:
                         //EXITO
                         break;
-                    //FARMACEUTICA NO EXISTE
+                    //MEDICAMENTO NO EXISTE
                     case -1:
                         throw new Exception("El medicamento no existe.");
                     //EXCEPCION NO CONTROLADA

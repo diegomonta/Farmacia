@@ -4,11 +4,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:GridView ID="gvPedidos" runat="server" AutoGenerateColumns="False">
+    <asp:GridView ID="gvPedidos" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvPedidos_SelectedIndexChanged">
         <Columns>
             <asp:BoundField HeaderText="Numero pedido" DataField="pNumero" />
-            <asp:BoundField HeaderText="Medicamento" 
-                DataField="pMedicamentoPedido.pNombre" />
+            <asp:BoundField HeaderText="Medicamento" DataField="pMedicamentoPedido.pNombre" />
             <asp:BoundField DataField="pCantidad" HeaderText="Cantidad" />
             <asp:ButtonField Text="Seleccionar" ButtonType="Button" CommandName="Select" />
         </Columns>
@@ -34,14 +33,8 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblPrecio" runat="server" Text="Precio" />
+                <asp:Label ID="lblPrecio" runat="server" Text="Precio unitario" />
                 <asp:TextBox ID="txtPrecio" runat="server" Enabled="false" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label ID="lblNombre" runat="server" Text="Nombre" />
-                <asp:TextBox ID="txtNombre" runat="server" Enabled="false" />
             </td>
         </tr>
         <tr>
@@ -52,7 +45,20 @@
         </tr>
         <tr>
             <td>
-                <asp:Button ID="btnPedir" runat="server" Text="Pedir" />
+                <asp:Label ID="lblNombre" runat="server" Text="Nombre" />
+                <asp:TextBox ID="txtNombre" runat="server" Enabled="false" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblFarmaceutica" runat="server" Text="Farmaceutica productora" />
+                <asp:TextBox ID="txtFarmaceutica" runat="server" Enabled="false" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar pedido" 
+                    onclick="btnEliminar_Click" />
             </td>
         </tr>
     </table>
