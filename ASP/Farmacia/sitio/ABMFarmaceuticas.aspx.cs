@@ -11,9 +11,21 @@ public partial class ABMFarmacias : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
+        try
         {
-            FormularioDefault();
+            //PASE DE SEGURIDAD
+            if ((Usuario)Session["USUARIO"] is Cliente)
+                Response.Redirect("HomePage.aspx");
+
+            if (!Page.IsPostBack)
+            {
+                FormularioDefault();
+            }
+        }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
         }
     }
 

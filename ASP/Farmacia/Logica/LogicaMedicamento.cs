@@ -14,7 +14,7 @@ namespace Logica
         {
             try
             {
-                Persistencia.PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
+                PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
                 persistenciaMedicamento.AltaMedicamento(medicamento);
             }
             catch (Exception ex)
@@ -26,7 +26,7 @@ namespace Logica
         {
             try
             {
-                Persistencia.PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
+                PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
                 persistenciaMedicamento.BajaMedicamento(medicamento);
             }
             catch (Exception ex)
@@ -38,7 +38,7 @@ namespace Logica
         {
             try
             {
-                Persistencia.PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
+                PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
                 persistenciaMedicamento.ModificarMedicamento(medicamento);
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace Logica
         {
             try
             {
-                Persistencia.PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
+                PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
                 return persistenciaMedicamento.BuscarMedicamento(codigo, rucFarmaceutica);
             }
             catch (Exception ex)
@@ -62,8 +62,19 @@ namespace Logica
         {
             try
             {
-                Persistencia.PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
+                PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
                 return persistenciaMedicamento.ListarMedicamento();
+            }
+            catch { throw; }
+        }
+
+        //LISTAR MEDICAMENTO POR FARMACEUTICA
+        public List<Medicamento> ListarMedicamentoPorFarmaceutica(Farmaceutica farmaceutica)
+        {
+            try
+            {
+                PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
+                return persistenciaMedicamento.ListarMedicamentoPorFarmaceutica(farmaceutica);
             }
             catch { throw; }
         }

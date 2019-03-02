@@ -218,6 +218,21 @@ AS BEGIN
 END
 GO
 
+--LISTAR
+CREATE PROCEDURE ListarMedicamento
+AS BEGIN
+	SELECT * FROM Medicamento ORDER BY Nombre
+END
+GO
+
+--LISTAR MEDICAMENTO POR FARMACEUTICA
+CREATE PROCEDURE ListarMedicamentoPorFarmaceutica
+@RUC VARCHAR(13)
+AS BEGIN
+	SELECT * FROM Medicamento WHERE Farmaceutica=@RUC
+END
+GO
+
 --LOGUEO
 CREATE PROCEDURE BuscarUsuario
 @Usuario VARCHAR(20),
@@ -225,13 +240,6 @@ CREATE PROCEDURE BuscarUsuario
 AS BEGIN
 	SELECT * FROM Usuario 
 	WHERE Usuario.Usuario=@Usuario AND Pass=@Pass
-END
-GO
-
---LISTAR
-CREATE PROCEDURE ListarMedicamento
-AS BEGIN
-	SELECT * FROM Medicamento ORDER BY Nombre
 END
 GO
 

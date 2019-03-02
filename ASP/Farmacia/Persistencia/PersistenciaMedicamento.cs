@@ -30,7 +30,7 @@ namespace Persistencia
             try
             {
                 //PREPARAR VARIABLES
-                Persistencia.PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
+                PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
                 Medicamento medicamento;
                 string Nombre;
                 double Precio;
@@ -80,7 +80,7 @@ namespace Persistencia
             Farmaceutica farmaceutica = null;
             Medicamento medicamento = null;
             List<Medicamento> List = new List<Medicamento>();
-            Persistencia.PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
+            PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
             try
             {
                 connection.Open();
@@ -92,6 +92,56 @@ namespace Persistencia
                     Precio = (double)Reader["Precio"];
                     Nombre = (string)Reader["Nombre"];
                     farmaceutica = persistenciaFarmaceutica.BuscarFarmaceutica((string)Reader["Farmaceutica"]);
+                    medicamento = new Medicamento(Codigo, farmaceutica, Nombre, Descripcion, Precio);
+                    List.Add(medicamento);
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error en la base de datos: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return List;
+        }
+
+        //LISTAR MEDICAMENTO POR FARMACEUTICA
+        public List<Medicamento> ListarMedicamentoPorFarmaceutica(Farmaceutica farmaceutica)
+        {
+            //GET CONNECTION STRING 
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand Command = new SqlCommand("ListarMedicamento", connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETRO
+            Command.Parameters.AddWithValue("@RUC", farmaceutica.pRUC);
+
+            //READER
+            SqlDataReader Reader;
+
+            //PREPARAR VARIABLES
+            int Codigo;
+            string Descripcion;
+            double Precio;
+            string Nombre;
+            Medicamento medicamento = null;
+            List<Medicamento> List = new List<Medicamento>();
+            PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
+            try
+            {
+                connection.Open();
+                Reader = Command.ExecuteReader();
+                while (Reader.Read())
+                {
+                    Codigo = (int)Reader["Codigo"];
+                    Descripcion = (string)Reader["Descripcion"];
+                    Precio = (double)Reader["Precio"];
+                    Nombre = (string)Reader["Nombre"];
                     medicamento = new Medicamento(Codigo, farmaceutica, Nombre, Descripcion, Precio);
                     List.Add(medicamento);
                 }

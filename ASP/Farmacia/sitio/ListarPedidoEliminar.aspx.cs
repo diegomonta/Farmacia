@@ -13,13 +13,12 @@ public partial class ListarPedidoEliminar : System.Web.UI.Page
     {
         try
         {
+            //PASE DE SEGURIDAD
+            if ((Usuario)Session["USUARIO"] is Empleado)
+                Response.Redirect("HomePage.aspx");
+
             if (!Page.IsPostBack)
-            {
-                LogicaPedido logicaPedido = new LogicaPedido();
-                Session["listaPedidos"] = logicaPedido.ListarPedidosPorClienteGenerados((Cliente)Session["USUARIO"]);
-                gvPedidos.DataSource = (List<Pedido>)Session["listaPedidos"];
-                gvPedidos.DataBind();
-            }
+                formularioDefault();
         }
         catch (Exception ex)
         {
@@ -30,7 +29,23 @@ public partial class ListarPedidoEliminar : System.Web.UI.Page
 
     public void formularioDefault()
     {
-        //DEFAULT FORMULARIO ACTUALIZAR LISTA DE PEDIDOS LIMPIIAR DATOS Y LIMPIAR SESSION
+        //ACTUALIZAR LISTA DE PEDIDOS GENERADOS 
+        LogicaPedido logicaPedido = new LogicaPedido();
+        Session["listaPedidos"] = logicaPedido.ListarPedidosPorClienteGenerados((Cliente)Session["USUARIO"]);
+        gvPedidos.DataSource = (List<Pedido>)Session["listaPedidos"];
+        gvPedidos.DataBind();
+
+        //LIMPIAR SESSION
+        Session["PEDIDO"] = null;
+
+        //LIMPIAR FORMULARIO
+        txtNumero.Text = "";
+        txtCliente.Text = "";
+        txtMedicamento.Text = "";
+        txtPrecio.Text = "";
+        txtCantidad.Text = "";
+        txtFarmaceutica.Text = "";
+        lblERROR.Text = "";
     }
 
     protected void gvPedidos_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,6 +80,7 @@ public partial class ListarPedidoEliminar : System.Web.UI.Page
                 Logica.LogicaPedido logicaPedido = new LogicaPedido();
                 logicaPedido.BajaPedido((Pedido)Session["PEDIDO"]);
             }
+            formularioDefault();
             lblERROR.ForeColor = System.Drawing.Color.Green;
             lblERROR.Text = "Pedido eliminado correctamente.";
         }

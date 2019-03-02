@@ -13,6 +13,10 @@ public partial class RealizarPedido : System.Web.UI.Page
     {
         try
         {
+            //PASE DE SEGURIDAD
+            if ((Usuario)Session["USUARIO"] is Empleado)
+                Response.Redirect("HomePage.aspx");
+
             if (!Page.IsPostBack)
             {
                 Logica.LogicaMedicamento logicaMedicamento = new LogicaMedicamento();

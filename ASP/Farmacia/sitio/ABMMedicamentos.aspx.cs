@@ -11,17 +11,29 @@ public partial class ABMMedicamentos : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //CARGAR FARMACEUTICAS
-        if (!Page.IsPostBack)
+        try
         {
-            Logica.LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
-            List<Farmaceutica> listaFarmaceuticas = logicaFarmaceutica.ListarFarmaceutica();
+            //PASE DE SEGURIDAD
+            if ((Usuario)Session["USUARIO"] is Cliente)
+                Response.Redirect("HomePage.aspx");
 
-            foreach (Farmaceutica farmaceutica in listaFarmaceuticas)
+            //CARGAR FARMACEUTICAS
+            if (!Page.IsPostBack)
             {
-                ListItem item = new ListItem(farmaceutica.pNombre + "(" + farmaceutica.pRUC + ")", farmaceutica.pRUC);
-                ddlFarmaceuticas.Items.Add(item);
+                Logica.LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
+                List<Farmaceutica> listaFarmaceuticas = logicaFarmaceutica.ListarFarmaceutica();
+
+                foreach (Farmaceutica farmaceutica in listaFarmaceuticas)
+                {
+                    ListItem item = new ListItem(farmaceutica.pNombre + "(" + farmaceutica.pRUC + ")", farmaceutica.pRUC);
+                    ddlFarmaceuticas.Items.Add(item);
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
         }
     }
 

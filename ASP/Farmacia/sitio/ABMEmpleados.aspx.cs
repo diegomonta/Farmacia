@@ -14,6 +14,10 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
+            //PASE DE SEGURIDAD
+            if ((Usuario)Session["USUARIO"] is Cliente)
+                Response.Redirect("HomePage.aspx");
+
             if (!Page.IsPostBack)
             {
                 //CARGAR HORAS
@@ -36,7 +40,11 @@ public partial class ABMEmpleados : System.Web.UI.Page
                 FormularioDefault();
             }
         }
-        catch (Exception ex) { lblERROR.Text = ex.Message; }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
+        }
     }
 
     //FORMULARIO ESTADO DEFAULT

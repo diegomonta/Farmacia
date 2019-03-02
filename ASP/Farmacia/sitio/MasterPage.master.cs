@@ -31,6 +31,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         btnABMFarmaceutica.Visible = true;
         btnABMMedicamento.Visible = true;
         btnCambiarEstadoPedido.Visible = true;
+        btnListadoMedicamentosPedidos.Visible = true;
 
         //BOTONES CLIENTE
         btnRealizarPedido.Visible = false;
@@ -44,6 +45,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         btnABMFarmaceutica.Visible = false;
         btnABMMedicamento.Visible = false;
         btnCambiarEstadoPedido.Visible = false;
+        btnListadoMedicamentosPedidos.Visible = false;
 
         //BOTONES CLIENTE
         btnRealizarPedido.Visible = true;
@@ -85,5 +87,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void btnListarPedidoEliminar_Click(object sender, EventArgs e)
     {
         Response.Redirect("ListarPedidoEliminar.aspx");
+    }
+
+    protected void btnListadoMedicamentosPedidos_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("LA CONCHA DE TU VIEJA");
     }
 }

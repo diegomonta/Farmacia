@@ -4,7 +4,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:GridView ID="gvMedicamentos" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvMedicamentos_SelectedIndexChanged">
+    <asp:GridView ID="gvMedicamentos" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvMedicamentos_SelectedIndexChanged"
+        Caption="<strong>Medicamentos</strong>" EmptyDataText="No hay medicamentos disponibles.">
         <Columns>
             <asp:BoundField HeaderText="Nombre" DataField="pNombre" />
             <asp:BoundField HeaderText="Precio" DataField="pPrecio" />
@@ -50,8 +51,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Button ID="btnPedir" runat="server" Text="Pedir" 
-                    onclick="btnPedir_Click" />
+                <asp:Button ID="btnPedir" runat="server" Text="Pedir" OnClick="btnPedir_Click" />
             </td>
         </tr>
     </table>
