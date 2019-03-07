@@ -8,8 +8,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:Button ID="btnAtras" runat="server" Text="Atras" Style="float: right;" 
-            onclick="btnAtras_Click" />
+        <asp:Button ID="btnAtras" runat="server" Text="Atras" Style="float: right;" OnClick="btnAtras_Click" />
         <table>
             <strong>CONSULTAR ESTADO PEDIDO</strong>
             <tr>
@@ -20,8 +19,7 @@
                     <asp:TextBox ID="txtNumero" runat="server" />
                 </td>
                 <td>
-                    <asp:Button ID="btnConsultar" runat="server" Text="Consultar" 
-                        onclick="btnConsultar_Click" />
+                    <asp:Button ID="btnConsultar" runat="server" Text="Consultar" OnClick="btnConsultar_Click" />
                 </td>
             </tr>
             <tr>
@@ -29,12 +27,8 @@
                     <asp:Label ID="lblEstado" runat="server" />
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="lblERROR" runat="server" />
-                </td>
-            </tr>
         </table>
+        <asp:Label ID="lblERROR" runat="server" />
     </div>
     </form>
 </body>

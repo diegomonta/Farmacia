@@ -46,12 +46,6 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblNombre" runat="server" Text="Nombre" />
-                <asp:TextBox ID="txtNombre" runat="server" Enabled="false" />
-            </td>
-        </tr>
-        <tr>
-            <td>
                 <asp:Label ID="lblFarmaceutica" runat="server" Text="Farmaceutica productora" />
                 <asp:TextBox ID="txtFarmaceutica" runat="server" Enabled="false" />
             </td>

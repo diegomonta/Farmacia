@@ -91,6 +91,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void btnListadoMedicamentosPedidos_Click(object sender, EventArgs e)
     {
-        Response.Redirect("LA CONCHA DE TU VIEJA");
+        Response.Redirect("ListadoMedicamentosYPedidos.aspx");
     }
 }

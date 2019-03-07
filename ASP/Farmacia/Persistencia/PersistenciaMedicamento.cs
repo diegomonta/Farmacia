@@ -115,7 +115,7 @@ namespace Persistencia
             SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
 
             //STORED PROCEDURE
-            SqlCommand Command = new SqlCommand("ListarMedicamento", connection);
+            SqlCommand Command = new SqlCommand("ListarMedicamentoPorFarmaceutica", connection);
             Command.CommandType = CommandType.StoredProcedure;
 
             //PARAMETRO

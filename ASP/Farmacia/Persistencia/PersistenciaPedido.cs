@@ -64,7 +64,7 @@ namespace Persistencia
             finally { connection.Close(); }
         }
 
-        //LISTAR FARMACEUTICAS
+        //LISTAR PEDIDO POR CLIENTE EN ESTADO GENERADO
         public List<Pedido> ListarPedidoPorClienteGenerados(Cliente cliente)
         {
             //GET CONNECTION STRING 
@@ -101,6 +101,55 @@ namespace Persistencia
                     MedicamentoCodigo = (int)Reader["MedicamentoCodigo"];
                     MedicamentoFarmacia = (string)Reader["MedicamentoFarmaceutica"];
                     medicamento = persistenciaMedicamento.BuscarMedicamento(MedicamentoCodigo, MedicamentoFarmacia);
+                    Pedido pedido = new Pedido(Numero, cliente, medicamento, Cantidad, Estado);
+                    List.Add(pedido);
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error en la base de datos: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return List;
+        }
+
+        //LISTAR PEDIDO POR MEDICAMENTO EN ESTADO X
+        public List<Pedido> ListarPedidoPorEstadoMedicamento(Medicamento medicamento, string Estado)
+        {
+            //GET CONNECTION STRING 
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand Command = new SqlCommand("ListarPedidoPorEstadoMedicamento", connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            Command.Parameters.AddWithValue("@MedicamentoCodigo", medicamento.pCodigo);
+            Command.Parameters.AddWithValue("@MedicamentoFarmaceutica", medicamento.pFarmaceutica.pRUC);
+            Command.Parameters.AddWithValue("@Estado", Estado);
+
+            //READER
+            SqlDataReader Reader;
+
+            //PREPARAR VARIABLES
+            PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+            int Numero;
+            Cliente cliente = null;
+            int Cantidad;
+            List<Pedido> List = new List<Pedido>();
+            try
+            {
+                connection.Open();
+                Reader = Command.ExecuteReader();
+                while (Reader.Read())
+                {
+                    Numero = (int)Reader["Numero"];
+                    Cantidad = (int)Reader["CantidadMedicamento"];
+                    cliente = persistenciaCliente.BuscarCliente((string)Reader["Cliente"]);
                     Pedido pedido = new Pedido(Numero, cliente, medicamento, Cantidad, Estado);
                     List.Add(pedido);
                 }

@@ -31,6 +31,17 @@ namespace Logica
             catch { throw; }
         }
 
+        //LISTAR PEDIDO POR ESTADO MEDICAMENTO
+        public List<Pedido> ListarPedidoPorEstadoMedicamento(Medicamento medicamento, string estado)
+        {
+            try
+            {
+                PersistenciaPedido persistenciaPedido = new PersistenciaPedido();
+                return persistenciaPedido.ListarPedidoPorEstadoMedicamento(medicamento, estado);
+            }
+            catch { throw; }
+        }
+
         //BUSCAR PEDIDO
         public Pedido BuscarPedido(int Numero)
         {

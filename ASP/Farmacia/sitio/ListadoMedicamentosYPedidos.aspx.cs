@@ -36,23 +36,104 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
             lblERROR.Text = ex.Message;
         }
     }
+
     protected void gvMedicamentos_SelectedIndexChanged(object sender, EventArgs e)
     {
+        int index = gvMedicamentos.SelectedRow.RowIndex;
+        Session["MEDICAMENTO"] = ((List<Medicamento>)Session["ListaMedicamentos"])[index];
 
+        btnTodos_Click(null, EventArgs.Empty);
     }
 
     protected void ddlFarmaceutica_SelectedIndexChanged(object sender, EventArgs e)
     {
         try
         {
-            LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
-            Farmaceutica farmaceutica = logicaFarmaceutica.BuscarFarmaceutica(ddlFarmaceutica.SelectedItem.Value);
+            if (!string.IsNullOrEmpty(ddlFarmaceutica.SelectedItem.Value))
+            {
+                LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
+                Farmaceutica farmaceutica = logicaFarmaceutica.BuscarFarmaceutica(ddlFarmaceutica.SelectedItem.Value);
 
-            LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
-            Session["ListaMedicamentos"] = logicaMedicamento.ListarMedicamentoPorFarmaceutica(farmaceutica);
-            gvMedicamentos.DataSource = (List<Medicamento>)Session["ListaMedicamentos"];
-            gvMedicamentos.DataBind();
+                LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
+                Session["ListaMedicamentos"] = logicaMedicamento.ListarMedicamentoPorFarmaceutica(farmaceutica);
+                gvMedicamentos.DataSource = (List<Medicamento>)Session["ListaMedicamentos"];
+                gvMedicamentos.DataBind();
+            }
         }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
+        }
+    }
+    protected void btnTodos_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            //MOSTRAR FILTRO SELECCIONADO
+            btnTodos.BackColor = System.Drawing.Color.Green;
+            btnGenerados.BackColor = System.Drawing.Color.Silver;
+            btnEntregados.BackColor = System.Drawing.Color.Silver;
+
+            if ((Medicamento)Session["MEDICAMENTO"] == null)
+                throw new Exception("Debe seleccionar un medicamento.");
+            Logica.LogicaPedido logicaPedido = new LogicaPedido();
+        }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
+        }
+
+    }
+    protected void btnGenerados_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            //MOSTRAR FILTRO SELECCIONADO
+            btnTodos.BackColor = System.Drawing.Color.Silver;
+            btnGenerados.BackColor = System.Drawing.Color.Green;
+            btnEntregados.BackColor = System.Drawing.Color.Silver;
+
+            if ((Medicamento)Session["MEDICAMENTO"] == null)
+                throw new Exception("Debe seleccionar un medicamento.");
+
+            Logica.LogicaPedido logicaPedido = new LogicaPedido();
+            gvPedidos.DataSource = logicaPedido.ListarPedidoPorEstadoMedicamento((Medicamento)Session["MEDICAMENTO"], "GENERADO");
+            gvPedidos.DataBind();
+        }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
+        }
+    }
+    protected void btnEntregados_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            //MOSTRAR FILTRO SELECCIONADO
+            btnTodos.BackColor = System.Drawing.Color.Silver;
+            btnGenerados.BackColor = System.Drawing.Color.Silver;
+            btnEntregados.BackColor = System.Drawing.Color.Green;
+
+            if ((Medicamento)Session["MEDICAMENTO"] == null)
+                throw new Exception("Debe seleccionar un medicamento.");
+
+            Logica.LogicaPedido logicaPedido = new LogicaPedido();
+            gvPedidos.DataSource = logicaPedido.ListarPedidoPorEstadoMedicamento((Medicamento)Session["MEDICAMENTO"], "ENTREGADO");
+            gvPedidos.DataBind();
+        }
+        catch (Exception ex)
+        {
+            lblERROR.ForeColor = System.Drawing.Color.Red;
+            lblERROR.Text = ex.Message;
+        }
+    }
+
+    protected void gvPedidos_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try { }
         catch (Exception ex)
         {
             lblERROR.ForeColor = System.Drawing.Color.Red;
