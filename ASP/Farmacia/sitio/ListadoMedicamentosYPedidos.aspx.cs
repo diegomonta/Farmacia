@@ -58,6 +58,10 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
                 Session["ListaMedicamentos"] = logicaMedicamento.ListarMedicamentoPorFarmaceutica(farmaceutica);
                 gvMedicamentos.DataSource = (List<Medicamento>)Session["ListaMedicamentos"];
                 gvMedicamentos.DataBind();
+
+                //LIMPIAR GRIDVIEW PEDIDOS
+                gvPedidos.DataSource = null;
+                gvPedidos.DataBind();
             }
         }
         catch (Exception ex)
@@ -78,6 +82,8 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
             if ((Medicamento)Session["MEDICAMENTO"] == null)
                 throw new Exception("Debe seleccionar un medicamento.");
             Logica.LogicaPedido logicaPedido = new LogicaPedido();
+            gvPedidos.DataSource = logicaPedido.ListarPedidoPorMedicamento((Medicamento)Session["MEDICAMENTO"]);
+            gvPedidos.DataBind();
         }
         catch (Exception ex)
         {

@@ -93,4 +93,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         Response.Redirect("ListadoMedicamentosYPedidos.aspx");
     }
+
+    protected void btnCambiarEstadoPedido_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CambioEstadoPedido.aspx");
+    }
 }

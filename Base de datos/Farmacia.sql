@@ -481,7 +481,7 @@ GO
 CREATE PROCEDURE ListarPedidoPorClienteGENERADOS
 @Usuario VARCHAR(20)
 AS BEGIN 
-	SELECT * FROM Pedido WHERE Cliente=@Usuario AND Estado='GENERADO'
+	SELECT * FROM Pedido WHERE Cliente=@Usuario AND Estado='GENERADO' 
 END	
 GO
 
@@ -491,7 +491,9 @@ CREATE PROCEDURE ListarPedidoPorEstadoMedicamento
 @MedicamentoFarmaceutica VARCHAR(13),
 @Estado VARCHAR(50)
 AS BEGIN
-	SELECT * FROM Pedido WHERE Estado=@Estado AND MedicamentoCodigo=@MedicamentoCodigo AND MedicamentoFarmaceutica=@MedicamentoFarmaceutica
+	SELECT * FROM Pedido 
+	WHERE Estado=@Estado AND MedicamentoCodigo=@MedicamentoCodigo AND MedicamentoFarmaceutica=@MedicamentoFarmaceutica
+	ORDER BY Numero
 END
 GO
 
@@ -500,7 +502,16 @@ CREATE PROCEDURE ListarPedidoMedicamento
 @MedicamentoCodigo INT,
 @MedicamentoFarmaceutica VARCHAR(13)
 AS BEGIN
-	SELECT * FROM Pedido WHERE MedicamentoCodigo=@MedicamentoCodigo AND MedicamentoFarmaceutica=@MedicamentoFarmaceutica
+	SELECT * FROM Pedido 
+	WHERE MedicamentoCodigo=@MedicamentoCodigo AND MedicamentoFarmaceutica=@MedicamentoFarmaceutica
+	ORDER BY Numero
+END
+GO
+
+--LISTAR PEDIDOS GENERADOS O ENVIADOS
+CREATE PROCEDURE ListarPedidoGeneradoOEnviado
+AS BEGIN
+	SELECT * FROM Pedido WHERE Estado='GENERADO' OR Estado='ENVIADO'
 END
 GO
 
@@ -509,6 +520,23 @@ CREATE PROCEDURE BuscarPedido
 @Numero INT
 AS BEGIN
 	SELECT * FROM Pedido WHERE Numero=@Numero
+END
+GO
+
+--CAMBIAR ESTADO PEDIDO
+CREATE PROCEDURE CambiarEstadoPedido
+@Numero INT,
+@Estado VARCHAR(50)
+AS BEGIN
+	IF EXISTS(SELECT * FROM Pedido WHERE Numero=@Numero)
+	BEGIN
+		UPDATE Pedido SET Estado=@Estado WHERE Numero=@Numero
+		RETURN 1
+	END
+	ELSE
+	BEGIN
+		RETURN -1
+	END
 END
 GO
 
@@ -583,3 +611,4 @@ GO
 EXEC AltaPedido 'SOLEDAD',1,'2342342342342',2,'ENTREGADO'
 GO
 EXEC AltaPedido 'SOLEDAD',1,'2342342342342',2,'GENERADO'
+

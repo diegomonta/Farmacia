@@ -19,9 +19,11 @@
                         OnClick="btnABMMedicamento_Click" />
                     <asp:LinkButton ID="btnABMEmpleado" Text="Mantenimiento empleados<br/>" runat="server"
                         OnClick="btnABMEmpleado_Click" />
+                        <asp:LinkButton ID="btnCambiarEstadoPedido" 
+                        Text="Cambiar estado pedido<br/>" runat="server" onclick="btnCambiarEstadoPedido_Click"
+                         />
                     <asp:LinkButton ID="btnListadoMedicamentosPedidos" Text="Listado memdicamentos pedidos <br/>"
                         runat="server" onclick="btnListadoMedicamentosPedidos_Click" />
-                    <asp:LinkButton ID="btnCambiarEstadoPedido" runat="server" Text="Cambiar estado pedido<br/>" />
                     <asp:LinkButton ID="btnRealizarPedido" runat="server" Text="Realizar pedido<br/>"
                         OnClick="btnRealizarPedido_Click" />
                     <asp:LinkButton ID="btnListarPedidoEliminar" runat="server" Text="Listado pedidos / Eliminar pedido <br/>"

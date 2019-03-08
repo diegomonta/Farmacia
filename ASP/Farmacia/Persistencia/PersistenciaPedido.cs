@@ -64,6 +64,51 @@ namespace Persistencia
             finally { connection.Close(); }
         }
 
+        //CAMBIAR ESTADO PEDIDO
+        public void CambiarEstadoPedido(Pedido pedido)
+        {
+            //GET CONNECTION STRING
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand sp = new SqlCommand("CambiarEstadoPedido", connection);
+            sp.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            sp.Parameters.AddWithValue("@Numero", pedido.pNumero);
+            sp.Parameters.AddWithValue("@Estado", pedido.pEstado);
+
+            //RETORNO
+            SqlParameter retorno = new SqlParameter("@retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            sp.Parameters.Add(retorno);
+
+            try
+            {
+                connection.Open();
+
+                //LISTAR PEDIDOS
+                sp.ExecuteNonQuery();
+
+                //RETORNO
+                switch ((int)retorno.Value)
+                {
+                    case 1:
+                        //EXITO
+                        break;
+                    //USUARIO NO EXISTE
+                    case -1:
+                        throw new Exception("El pedido no existe.");
+                    //EXCEPCION NO CONTROLADA
+                    default:
+                        throw new Exception("Ha ocurrido un error vuelva a intentarlo mas tarde.");
+                }
+            }
+            catch { throw; }
+
+            finally { connection.Close(); }
+        }
+
         //LISTAR PEDIDO POR CLIENTE EN ESTADO GENERADO
         public List<Pedido> ListarPedidoPorClienteGenerados(Cliente cliente)
         {
@@ -81,7 +126,7 @@ namespace Persistencia
             SqlDataReader Reader;
 
             //PREPARAR VARIABLES
-            Persistencia.PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
+            PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
             int Numero;
             int MedicamentoCodigo;
             string MedicamentoFarmacia;
@@ -166,6 +211,109 @@ namespace Persistencia
             return List;
         }
 
+        //LISTAR PEDIDO POR MEDICAMENTO
+        public List<Pedido> ListarPedidoPorMedicamento(Medicamento medicamento)
+        {
+            //GET CONNECTION STRING 
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand Command = new SqlCommand("ListarPedidoMedicamento", connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            Command.Parameters.AddWithValue("@MedicamentoCodigo", medicamento.pCodigo);
+            Command.Parameters.AddWithValue("@MedicamentoFarmaceutica", medicamento.pFarmaceutica.pRUC);
+
+            //READER
+            SqlDataReader Reader;
+
+            //PREPARAR VARIABLES
+            PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+            int Numero;
+            Cliente cliente = null;
+            int Cantidad;
+            string Estado;
+            List<Pedido> List = new List<Pedido>();
+            try
+            {
+                connection.Open();
+                Reader = Command.ExecuteReader();
+                while (Reader.Read())
+                {
+                    Numero = (int)Reader["Numero"];
+                    Estado = (string)Reader["Estado"];
+                    Cantidad = (int)Reader["CantidadMedicamento"];
+                    cliente = persistenciaCliente.BuscarCliente((string)Reader["Cliente"]);
+                    Pedido pedido = new Pedido(Numero, cliente, medicamento, Cantidad, Estado);
+                    List.Add(pedido);
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error en la base de datos: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return List;
+        }
+
+        //LISTAR PEDIDOS GENERADOS O ENVIADOS
+        public List<Pedido> ListarPedidoGeneradoOEnviado()
+        {
+            //GET CONNECTION STRING 
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand Command = new SqlCommand("ListarPedidoGeneradoOEnviado", connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            //READER
+            SqlDataReader Reader;
+
+            //PREPARAR VARIABLES
+            PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+            PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
+            int Numero;
+            Cliente cliente = null;
+            int Cantidad;
+            string Estado;
+            Medicamento medicamento = null;
+            int MedicamentoCodigo;
+            string MedicamentoFarmacia;
+            List<Pedido> List = new List<Pedido>();
+            try
+            {
+                connection.Open();
+                Reader = Command.ExecuteReader();
+                while (Reader.Read())
+                {
+                    Numero = (int)Reader["Numero"];
+                    Estado = (string)Reader["Estado"];
+                    Cantidad = (int)Reader["CantidadMedicamento"];
+                    MedicamentoCodigo = (int)Reader["MedicamentoCodigo"];
+                    MedicamentoFarmacia = (string)Reader["MedicamentoFarmaceutica"];
+                    medicamento = persistenciaMedicamento.BuscarMedicamento(MedicamentoCodigo, MedicamentoFarmacia);
+                    cliente = persistenciaCliente.BuscarCliente((string)Reader["Cliente"]);
+                    Pedido pedido = new Pedido(Numero, cliente, medicamento, Cantidad, Estado);
+                    List.Add(pedido);
+                }
+                Reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error en la base de datos: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return List;
+        }
+
         //GET PEDIDO
         public Pedido BuscarPedido(int Numero)
         {
@@ -183,8 +331,8 @@ namespace Persistencia
             SqlDataReader reader;
 
             //PREPARAR VARIABLES
-            Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
-            Persistencia.PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
+            PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+            PersistenciaMedicamento persistenciaMedicamento = new PersistenciaMedicamento();
             Cliente cliente;
             Medicamento medicamento;
             Pedido pedido;
