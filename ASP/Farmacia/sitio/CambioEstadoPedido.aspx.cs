@@ -28,7 +28,7 @@ public partial class CambioEstadoPedido : System.Web.UI.Page
         }
     }
 
-    public void formularioDefault()
+    private void formularioDefault()
     {
         try
         {

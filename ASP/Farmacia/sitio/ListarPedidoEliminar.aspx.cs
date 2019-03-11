@@ -27,7 +27,7 @@ public partial class ListarPedidoEliminar : System.Web.UI.Page
         }
     }
 
-    public void formularioDefault()
+    private void formularioDefault()
     {
         //ACTUALIZAR LISTA DE PEDIDOS GENERADOS 
         LogicaPedido logicaPedido = new LogicaPedido();

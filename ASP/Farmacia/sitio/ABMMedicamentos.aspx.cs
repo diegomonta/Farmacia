@@ -273,7 +273,10 @@ public partial class ABMMedicamentos : System.Web.UI.Page
     }
     protected void btnCancelar_Click(object sender, EventArgs e)
     {
-        try { }
+        try
+        {
+            Response.Redirect("Default.aspx");
+        }
         catch (Exception ex)
         {
             lblERROR.ForeColor = System.Drawing.Color.Red;

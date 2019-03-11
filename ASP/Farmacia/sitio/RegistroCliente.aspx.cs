@@ -31,7 +31,7 @@ public partial class RegistroCliente : System.Web.UI.Page
             //SIGNED IN
             Session["USUARIO"] = cliente;
             //REDIRECT
-            Response.Redirect("DefaultCliente.aspx");
+            Response.Redirect("Default.aspx");
 
         }
         catch (Exception ex)
