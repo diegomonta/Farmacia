@@ -14,7 +14,7 @@ namespace Logica
         {
             try
             {
-                Persistencia.PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
+                PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
                 persistenciaFarmaceutica.AltaFarmaceutica(farmaceutica);
             }
             catch (Exception ex)
@@ -26,7 +26,7 @@ namespace Logica
         {
             try
             {
-                Persistencia.PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
+                PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
                 persistenciaFarmaceutica.BajaFarmaceutica(farmaceutica);
             }
             catch (Exception ex)
@@ -38,7 +38,7 @@ namespace Logica
         {
             try
             {
-                Persistencia.PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
+                PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
                 persistenciaFarmaceutica.ModificarFarmaceutica(farmaceutica);
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace Logica
         {
             try
             {
-                Persistencia.PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
+                PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
                 return persistenciaFarmaceutica.BuscarFarmaceutica(RUC);
             }
             catch (Exception ex)
@@ -61,7 +61,7 @@ namespace Logica
         {
             try
             {
-                Persistencia.PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
+                PersistenciaFarmaceutica persistenciaFarmaceutica = new PersistenciaFarmaceutica();
                 return persistenciaFarmaceutica.ListarFarmaceuticas();
             }
             catch { throw; }

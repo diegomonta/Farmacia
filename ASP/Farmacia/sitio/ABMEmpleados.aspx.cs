@@ -132,7 +132,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
-            Logica.LogicaUsuario logicaUsuario = new Logica.LogicaUsuario();
+            LogicaUsuario logicaUsuario = new LogicaUsuario();
             Session["Empleado"] = logicaUsuario.BuscarUsuario(txtUsuario.Text);
 
             if (!((Usuario)Session["Empleado"] is Cliente))
@@ -153,7 +153,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
-            Response.Redirect("DefaultEmpleado.aspx");
+            Response.Redirect("HomePage.aspx");
         }
         catch (Exception ex)
         {
@@ -184,7 +184,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
             string finJornada = (ddlFinJornadaHoras.SelectedItem.Text + ":" + ddlFinJornadaMinutos.SelectedItem.Text);
             Empleado empleado = new Empleado(usuario, pass, nombre, inicioJornada, finJornada);
 
-            Logica.LogicaUsuario logicaUsuario = new LogicaUsuario();
+            LogicaUsuario logicaUsuario = new LogicaUsuario();
             logicaUsuario.ModificarUsuario(empleado);
 
             lblERROR.ForeColor = System.Drawing.Color.Green;
@@ -200,18 +200,23 @@ public partial class ABMEmpleados : System.Web.UI.Page
     {
         try
         {
-            string usuario = txtUsuario.Text;
-            string pass = txtPass.Text;
-            string nombre = txtNombre.Text;
-            string inicioJornada = (ddlInicioJornadaHoras.SelectedItem.Text + ":" + ddlInicioJornadaMinutos.SelectedItem.Text);
-            string finJornada = (ddlFinJornadaHoras.SelectedItem.Text + ":" + ddlFinJornadaMinutos.SelectedItem.Text);
-            Empleado empleado = new Empleado(usuario, pass, nombre, inicioJornada, finJornada);
+            if (txtUsuario.Text.ToUpper() != ((Usuario)Session["USUARIO"]).pNombreUsuario)
+            {
+                string usuario = txtUsuario.Text;
+                string pass = txtPass.Text;
+                string nombre = txtNombre.Text;
+                string inicioJornada = (ddlInicioJornadaHoras.SelectedItem.Text + ":" + ddlInicioJornadaMinutos.SelectedItem.Text);
+                string finJornada = (ddlFinJornadaHoras.SelectedItem.Text + ":" + ddlFinJornadaMinutos.SelectedItem.Text);
+                Empleado empleado = new Empleado(usuario, pass, nombre, inicioJornada, finJornada);
 
-            Logica.LogicaUsuario logicaUsuario = new LogicaUsuario();
-            logicaUsuario.BajaUsuario(empleado);
+                LogicaUsuario logicaUsuario = new LogicaUsuario();
+                logicaUsuario.BajaUsuario(empleado);
 
-            lblERROR.ForeColor = System.Drawing.Color.Green;
-            lblERROR.Text = "Baja exitosa.";
+                lblERROR.ForeColor = System.Drawing.Color.Green;
+                lblERROR.Text = "Baja exitosa.";
+            }
+            else
+                throw new Exception("No puedes eliminarte a ti mismo.");
         }
         catch (Exception ex)
         {
@@ -230,7 +235,7 @@ public partial class ABMEmpleados : System.Web.UI.Page
             string finJornada = (ddlFinJornadaHoras.SelectedItem.Text + ":" + ddlFinJornadaMinutos.SelectedItem.Text);
             Empleado empleado = new Empleado(usuario, pass, nombre, inicioJornada, finJornada);
 
-            Logica.LogicaUsuario logicaUsuario = new LogicaUsuario();
+            LogicaUsuario logicaUsuario = new LogicaUsuario();
             logicaUsuario.AltaUsuario(empleado);
 
             lblERROR.ForeColor = System.Drawing.Color.Green;

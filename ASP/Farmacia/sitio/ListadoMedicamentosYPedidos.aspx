@@ -25,8 +25,7 @@
         OnClick="btnEntregados_Click" />
     <br />
     <asp:GridView ID="gvPedidos" runat="server" AutoGenerateColumns="False" EmptyDataText="No hay pedidos disponibles para este medicamento con este filtro."
-        Caption="<strong>Pedidos</strong>" 
-        onselectedindexchanged="gvPedidos_SelectedIndexChanged">
+        Caption="<strong>Pedidos</strong>">
         <Columns>
             <asp:BoundField HeaderText="Numero" DataField="pNumero" />
             <asp:BoundField HeaderText="Cliente" 

@@ -16,12 +16,12 @@ namespace Logica
             {
                 Usuario usu = null;
                 //BUSCAR EMPLEADO
-                Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
+                PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
                 usu = persistenciaEmpleado.BuscarEmpleado(usuario);
                 if (usu == null)
                 {
                     //BUSCAR CLIENTE
-                    Persistencia.PersistenciaCliente persisteniaCliente = new PersistenciaCliente();
+                    PersistenciaCliente persisteniaCliente = new PersistenciaCliente();
                     usu = persisteniaCliente.BuscarCliente(usuario);
                 }
                 return usu;
@@ -36,12 +36,12 @@ namespace Logica
             {
                 Usuario usu = null;
                 //VERIFICAR EXISTENCIA EMPLEADO
-                Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
+                PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
                 usu = persistenciaEmpleado.LogInEmpleado(usuario, pass);
                 if (usu == null)
                 {
                     //VERIFICAR EXISTENCIA CLIENTE
-                    Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+                    PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
                     usu = persistenciaCliente.LogInCliente(usuario, pass);
                 }
                 return usu;
@@ -59,12 +59,12 @@ namespace Logica
             {
                 if (usuario is Empleado)
                 {
-                    Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
+                    PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
                     persistenciaEmpleado.AltaEmpleado((Empleado)usuario);
                 }
                 else
                 {
-                    Persistencia.PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
+                    PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
                     persistenciaCliente.AltaCliente((Cliente)usuario);
                 }
             }
@@ -78,7 +78,7 @@ namespace Logica
             {
                 if (usuario is Empleado)
                 {
-                    Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
+                    PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
                     persistenciaEmpleado.ModificarEmpleado((Empleado)usuario);
                 }
             }
@@ -92,7 +92,7 @@ namespace Logica
             {
                 if (usuario is Empleado)
                 {
-                    Persistencia.PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
+                    PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
                     persistenciaEmpleado.BajaEmpleado((Empleado)usuario);
                 }
             }

@@ -99,7 +99,7 @@ public partial class ABMFarmacias : System.Web.UI.Page
     {
         try
         {
-            Logica.LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
+            LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
             string RUC = txtRuc.Text;
             string Nombre = txtNombre.Text;
             string CorreoElectronio = txtCorreoElectronico.Text;
@@ -124,7 +124,7 @@ public partial class ABMFarmacias : System.Web.UI.Page
     {
         try
         {
-            Logica.LogicaFarmaceutica logicaFarmaceutica = new Logica.LogicaFarmaceutica();
+            LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
             logicaFarmaceutica.BajaFarmaceutica((Farmaceutica)Session["Farmaceutica"]);
 
             //EXITO
@@ -143,7 +143,7 @@ public partial class ABMFarmacias : System.Web.UI.Page
     {
         try
         {
-            Logica.LogicaFarmaceutica logicaFarmaceutica = new Logica.LogicaFarmaceutica();
+            LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
             string RUC = ((Farmaceutica)Session["Farmaceutica"]).pRUC;
             string Nombre = txtNombre.Text;
             string CorreoElectronico = txtCorreoElectronico.Text;
@@ -168,7 +168,7 @@ public partial class ABMFarmacias : System.Web.UI.Page
     {
         try
         {
-            Logica.LogicaFarmaceutica logicaFarmaceutica = new Logica.LogicaFarmaceutica();
+            LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
             Session["Farmaceutica"] = logicaFarmaceutica.BuscarFarmaceutica(txtRuc.Text);
 
             if ((Farmaceutica)Session["Farmaceutica"] == null)
@@ -186,7 +186,7 @@ public partial class ABMFarmacias : System.Web.UI.Page
     //CANCELAR (RESPONSE REDIRECT HOMEPAGE)
     protected void btnCancelar_Click(object sender, EventArgs e)
     {
-        try { Response.Redirect("DefaultEmpleado.aspx"); }
+        try { Response.Redirect("HomePage.aspx"); }
         catch (Exception ex)
         {
             lblERROR.ForeColor = System.Drawing.Color.Red;

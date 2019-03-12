@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using EntidadesCompartidas;
+using Logica;
 
 public partial class LogIn : System.Web.UI.Page
 {
@@ -16,8 +17,8 @@ public partial class LogIn : System.Web.UI.Page
     {
         try
         {
-            Logica.LogicaUsuario lusu = new Logica.LogicaUsuario();
-            Usuario usu = lusu.LoginUsuario(txtUsuario.Text, txtPass.Text);
+            LogicaUsuario logicaUsuario = new LogicaUsuario();
+            Usuario usu = logicaUsuario.LoginUsuario(txtUsuario.Text, txtPass.Text);
             if (usu is Cliente)
             {
                 Session["USUARIO"] = usu;

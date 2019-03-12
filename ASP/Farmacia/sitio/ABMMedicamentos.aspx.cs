@@ -20,7 +20,7 @@ public partial class ABMMedicamentos : System.Web.UI.Page
             //CARGAR FARMACEUTICAS
             if (!Page.IsPostBack)
             {
-                Logica.LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
+                LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
                 List<Farmaceutica> listaFarmaceuticas = logicaFarmaceutica.ListarFarmaceutica();
 
                 foreach (Farmaceutica farmaceutica in listaFarmaceuticas)
@@ -119,8 +119,8 @@ public partial class ABMMedicamentos : System.Web.UI.Page
     {
         try
         {
-            Logica.LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
-            Logica.LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
+            LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
+            LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
 
             Farmaceutica farmaceutica = logicaFarmaceutica.BuscarFarmaceutica(ddlFarmaceuticas.SelectedItem.Value);
 
@@ -128,23 +128,23 @@ public partial class ABMMedicamentos : System.Web.UI.Page
                 throw new Exception("La farmaceutica no existe.");
 
             string descripcion = txtDescripcion.Text;
-            double doublevalue;
             double precio;
             string nombre = txtNombre.Text;
             int codigo;
-            int intvalue;
 
             //VARIFICAR INT
-            if (int.TryParse(txtCodigo.Text, out intvalue))
+            try
+            {
                 codigo = Convert.ToInt32(txtCodigo.Text);
-            else
-                throw new Exception("El codigo debe ser un numero.");
+            }
+            catch { throw new Exception("El codigo debe ser un numero."); }
 
             //VERIFICAR DOUBLE
-            if (double.TryParse(txtPrecio.Text, out doublevalue))
+            try
+            {
                 precio = double.Parse(txtPrecio.Text);
-            else
-                throw new Exception("El precio debe ser un numero.");
+            }
+            catch { throw new Exception("El precio debe ser un numero."); }
 
             Medicamento medicamento = new Medicamento(codigo, farmaceutica, nombre, descripcion, precio);
 
@@ -163,8 +163,8 @@ public partial class ABMMedicamentos : System.Web.UI.Page
     {
         try
         {
-            Logica.LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
-            Logica.LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
+            LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
+            LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
 
             Farmaceutica farmaceutica = logicaFarmaceutica.BuscarFarmaceutica(ddlFarmaceuticas.SelectedItem.Value);
 
@@ -172,23 +172,23 @@ public partial class ABMMedicamentos : System.Web.UI.Page
                 throw new Exception("La farmaceutica no existe.");
 
             string descripcion = txtDescripcion.Text;
-            double doublevalue;
             double precio;
             string nombre = txtNombre.Text;
             int codigo;
-            int intvalue;
 
             //VARIFICAR INT
-            if (int.TryParse(txtCodigo.Text, out intvalue))
+            try
+            {
                 codigo = Convert.ToInt32(txtCodigo.Text);
-            else
-                throw new Exception("El codigo debe ser un numero.");
+            }
+            catch { throw new Exception("El codigo debe ser un numero."); }
 
-            //VERIFICAR double
-            if (double.TryParse(txtPrecio.Text, out doublevalue))
+            //VERIFICAR DOUBLE
+            try
+            {
                 precio = double.Parse(txtPrecio.Text);
-            else
-                throw new Exception("El precio debe ser un numero.");
+            }
+            catch { throw new Exception("El precio debe ser un numero."); }
 
             Medicamento medicamento = new Medicamento(codigo, farmaceutica, nombre, descripcion, precio);
 
@@ -207,8 +207,8 @@ public partial class ABMMedicamentos : System.Web.UI.Page
     {
         try
         {
-            Logica.LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
-            Logica.LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
+            LogicaFarmaceutica logicaFarmaceutica = new LogicaFarmaceutica();
+            LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
 
             Farmaceutica farmaceutica = logicaFarmaceutica.BuscarFarmaceutica(ddlFarmaceuticas.SelectedItem.Value);
 
@@ -216,23 +216,23 @@ public partial class ABMMedicamentos : System.Web.UI.Page
                 throw new Exception("La farmaceutica no existe.");
 
             string descripcion = txtDescripcion.Text;
-            double doublevalue;
             double precio;
             string nombre = txtNombre.Text;
             int codigo;
-            int intvalue;
 
             //VARIFICAR INT
-            if (int.TryParse(txtCodigo.Text, out intvalue))
+            try
+            {
                 codigo = Convert.ToInt32(txtCodigo.Text);
-            else
-                throw new Exception("El codigo debe ser un numero.");
+            }
+            catch { throw new Exception("El codigo debe ser un numero."); }
 
-            //VERIFICAR double
-            if (double.TryParse(txtPrecio.Text, out doublevalue))
+            //VERIFICAR DOUBLE
+            try
+            {
                 precio = double.Parse(txtPrecio.Text);
-            else
-                throw new Exception("El precio debe ser un numero.");
+            }
+            catch { throw new Exception("El precio debe ser un numero."); }
 
             Medicamento medicamento = new Medicamento(codigo, farmaceutica, nombre, descripcion, precio);
 
@@ -254,7 +254,7 @@ public partial class ABMMedicamentos : System.Web.UI.Page
             int intvalue;
             if (int.TryParse(txtCodigo.Text, out intvalue))
             {
-                Logica.LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
+                LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
                 Session["Medicamento"] = logicaMedicamento.BuscarMedicamento(Convert.ToInt32(txtCodigo.Text), ddlFarmaceuticas.SelectedItem.Value);
 
                 if (Session["Medicamento"] == null)
@@ -275,7 +275,7 @@ public partial class ABMMedicamentos : System.Web.UI.Page
     {
         try
         {
-            Response.Redirect("Default.aspx");
+            Response.Redirect("HomePage.aspx");
         }
         catch (Exception ex)
         {

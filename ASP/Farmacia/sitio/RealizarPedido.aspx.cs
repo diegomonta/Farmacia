@@ -19,7 +19,7 @@ public partial class RealizarPedido : System.Web.UI.Page
 
             if (!Page.IsPostBack)
             {
-                Logica.LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
+                LogicaMedicamento logicaMedicamento = new LogicaMedicamento();
                 Session["listaMedicamentos"] = logicaMedicamento.ListarMedicamento();
                 gvMedicamentos.DataSource = (List<Medicamento>)Session["listaMedicamentos"];
                 gvMedicamentos.DataBind();
@@ -70,7 +70,7 @@ public partial class RealizarPedido : System.Web.UI.Page
                 throw new Exception("La cantidad debe ser mayor a cero.");
 
             Pedido pedido = new Pedido((Cliente)Session["USUARIO"], (Medicamento)Session["MEDICAMENTO"], cantidad, "GENERADO");
-            Logica.LogicaPedido logicaPedido = new LogicaPedido();
+            LogicaPedido logicaPedido = new LogicaPedido();
             logicaPedido.AltaPedido(pedido);
 
             lblERROR.ForeColor = System.Drawing.Color.Green;

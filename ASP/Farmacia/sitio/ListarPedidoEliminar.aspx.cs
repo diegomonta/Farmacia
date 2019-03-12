@@ -77,7 +77,7 @@ public partial class ListarPedidoEliminar : System.Web.UI.Page
                 throw new Exception("Debe seleccionar un pedido.");
             else
             {
-                Logica.LogicaPedido logicaPedido = new LogicaPedido();
+                LogicaPedido logicaPedido = new LogicaPedido();
                 logicaPedido.BajaPedido((Pedido)Session["PEDIDO"]);
             }
             formularioDefault();

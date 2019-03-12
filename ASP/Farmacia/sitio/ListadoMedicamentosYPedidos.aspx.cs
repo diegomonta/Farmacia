@@ -81,7 +81,7 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
 
             if ((Medicamento)Session["MEDICAMENTO"] == null)
                 throw new Exception("Debe seleccionar un medicamento.");
-            Logica.LogicaPedido logicaPedido = new LogicaPedido();
+            LogicaPedido logicaPedido = new LogicaPedido();
             gvPedidos.DataSource = logicaPedido.ListarPedidoPorMedicamento((Medicamento)Session["MEDICAMENTO"]);
             gvPedidos.DataBind();
         }
@@ -104,7 +104,7 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
             if ((Medicamento)Session["MEDICAMENTO"] == null)
                 throw new Exception("Debe seleccionar un medicamento.");
 
-            Logica.LogicaPedido logicaPedido = new LogicaPedido();
+            LogicaPedido logicaPedido = new LogicaPedido();
             gvPedidos.DataSource = logicaPedido.ListarPedidoPorEstadoMedicamento((Medicamento)Session["MEDICAMENTO"], "GENERADO");
             gvPedidos.DataBind();
         }
@@ -126,20 +126,10 @@ public partial class ListadoMedicamentosYPedidos : System.Web.UI.Page
             if ((Medicamento)Session["MEDICAMENTO"] == null)
                 throw new Exception("Debe seleccionar un medicamento.");
 
-            Logica.LogicaPedido logicaPedido = new LogicaPedido();
+            LogicaPedido logicaPedido = new LogicaPedido();
             gvPedidos.DataSource = logicaPedido.ListarPedidoPorEstadoMedicamento((Medicamento)Session["MEDICAMENTO"], "ENTREGADO");
             gvPedidos.DataBind();
         }
-        catch (Exception ex)
-        {
-            lblERROR.ForeColor = System.Drawing.Color.Red;
-            lblERROR.Text = ex.Message;
-        }
-    }
-
-    protected void gvPedidos_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        try { }
         catch (Exception ex)
         {
             lblERROR.ForeColor = System.Drawing.Color.Red;

@@ -18,7 +18,7 @@ public partial class RegistroCliente : System.Web.UI.Page
     {
         try
         {
-            Logica.LogicaUsuario logicaUsuario = new LogicaUsuario();
+            LogicaUsuario logicaUsuario = new LogicaUsuario();
             string usuario = txtUsuario.Text;
             string pass = txtPass.Text;
             string nombre = txtNombre.Text;
