@@ -51,5 +51,13 @@ namespace EntidadesCompartidas
                     throw new Exception("El nombre debe tener entre 3 y 50 caracteres.");
             }
         }
+
+        /*CONSTRUCTOR*/
+        public Usuario(string _NombreUsuario, string _Pass, string _NombreCompleto)
+        {
+            pNombreUsuario = _NombreUsuario;
+            pPass = _Pass;
+            pNombreCompleto = _NombreCompleto;
+        }
     }
 }
