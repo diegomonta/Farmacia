@@ -4,39 +4,93 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .link-buttons {
+            margin-bottom: 20px;
+        }
+        
+        .link-buttons a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #337ab7;
+            color: #fff;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .link-buttons a:hover {
+            background-color: #23527c;
+        }
+        
+        .logout-btn {
+            float: right;
+            margin-top: -30px;
+        }
+        
+        .user-label {
+            display: inline;
+            margin-left: 10%;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #00ff21;
+            color: #fff;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .content {
+            margin-top: 30px;
+        }
+    </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <table border="0" cellpadding="0" cellspacing="0">
-            <tr>
-                <td>
-                    <asp:LinkButton ID="btnABMFarmaceutica" Text="Mantenimiento farmaceuticas<br/>" runat="server"
-                        OnClick="btnABMFarmaceutica_Click" />
-                    <asp:LinkButton ID="btnABMMedicamento" Text="Mantenimiento medicamentos<br/>" runat="server"
+     <div class="container">
+            <div class="link-buttons">
+                
+                    <asp:LinkButton ID="btnABMFarmaceutica" Text="Inscripción de materias<br/>" runat="server"
+                        OnClick="btnABMFarmaceutica_Click" CssClass="btn" />
+                    <asp:LinkButton ID="btnABMMedicamento" Text="inscripción de curso<br/>" runat="server"
                         OnClick="btnABMMedicamento_Click" />
-                    <asp:LinkButton ID="btnABMEmpleado" Text="Mantenimiento empleados<br/>" runat="server"
-                        OnClick="btnABMEmpleado_Click" />
-                        <asp:LinkButton ID="btnCambiarEstadoPedido" 
-                        Text="Cambiar estado pedido<br/>" runat="server" onclick="btnCambiarEstadoPedido_Click"
-                         />
-                    <asp:LinkButton ID="btnListadoMedicamentosPedidos" Text="Listado memdicamentos pedidos <br/>"
-                        runat="server" onclick="btnListadoMedicamentosPedidos_Click" />
-                    <asp:LinkButton ID="btnRealizarPedido" runat="server" Text="Realizar pedido<br/>"
-                        OnClick="btnRealizarPedido_Click" />
-                    <asp:LinkButton ID="btnListarPedidoEliminar" runat="server" Text="Listado pedidos / Eliminar pedido <br/>"
-                        OnClick="btnListarPedidoEliminar_Click" />
-                </td>
-            </tr>
-        </table>
-        <asp:Button ID="btnLogOut" runat="server" Text="LogOut" Style="float: right;" OnClick="btnLogOut_Click" />
+                    <asp:LinkButton ID="btnABMEmpleado" Text="Ajuste de Administrador<br/>" runat="server"
+                        OnClick="btnABMEmpleado_Click" CssClass="btn" />
+                    <asp:LinkButton ID="btnCambiarEstadoPedido" Text="Cambiar estado de incripción<br/>" runat="server"
+                            onclick="btnCambiarEstadoPedido_Click" CssClass="btn"/>
+                    <asp:LinkButton ID="btnListadoMedicamentosPedidos" Text="Listado de solicitud de incriociones <br/>"
+                        runat="server" onclick="btnListadoMedicamentosPedidos_Click" CssClass="btn" />
+                    <asp:LinkButton ID="btnRealizarInscripcion" runat="server" Text="Realizar incripcion materias<br/>"
+                        OnClick="btnRealizarInscripcion_Click" CssClass="btn" />
+                    <asp:LinkButton ID="btnListarPedidoEliminar" runat="server" Text="incripción de materia / Eliminar pedido <br/>"
+                        OnClick="btnListarPedidoEliminar_Click" CssClass="btn" />
+           </div>
+        <asp:Button ID="btnLogOut" runat="server" Text="LogOut"  CssClass="btn logout-btn" OnClick="btnLogOut_Click" />
         <br />
-        <asp:Label ID="lblUsuario" runat="server" Text="" Style="margin-left: 50%;" />
+        <asp:Label ID="lblUsuario" runat="server" Text="" CssClass="user-label" />
         <br />
+         <div class="content">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
+        </div>
     </div>
     </form>
 </body>

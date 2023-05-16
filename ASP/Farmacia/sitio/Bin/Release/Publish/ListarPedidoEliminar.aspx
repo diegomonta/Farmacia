@@ -1,0 +1,59 @@
+﻿<%@ page language="C#" autoeventwireup="true" inherits="ListarPedidoEliminar, App_Web_r1ahw0he" masterpagefile="~/MasterPage.master" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:GridView ID="gvPedidos" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvPedidos_SelectedIndexChanged"
+        Caption="<strong>Pedidos</strong>" EmptyDataText="No hay pedidos disponibles.">
+        <Columns>
+            <asp:BoundField HeaderText="Numero pedido" DataField="pNumero" />
+            <asp:BoundField HeaderText="Medicamento" DataField="pMedicamentoPedido.pNombre" />
+            <asp:BoundField DataField="pCantidad" HeaderText="Cantidad" />
+            <asp:ButtonField Text="Seleccionar" ButtonType="Button" CommandName="Select" />
+        </Columns>
+    </asp:GridView>
+    <table>
+        <tr>
+            <td>
+                <asp:Label ID="lblNumero" runat="server" Text="Numero" />
+                <asp:TextBox ID="txtNumero" runat="server" Enabled="false" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblCliente" runat="server" Text="Cliente comprador" />
+                <asp:TextBox ID="txtCliente" runat="server" Enabled="false" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblMedcamento" runat="server" Text="Medicamento" />
+                <asp:TextBox ID="txtMedicamento" runat="server" Enabled="false" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblPrecio" runat="server" Text="Precio unitario" />
+                <asp:TextBox ID="txtPrecio" runat="server" Enabled="false" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblCantidad" runat="server" Text="Cantidad" />
+                <asp:TextBox ID="txtCantidad" runat="server" Enabled="false" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblFarmaceutica" runat="server" Text="Farmaceutica productora" />
+                <asp:TextBox ID="txtFarmaceutica" runat="server" Enabled="false" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar pedido" OnClick="btnEliminar_Click" />
+            </td>
+        </tr>
+    </table>
+    <asp:Label ID="lblERROR" runat="server" />
+</asp:Content>

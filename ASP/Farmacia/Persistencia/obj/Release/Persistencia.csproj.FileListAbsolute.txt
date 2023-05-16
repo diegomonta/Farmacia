@@ -1,0 +1,9 @@
+C:\Users\DELL\source\repos\Farmacia\ASP\Farmacia\Persistencia\bin\Release\Persistencia.dll
+C:\Users\DELL\source\repos\Farmacia\ASP\Farmacia\Persistencia\bin\Release\Persistencia.pdb
+C:\Users\DELL\source\repos\Farmacia\ASP\Farmacia\Persistencia\bin\Release\EntidadesCompartidas.dll
+C:\Users\DELL\source\repos\Farmacia\ASP\Farmacia\Persistencia\bin\Release\EntidadesCompartidas.pdb
+C:\Users\DELL\source\repos\Farmacia\ASP\Farmacia\Persistencia\obj\Release\Persistencia.csproj.AssemblyReference.cache
+C:\Users\DELL\source\repos\Farmacia\ASP\Farmacia\Persistencia\obj\Release\Persistencia.csproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\Farmacia\ASP\Farmacia\Persistencia\obj\Release\Persistencia.csproj.CopyComplete
+C:\Users\DELL\source\repos\Farmacia\ASP\Farmacia\Persistencia\obj\Release\Persistencia.dll
+C:\Users\DELL\source\repos\Farmacia\ASP\Farmacia\Persistencia\obj\Release\Persistencia.pdb

@@ -16,3 +16,14 @@ C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\bin\Debug\Persist
 C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\obj\Debug\Logica.csprojResolveAssemblyReference.cache
 C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\obj\Debug\Logica.dll
 C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\Logica\obj\Debug\Logica.pdb
+C:\universidad\ASP\Farmacia\Logica\bin\Debug\Logica.dll
+C:\universidad\ASP\Farmacia\Logica\bin\Debug\Logica.pdb
+C:\universidad\ASP\Farmacia\Logica\bin\Debug\EntidadesCompartidas.dll
+C:\universidad\ASP\Farmacia\Logica\bin\Debug\Persistencia.dll
+C:\universidad\ASP\Farmacia\Logica\bin\Debug\EntidadesCompartidas.pdb
+C:\universidad\ASP\Farmacia\Logica\bin\Debug\Persistencia.pdb
+C:\universidad\ASP\Farmacia\Logica\obj\Debug\Logica.csproj.AssemblyReference.cache
+C:\universidad\ASP\Farmacia\Logica\obj\Debug\Logica.csproj.CoreCompileInputs.cache
+C:\universidad\ASP\Farmacia\Logica\obj\Debug\Logica.csproj.CopyComplete
+C:\universidad\ASP\Farmacia\Logica\obj\Debug\Logica.dll
+C:\universidad\ASP\Farmacia\Logica\obj\Debug\Logica.pdb

@@ -34,7 +34,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         btnListadoMedicamentosPedidos.Visible = true;
 
         //BOTONES CLIENTE
-        btnRealizarPedido.Visible = false;
+        btnRealizarInscripcion.Visible = false;
         btnListarPedidoEliminar.Visible = false;
     }
 
@@ -48,7 +48,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         btnListadoMedicamentosPedidos.Visible = false;
 
         //BOTONES CLIENTE
-        btnRealizarPedido.Visible = true;
+        btnRealizarInscripcion.Visible = true;
         btnListarPedidoEliminar.Visible = true;
     }
 
@@ -66,22 +66,22 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void btnABMFarmaceutica_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ABMFarmaceuticas.aspx");
+        Response.Redirect("Materias.aspx");
     }
 
     protected void btnABMEmpleado_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ABMEmpleados.aspx");
+        Response.Redirect("Administrador.aspx");
     }
 
     protected void btnABMMedicamento_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ABMMedicamentos.aspx");
+        Response.Redirect("Cursos.aspx");
     }
 
-    protected void btnRealizarPedido_Click(object sender, EventArgs e)
+    protected void btnRealizarInscripcion_Click(object sender, EventArgs e)
     {
-        Response.Redirect("RealizarPedido.aspx");
+        Response.Redirect("RealizarInscripcion.aspx");
     }
 
     protected void btnListarPedidoEliminar_Click(object sender, EventArgs e)
@@ -91,11 +91,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void btnListadoMedicamentosPedidos_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ListadoMedicamentosYPedidos.aspx");
+        Response.Redirect("ListadoCursos.aspx");
     }
 
     protected void btnCambiarEstadoPedido_Click(object sender, EventArgs e)
     {
-        Response.Redirect("CambioEstadoPedido.aspx");
+        Response.Redirect("CambioEstado.aspx");
     }
 }

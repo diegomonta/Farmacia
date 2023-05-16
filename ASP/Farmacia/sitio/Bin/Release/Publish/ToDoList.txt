@@ -1,0 +1,36 @@
+﻿Primer tutoria:
+(HECHO) -Modelo conceptual 
+(HECHO) -MER // queda para proxima tutoria
+(HECHO) -Pasaje a tablas // queda para proxima tutoria
+(HECHO) -Entidades compartidas 
+(HECHO) -Script DB 
+
+Segunda tutoria:
+(HECHO) -MER 
+(NO SE SABE) -TERMINAR CON EL SCRIPT //creo que ya lo termine
+(NO HECHO) -Pasaje a tablas 
+(NO HECHO) -Interfaz grafica completa 
+(NO HECHO) -Mantenimiento de farmacias y medicamentos (ABM) 
+
+Tercer tutoria:
+(NO SE SABE) -TERMINAR CON EL SCRIPT //creo que ya lo termine
+(HECHO) -Pasaje a tablas 
+(NO HECHO) -Interfaz grafica completa 
+(HECHO) -Mantenimiento de farmacias 
+(NO HECHO) -medicamentos (ABM) 
+(HECHO) -Mantenimiento de todo tipo de Usuario 
+(HECHO) -Logueo 
+
+
+DUDAS:
+-En el pasaje a tablas en la tabla pedidos como marco la foreign key compuesta? esta bien asi?
+
+-Toda la parte Logeo esta bien? REVISAR TODO EL LOGEO 
+
+-El cliente solo puede darse de alta? (solo registro) no hay ABM?
+
+-Como uso el masterpage ? tengo que tener el mismo masterpage en empleado y cliente?
+
+-Tengo que tener el mismo default.aspx para cliente y empleado? (se divide en vistas dentro del mismo webform?)
+
+-En ABMMedicamentos se verifica si el codigo es int en la presentacion o en la logica? si fuera en la logica; la logica Deberia recibir string en vez de int.
