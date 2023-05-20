@@ -1,0 +1,11 @@
+C:\universidad\ASP\Farmacia\Logica\bin\Release\Logica.dll
+C:\universidad\ASP\Farmacia\Logica\bin\Release\Logica.pdb
+C:\universidad\ASP\Farmacia\Logica\bin\Release\EntidadesCompartidas.dll
+C:\universidad\ASP\Farmacia\Logica\bin\Release\Persistencia.dll
+C:\universidad\ASP\Farmacia\Logica\bin\Release\EntidadesCompartidas.pdb
+C:\universidad\ASP\Farmacia\Logica\bin\Release\Persistencia.pdb
+C:\universidad\ASP\Farmacia\Logica\obj\Release\Logica.csproj.AssemblyReference.cache
+C:\universidad\ASP\Farmacia\Logica\obj\Release\Logica.csproj.CoreCompileInputs.cache
+C:\universidad\ASP\Farmacia\Logica\obj\Release\Logica.csproj.CopyComplete
+C:\universidad\ASP\Farmacia\Logica\obj\Release\Logica.dll
+C:\universidad\ASP\Farmacia\Logica\obj\Release\Logica.pdb

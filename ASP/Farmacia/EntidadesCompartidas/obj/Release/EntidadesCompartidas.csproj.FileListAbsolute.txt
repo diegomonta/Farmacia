@@ -1,0 +1,6 @@
+C:\universidad\ASP\Farmacia\EntidadesCompartidas\bin\Release\EntidadesCompartidas.dll
+C:\universidad\ASP\Farmacia\EntidadesCompartidas\bin\Release\EntidadesCompartidas.pdb
+C:\universidad\ASP\Farmacia\EntidadesCompartidas\obj\Release\EntidadesCompartidas.csproj.AssemblyReference.cache
+C:\universidad\ASP\Farmacia\EntidadesCompartidas\obj\Release\EntidadesCompartidas.csproj.CoreCompileInputs.cache
+C:\universidad\ASP\Farmacia\EntidadesCompartidas\obj\Release\EntidadesCompartidas.dll
+C:\universidad\ASP\Farmacia\EntidadesCompartidas\obj\Release\EntidadesCompartidas.pdb

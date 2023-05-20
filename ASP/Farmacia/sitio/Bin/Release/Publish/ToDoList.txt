@@ -33,4 +33,4 @@ DUDAS:
 
 -Tengo que tener el mismo default.aspx para cliente y empleado? (se divide en vistas dentro del mismo webform?)
 
--En ABMMedicamentos se verifica si el codigo es int en la presentacion o en la logica? si fuera en la logica; la logica Deberia recibir string en vez de int.
+-En Cursos se verifica si el codigo es int en la presentacion o en la logica? si fuera en la logica; la logica Deberia recibir string en vez de int.

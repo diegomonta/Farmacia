@@ -8,6 +8,7 @@ C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\EntidadesCompartidas\obj
 C:\Users\sistemas\Desktop\ProyectoFinal0.2\ASP\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb
 C:\universidad\ASP\Farmacia\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.dll
 C:\universidad\ASP\Farmacia\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
+C:\universidad\ASP\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.csproj.AssemblyReference.cache
 C:\universidad\ASP\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.csproj.CoreCompileInputs.cache
 C:\universidad\ASP\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
 C:\universidad\ASP\Farmacia\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb

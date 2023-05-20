@@ -1,4 +1,4 @@
-﻿<%@ page language="C#" autoeventwireup="true" inherits="LogIn, App_Web_uhm140b0" %>
+﻿<%@ page language="C#" autoeventwireup="true" inherits="LogIn, App_Web_nzht2k3i" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -72,8 +72,8 @@
             </td>
         </tr>
     </table>
-    <asp:Button ID="btnConsultaPedido" runat="server" Text="Consulta pedido" 
-        onclick="btnConsultaPedido_Click" />
+    <asp:Button ID="btnConsulta" runat="server" Text="Consulta pedido" 
+        onclick="btnConsulta_Click" />
     </form>
     </p>
    </div>
