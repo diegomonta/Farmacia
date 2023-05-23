@@ -1,4 +1,4 @@
-﻿<%@ page language="C#" autoeventwireup="true" inherits="ConsultaPedido, App_Web_uhm140b0" %>
+﻿<%@ page language="C#" autoeventwireup="true" inherits="Consulta, App_Web_nzht2k3i" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -10,10 +10,10 @@
     <div>
         <asp:Button ID="btnAtras" runat="server" Text="Atras" Style="float: right;" OnClick="btnAtras_Click" />
         <table>
-            <strong>CONSULTAR ESTADO PEDIDO</strong>
+            <strong>CONSULTAR ESTADO INSCRICION</strong>
             <tr>
                 <td>
-                    <asp:Label ID="lblNumero" runat="server" Text="Numero pedido:" />
+                    <asp:Label ID="lblNumero" runat="server" Text="Numero Inscripcion:" />
                 </td>
                 <td>
                     <asp:TextBox ID="txtNumero" runat="server" />

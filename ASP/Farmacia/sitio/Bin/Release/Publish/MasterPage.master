@@ -1,4 +1,4 @@
-﻿<%@ master language="C#" autoeventwireup="true" inherits="MasterPage, App_Web_nzht2k3i" %>
+﻿<%@ master language="C#" autoeventwireup="true" inherits="MasterPage, App_Web_bom3n3cg" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -78,6 +78,8 @@
                             onclick="btnCambiarEstadoPedido_Click" CssClass="btn"/>
                     <asp:LinkButton ID="btnListadoMedicamentosPedidos" Text="Listado de solicitud de incriociones <br/>"
                         runat="server" onclick="btnListadoMedicamentosPedidos_Click" CssClass="btn" />
+                    <asp:LinkButton ID="btnRegistrarCliente" runat="server" Text="Registro Estudiante" 
+                        OnClick="btnRegistrarCliente_Click" CssClass="btn"/>
                     <asp:LinkButton ID="btnRealizarInscripcion" runat="server" Text="Realizar incripcion materias<br/>"
                         OnClick="btnRealizarInscripcion_Click" CssClass="btn" />
                     <asp:LinkButton ID="btnListarPedidoEliminar" runat="server" Text="incripción de materia / Eliminar pedido <br/>"

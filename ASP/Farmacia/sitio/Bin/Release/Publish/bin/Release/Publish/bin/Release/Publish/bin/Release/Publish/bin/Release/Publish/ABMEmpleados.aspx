@@ -1,11 +1,11 @@
-﻿<%@ page language="C#" autoeventwireup="true" inherits="ABMEmpleados, App_Web_r1ahw0he" masterpagefile="~/MasterPage.master" %>
+﻿<%@ page language="C#" autoeventwireup="true" inherits="ABMEmpleados, App_Web_tstmsncs" masterpagefile="~/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!--TABLA ABM EMPLEADOS-->
     <table border="0" cellpadding="0" cellspacing="0">
-        <strong>AJUSTE ADMINISTRADOR</strong>
+        <strong>A.B.M EMPLEADOS</strong>
         <!--FORMULARIO-->
         <tr>
             <td>
@@ -21,7 +21,7 @@
                 <asp:Label ID="lblPass" runat="server" Text="Password:" />
             </td>
             <td>
-                <asp:TextBox ID="txtPass" runat="server" type="password" />
+                <asp:TextBox ID="txtPass" runat="server" />
             </td>
         </tr>
         <tr>

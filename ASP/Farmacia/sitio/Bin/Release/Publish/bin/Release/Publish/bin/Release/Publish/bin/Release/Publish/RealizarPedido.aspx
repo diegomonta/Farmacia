@@ -1,4 +1,4 @@
-﻿<%@ page language="C#" autoeventwireup="true" inherits="RealizarPedido, App_Web_tstmsncs" masterpagefile="~/MasterPage.master" %>
+﻿<%@ page language="C#" autoeventwireup="true" inherits="RealizarPedido, App_Web_rs1gkewt" masterpagefile="~/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblFarmaceutica" runat="server" Text="Farmaceutica" />
+                <asp:Label ID="lblFarmaceutica" runat="server" Text="Codigo Materia" />
                 <asp:TextBox ID="txtFarmaceutica" runat="server" Enabled="false" />
             </td>
         </tr>
@@ -32,7 +32,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblPrecio" runat="server" Text="Precio" />
+                <asp:Label ID="lblPrecio" runat="server" Text="Horrario" />
                 <asp:TextBox ID="txtPrecio" runat="server" Enabled="false" />
             </td>
         </tr>
@@ -44,13 +44,13 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblCantidad" runat="server" Text="Cantidad" />
+                <asp:Label ID="lblCantidad" runat="server" Text="Estudiantes a inscribir" />
                 <asp:TextBox ID="txtCantidad" runat="server" />
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Button ID="btnPedir" runat="server" Text="Pedir" OnClick="btnPedir_Click" />
+                <asp:Button ID="btnPedir" runat="server" Text="Inscribir" OnClick="btnPedir_Click" />
             </td>
         </tr>
     </table>

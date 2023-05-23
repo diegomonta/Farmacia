@@ -1,15 +1,15 @@
-﻿<%@ page language="C#" autoeventwireup="true" masterpagefile="~/MasterPage.master" inherits="ABMFarmacias, App_Web_tstmsncs" %>
+﻿<%@ page language="C#" autoeventwireup="true" masterpagefile="~/MasterPage.master" inherits="ABMFarmacias, App_Web_rs1gkewt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!--TABLA ABM FARMACEUTICAS-->
     <table border="0" cellpadding="0" cellspacing="0">
-        <strong>A.B.M FARMACEUTICAS</strong>
+        <strong>INSCRIPCION DE MATERIAS</strong>
         <!--FORMULARIO-->
         <tr>
             <td>
-                <asp:Label ID="lblRuc" runat="server" Text="RUC:" />
+                <asp:Label ID="lblRuc" runat="server" Text="Identificador materia:" />
             </td>
             <td>
                 <asp:TextBox ID="txtRuc" runat="server" />
@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblNombre" runat="server" Text="Nombre:" />
+                <asp:Label ID="lblNombre" runat="server" Text="Nombre materia:" />
             </td>
             <td>
                 <asp:TextBox ID="txtNombre" runat="server" />
@@ -28,7 +28,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblCorreoElectronico" runat="server" Text="Correo electronico:" />
+                <asp:Label ID="lblCorreoElectronico" runat="server" Text="caracteristica materia:" />
             </td>
             <td>
                 <asp:TextBox ID="txtCorreoElectronico" runat="server" />
@@ -36,7 +36,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblDireccion" runat="server" Text="Direccion:" />
+                <asp:Label ID="lblDireccion" runat="server" Text="horario" />
             </td>
             <td>
                 <asp:TextBox ID="txtDireccion" runat="server" />

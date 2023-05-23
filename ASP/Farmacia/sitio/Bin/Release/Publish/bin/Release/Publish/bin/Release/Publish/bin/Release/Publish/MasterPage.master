@@ -1,4 +1,4 @@
-﻿<%@ master language="C#" autoeventwireup="true" inherits="MasterPage, App_Web_3oobli3j" %>
+﻿<%@ master language="C#" autoeventwireup="true" inherits="MasterPage, App_Web_maztltsl" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -68,19 +68,19 @@
      <div class="container">
             <div class="link-buttons">
                 
-                    <asp:LinkButton ID="btnABMFarmaceutica" Text="Mantenimiento farmaceuticas<br/>" runat="server"
+                    <asp:LinkButton ID="btnABMFarmaceutica" Text="Inscripción de materias<br/>" runat="server"
                         OnClick="btnABMFarmaceutica_Click" CssClass="btn" />
-                    <asp:LinkButton ID="btnABMMedicamento" Text="Mantenimiento medicamentos<br/>" runat="server"
+                    <asp:LinkButton ID="btnABMMedicamento" Text="inscripción de curso<br/>" runat="server"
                         OnClick="btnABMMedicamento_Click" />
-                    <asp:LinkButton ID="btnABMEmpleado" Text="Mantenimiento empleados<br/>" runat="server"
+                    <asp:LinkButton ID="btnABMEmpleado" Text="Ajuste de Administrador<br/>" runat="server"
                         OnClick="btnABMEmpleado_Click" CssClass="btn" />
-                    <asp:LinkButton ID="btnCambiarEstadoPedido" Text="Cambiar estado pedido<br/>" runat="server"
+                    <asp:LinkButton ID="btnCambiarEstadoPedido" Text="Cambiar estado de incripción<br/>" runat="server"
                             onclick="btnCambiarEstadoPedido_Click" CssClass="btn"/>
-                    <asp:LinkButton ID="btnListadoMedicamentosPedidos" Text="Listado memdicamentos pedidos <br/>"
+                    <asp:LinkButton ID="btnListadoMedicamentosPedidos" Text="Listado de solicitud de incriociones <br/>"
                         runat="server" onclick="btnListadoMedicamentosPedidos_Click" CssClass="btn" />
-                    <asp:LinkButton ID="btnRealizarPedido" runat="server" Text="Realizar pedido<br/>"
+                    <asp:LinkButton ID="btnRealizarPedido" runat="server" Text="Realizar incripcion materias<br/>"
                         OnClick="btnRealizarPedido_Click" CssClass="btn" />
-                    <asp:LinkButton ID="btnListarPedidoEliminar" runat="server" Text="Listado pedidos / Eliminar pedido <br/>"
+                    <asp:LinkButton ID="btnListarPedidoEliminar" runat="server" Text="incripción de materia / Eliminar pedido <br/>"
                         OnClick="btnListarPedidoEliminar_Click" CssClass="btn" />
            </div>
         <asp:Button ID="btnLogOut" runat="server" Text="LogOut"  CssClass="btn logout-btn" OnClick="btnLogOut_Click" />

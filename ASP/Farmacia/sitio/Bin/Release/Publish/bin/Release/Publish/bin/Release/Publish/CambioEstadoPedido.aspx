@@ -1,4 +1,4 @@
-﻿<%@ page language="C#" autoeventwireup="true" inherits="CambioEstadoPedido, App_Web_rs1gkewt" masterpagefile="~/MasterPage.master" %>
+﻿<%@ page language="C#" autoeventwireup="true" inherits="CambioEstadoPedido, App_Web_r1ahw0he" masterpagefile="~/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
