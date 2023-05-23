@@ -84,7 +84,19 @@ namespace Logica
             }
             catch { throw; }
         }
-
+        public void ModificarClave(string usuario, string claveRecuperacion)
+        {
+            try
+            {
+                //VERIFICAR EXISTENCIA EMPLEADO
+                PersistenciaEmpleado persistenciaEmpleado = new PersistenciaEmpleado();
+                persistenciaEmpleado.ModificarClave(usuario, claveRecuperacion);
+            }
+            catch
+            {
+                throw new Exception("Ha ocurrido un error vuelva a intentarlo mas tarde.");
+            }
+        }
         //BAJA USUARIO
         public void BajaUsuario(Usuario usuario)
         {

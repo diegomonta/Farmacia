@@ -10,6 +10,7 @@ namespace EntidadesCompartidas
         /*ATRIBUTOS*/
         private string InicioJornadaLaboral;
         private string FinJornadaLaboral;
+        private string Correo;
 
         /*PROPIEDADES*/
         public string pInicioJornadaLaboral
@@ -35,13 +36,18 @@ namespace EntidadesCompartidas
                     throw new Exception("Ha ocurrido un error intentelo mas tarde.");
             }
         }
+        public string pCorreo 
+        {
+            get { return Correo; }
+        }
 
         /*CONSTRUCTOR*/
-        public Empleado(string _NombreUsuario, string _Pass, string _NombreCompleto, string _InicioJornadaLaboral, string _FinJornadaLaboral)
+        public Empleado(string _NombreUsuario, string _Pass, string _NombreCompleto, string _InicioJornadaLaboral, string _FinJornadaLaboral, string _Correo)
             : base(_NombreUsuario, _Pass, _NombreCompleto)
         {
             pInicioJornadaLaboral = _InicioJornadaLaboral;
             pFinJornadaLaboral = _FinJornadaLaboral;
+            Correo = _Correo;
         }
     }
 }

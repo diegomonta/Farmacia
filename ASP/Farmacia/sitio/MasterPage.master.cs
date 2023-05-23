@@ -32,6 +32,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         btnABMMedicamento.Visible = true;
         btnCambiarEstadoPedido.Visible = true;
         btnListadoMedicamentosPedidos.Visible = true;
+        btnRegistrarCliente.Visible = true;
 
         //BOTONES CLIENTE
         btnRealizarInscripcion.Visible = false;
@@ -46,6 +47,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         btnABMMedicamento.Visible = false;
         btnCambiarEstadoPedido.Visible = false;
         btnListadoMedicamentosPedidos.Visible = false;
+        btnRegistrarCliente.Visible = false;
 
         //BOTONES CLIENTE
         btnRealizarInscripcion.Visible = true;
@@ -97,5 +99,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void btnCambiarEstadoPedido_Click(object sender, EventArgs e)
     {
         Response.Redirect("CambioEstado.aspx");
+    }
+    protected void btnRegistrarCliente_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("RegistroUsuario.aspx");
     }
 }

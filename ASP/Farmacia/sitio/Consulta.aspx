@@ -1,35 +1,81 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Consulta.aspx.cs" Inherits="Consulta" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Recuperación de Contraseña</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 300px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #FF0000;
+        }
+
+        .success {
+            color: #008000;
+        }
+    </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
-        <asp:Button ID="btnAtras" runat="server" Text="Atras" Style="float: right;" OnClick="btnAtras_Click" />
-        <table>
-            <strong>CONSULTAR ESTADO INSCRICION</strong>
-            <tr>
-                <td>
-                    <asp:Label ID="lblNumero" runat="server" Text="Numero Inscripcion:" />
-                </td>
-                <td>
-                    <asp:TextBox ID="txtNumero" runat="server" />
-                </td>
-                <td>
-                    <asp:Button ID="btnConsultar" runat="server" Text="Consultar" OnClick="btnConsultar_Click" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="lblEstado" runat="server" />
-                </td>
-            </tr>
-        </table>
-        <asp:Label ID="lblERROR" runat="server" />
-    </div>
+    <form id="formRecuperarContraseña" runat="server">
+        <div class="container">
+            <h2>Recuperar Contraseña</h2>
+            <div id="pnlRecuperarContraseña" runat="server">
+                <div class="form-group">
+                    <label for="txtUsuario">Usuario:</label>
+                    <asp:TextBox ID="txtUsuario" runat="server" />
+                </div>
+                <div class="form-group">
+                    <asp:Button ID="btnRecuperarContraseña" runat="server" Text="Recuperar Contraseña" OnClick="btnRecuperarContraseña_Click" />
+                    <asp:Button ID="btnLogOut" runat="server" Text="LogOut"  CssClass="btn logout-btn" OnClick="btnLogOut_Click" />
+                    <asp:Label ID="lblERROR" runat="server" CssClass="error" />
+                </div>
+            </div>
+        </div>
     </form>
 </body>
 </html>

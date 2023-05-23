@@ -78,6 +78,8 @@
                             onclick="btnCambiarEstadoPedido_Click" CssClass="btn"/>
                     <asp:LinkButton ID="btnListadoMedicamentosPedidos" Text="Listado de solicitud de incriociones <br/>"
                         runat="server" onclick="btnListadoMedicamentosPedidos_Click" CssClass="btn" />
+                    <asp:LinkButton ID="btnRegistrarCliente" runat="server" Text="Registro Estudiante" 
+                        OnClick="btnRegistrarCliente_Click" CssClass="btn"/>
                     <asp:LinkButton ID="btnRealizarInscripcion" runat="server" Text="Realizar incripcion materias<br/>"
                         OnClick="btnRealizarInscripcion_Click" CssClass="btn" />
                     <asp:LinkButton ID="btnListarPedidoEliminar" runat="server" Text="incripción de materia / Eliminar pedido <br/>"

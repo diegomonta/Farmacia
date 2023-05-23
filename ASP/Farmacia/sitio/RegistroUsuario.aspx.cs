@@ -1,49 +1,68 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using Logica;
 using EntidadesCompartidas;
+using Logica;
 
 public partial class RegistroUsuario : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        // Aquí puedes realizar acciones adicionales en la carga de la página
     }
 
     protected void Registrar(object sender, EventArgs e)
     {
         try
         {
+            string usuario = txtUsuario.Text.Trim();
+            string pass = txtPass.Text.Trim();
+            string nombre = txtNombre.Text.Trim();
+            string direccionFacturacion = txtDireccionFacturacion.Text.Trim();
+            string telefono = txtTelefono.Text.Trim();
+
+            // Realiza validaciones de seguridad en el lado del servidor
+            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(pass) || string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(direccionFacturacion) || string.IsNullOrEmpty(telefono))
+            {
+                lblERROR.ForeColor = System.Drawing.Color.Red;
+                lblERROR.Text = "Por favor, complete todos los campos.";
+                return;
+            }
+
+            // Ejemplo de medida de seguridad: Almacenamiento de contraseñas con hash y sal
+            string hashPassword = CalcularHash(pass);
+
+            // Ejemplo de medida de seguridad: Verificar si el usuario ya existe en la base de datos
+            if (UsuarioExistente(usuario))
+            {
+                lblERROR.ForeColor = System.Drawing.Color.Red;
+                lblERROR.Text = "El nombre de usuario ya está en uso. Por favor, elija otro.";
+                return;
+            }
+
             LogicaUsuario logicaUsuario = new LogicaUsuario();
-            string usuario = txtUsuario.Text;
-            string pass = txtPass.Text;
-            string nombre = txtNombre.Text;
-            string direccionFacturacion = txtDireccionFacturacion.Text;
-            string telefono = txtTelefono.Text;
-            Cliente cliente = new Cliente(usuario, pass, nombre, direccionFacturacion, telefono);
+            Cliente cliente = new Cliente(usuario, hashPassword, nombre, direccionFacturacion, telefono);
 
             logicaUsuario.AltaUsuario(cliente);
 
-            //SIGNED IN
+            // Almacenar en la sesión el usuario registrado
             Session["USUARIO"] = cliente;
-            //REDIRECT
-            Response.Redirect("Default.aspx");
 
+            // Redirigir al usuario a una página de éxito o inicio de sesión
+            Response.Redirect("Default.aspx");
         }
         catch (Exception ex)
         {
             lblERROR.ForeColor = System.Drawing.Color.Red;
-            lblERROR.Text = ex.Message;
+            lblERROR.Text = "Ha ocurrido un error: " + ex.Message;
         }
-
     }
+
     protected void btnSignIn_Click(object sender, EventArgs e)
     {
-        string contrasena = txtPass.Text;
+        string contrasena = txtPass.Text.Trim();
 
         // Realiza la validación de la contraseña utilizando la función calcularFortalezaContrasena
         string fortaleza = calcularFortalezaContrasena(contrasena);
@@ -56,6 +75,7 @@ public partial class RegistroUsuario : System.Web.UI.Page
             Registrar(sender, e);
         }
     }
+
     private string calcularFortalezaContrasena(string contrasena)
     {
         // Implementa tu lógica para calcular la fortaleza de la contraseña aquí
@@ -76,6 +96,29 @@ public partial class RegistroUsuario : System.Web.UI.Page
         else
         {
             return "La contraseña es segura.";
+        }
+    }
+
+    private bool UsuarioExistente(string usuario)
+    {
+        // Verificar si el usuario ya existe en la base de datos
+        LogicaUsuario logicaUsuario = new LogicaUsuario();
+        Usuario usuarioExistente = logicaUsuario.BuscarUsuario(usuario);
+
+        return usuarioExistente != null;
+    }
+    private string CalcularHash(string input)
+    {
+        using (SHA256 sha256Hash = SHA256.Create())
+        {
+            byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString("x2"));
+            }
+            return builder.ToString();
         }
     }
 }

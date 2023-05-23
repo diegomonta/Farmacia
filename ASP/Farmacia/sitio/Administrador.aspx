@@ -1,13 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Administrador.aspx.cs" Inherits="Administrador"
-    MasterPageFile="~/MasterPage.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Administrador.aspx.cs" Inherits="Administrador" MasterPageFile="~/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!--TABLA ABM EMPLEADOS-->
+    <!-- TABLA ABM EMPLEADOS -->
     <table border="0" cellpadding="0" cellspacing="0">
         <strong>AJUSTE ADMINISTRADOR</strong>
-        <!--FORMULARIO-->
+        <!-- FORMULARIO -->
         <tr>
             <td>
                 <asp:Label ID="lblUsuario" runat="server" Text="Usuario:" />
@@ -22,7 +27,7 @@
                 <asp:Label ID="lblPass" runat="server" Text="Password:" />
             </td>
             <td>
-                <asp:TextBox ID="txtPass" runat="server" type="password" />
+                <asp:TextBox ID="txtPass" runat="server" TextMode="Password" />
             </td>
         </tr>
         <tr>
@@ -31,6 +36,14 @@
             </td>
             <td>
                 <asp:TextBox ID="txtNombre" runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblCorreo" runat="server" Text="Correo:" />
+            </td>
+            <td>
+                <asp:TextBox ID="TxtCorreo" runat="server"/>
             </td>
         </tr>
         <tr>
@@ -57,16 +70,16 @@
         </tr>
     </table>
     <table>
-        <!--ALTA BAJA MODIFICACION BOTONES-->
+        <!-- ALTA BAJA MODIFICACION BOTONES -->
         <tr>
             <td>
-                <asp:Button ID="btnAlta" runat="server" Text="Alta" OnClick="btnAlta_Click" />
+                <asp:Button ID="btnAlta" runat="server" Text="Alta" OnClick="btnAlta_Click" OnClientClick="return ConfirmarOperacion();" />
             </td>
             <td>
-                <asp:Button ID="btnBaja" runat="server" Text="Baja" OnClick="btnBaja_Click" />
+                <asp:Button ID="btnBaja" runat="server" Text="Baja" OnClick="btnBaja_Click" OnClientClick="return ConfirmarOperacion();" />
             </td>
             <td>
-                <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
+                <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" OnClientClick="return ConfirmarOperacion();" />
             </td>
             <td>
                 <asp:Button ID="btnLimpiar" Text="Limpiar" runat="server" OnClick="btnLimpiar_Click" />
@@ -76,5 +89,29 @@
             </td>
         </tr>
     </table>
-    <asp:Label ID="lblERROR" runat="server" />
+    <asp:Label ID="lblERROR" runat="server" CssClass="error" />
+    <script type="text/javascript">
+        function ConfirmarOperacion() {
+            var pass = document.getElementById("<%= txtPass.ClientID %>").value;
+
+            // Validación de fortaleza de contraseña en el lado del cliente
+            if (pass.length < 8 || !/\d/.test(pass) || !/[a-zA-Z]/.test(pass)) {
+                alert("La contraseña debe tener al menos 8 caracteres, un número y una letra.");
+                return false;
+            }
+
+            // Validación de inicio y fin de jornada
+            var inicioJornadaHoras = document.getElementById("<%= ddlInicioJornadaHoras.ClientID %>").value;
+            var inicioJornadaMinutos = document.getElementById("<%= ddlInicioJornadaMinutos.ClientID %>").value;
+            var finJornadaHoras = document.getElementById("<%= ddlFinJornadaHoras.ClientID %>").value;
+            var finJornadaMinutos = document.getElementById("<%= ddlFinJornadaMinutos.ClientID %>").value;
+
+            if (inicioJornadaHoras >= finJornadaHoras) {
+                alert("La hora de inicio de jornada debe ser anterior a la hora de fin de jornada.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </asp:Content>

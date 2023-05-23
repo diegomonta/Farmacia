@@ -32,6 +32,7 @@ namespace Persistencia
             string Nombre;
             string InicioJornada;
             string FinJornada;
+            string Correo;
             try
             {
                 connection.Open();
@@ -43,8 +44,9 @@ namespace Persistencia
                     Pass = (string)reader["Pass"];
                     InicioJornada = (string)reader["InicioJornada"];
                     FinJornada = (string)reader["FinJornada"];
+                    Correo = (string)reader["Correo"];
 
-                    empleado = new Empleado(usuario, Pass, Nombre, InicioJornada, FinJornada);
+                    empleado = new Empleado(usuario, Pass, Nombre, InicioJornada, FinJornada,Correo);
                     reader.Close();
                 }
                 else
@@ -79,6 +81,7 @@ namespace Persistencia
             string Nombre;
             string InicioJornada;
             string FinJornada;
+            string Correo;
             try
             {
                 connection.Open();
@@ -89,8 +92,9 @@ namespace Persistencia
                     Nombre = (string)reader["Nombre"];
                     InicioJornada = (string)reader["InicioJornada"];
                     FinJornada = (string)reader["FinJornada"];
+                    Correo = (string)reader["Correo"];
 
-                    empleado = new Empleado(usuario, Pass, Nombre, InicioJornada, FinJornada);
+                    empleado = new Empleado(usuario, Pass, Nombre, InicioJornada, FinJornada,Correo);
                     reader.Close();
                 }
                 else
@@ -211,6 +215,50 @@ namespace Persistencia
             sp.Parameters.AddWithValue("@Nombre", empleado.pNombreCompleto);
             sp.Parameters.AddWithValue("@InicioJornada", empleado.pInicioJornadaLaboral);
             sp.Parameters.AddWithValue("@FinJornada", empleado.pFinJornadaLaboral);
+            sp.Parameters.AddWithValue("@Correo", empleado.pCorreo);
+
+            //RETORNO
+            SqlParameter retorno = new SqlParameter("@retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            sp.Parameters.Add(retorno);
+
+            try
+            {
+                connection.Open();
+
+                //MODIFICAR EMPLEADO
+                sp.ExecuteNonQuery();
+
+                //RETORNO
+                switch ((int)retorno.Value)
+                {
+                    case 1:
+                        //EXITO
+                        break;
+                    //EMPLEADO NO EXISTE
+                    case -1:
+                        throw new Exception("El usuario no existe.");
+                    //EXCEPCION NO CONTROLADA
+                    default:
+                        throw new Exception("Ha ocurrido un error vuelva a intentarlo mas tarde.");
+                }
+            }
+            catch { throw; }
+
+            finally { connection.Close(); }
+        }
+        public void ModificarClave(string usuario, string claveRecuperacion)
+        {
+            //GET CONNECTION STRING
+            SqlConnection connection = new SqlConnection(Conexion.ConnectionString);
+
+            //STORED PROCEDURE
+            SqlCommand sp = new SqlCommand("Modificarclave", connection);
+            sp.CommandType = CommandType.StoredProcedure;
+
+            //PARAMETROS
+            sp.Parameters.AddWithValue("@Usuario", usuario);
+            sp.Parameters.AddWithValue("@Pass", claveRecuperacion);
 
             //RETORNO
             SqlParameter retorno = new SqlParameter("@retorno", SqlDbType.Int);

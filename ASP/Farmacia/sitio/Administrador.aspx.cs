@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using Logica;
 using EntidadesCompartidas;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
+using System.Text;
 
 public partial class Administrador : System.Web.UI.Page
 {
@@ -67,6 +69,9 @@ public partial class Administrador : System.Web.UI.Page
         txtNombre.Enabled = false;
         txtNombre.Text = "";
 
+        TxtCorreo.Enabled = false;
+        TxtCorreo.Text = "";
+
         lblERROR.Text = "";
 
         ddlFinJornadaHoras.Enabled = false;
@@ -114,6 +119,8 @@ public partial class Administrador : System.Web.UI.Page
         txtNombre.Enabled = true;
         txtNombre.Text = ((Empleado)Session["Empleado"]).pNombreCompleto;
 
+        TxtCorreo.Enabled = true;
+
         ddlFinJornadaHoras.Enabled = true;
         ddlFinJornadaHoras.SelectedValue = (Regex.Match(((Empleado)Session["Empleado"]).pFinJornadaLaboral, @"[0-9]+(?=:)")).ToString();
 
@@ -135,13 +142,13 @@ public partial class Administrador : System.Web.UI.Page
             LogicaUsuario logicaUsuario = new LogicaUsuario();
             Session["Empleado"] = logicaUsuario.BuscarUsuario(txtUsuario.Text);
 
-            if (!((Usuario)Session["Empleado"] is Cliente))
+           if (!((Usuario)Session["Empleado"] is Cliente))
                 if ((Usuario)Session["Empleado"] == null)
                     FormularioAlta();
                 else
                     FormularioModificarCancelar();
             else
-                throw new Exception("Este usuario pertenece a un cliente.");
+                throw new Exception("Este usuario pertenece a un estudiante.");
         }
         catch (Exception ex)
         {
@@ -182,7 +189,9 @@ public partial class Administrador : System.Web.UI.Page
             string nombre = txtNombre.Text;
             string inicioJornada = (ddlInicioJornadaHoras.SelectedItem.Text + ":" + ddlInicioJornadaMinutos.SelectedItem.Text);
             string finJornada = (ddlFinJornadaHoras.SelectedItem.Text + ":" + ddlFinJornadaMinutos.SelectedItem.Text);
-            Empleado empleado = new Empleado(usuario, pass, nombre, inicioJornada, finJornada);
+            string Correo = TxtCorreo.Text;
+            string hashedContrasena = CalcularHash(pass);
+            Empleado empleado = new Empleado(usuario, hashedContrasena, nombre, inicioJornada, finJornada, Correo);
 
             LogicaUsuario logicaUsuario = new LogicaUsuario();
             logicaUsuario.ModificarUsuario(empleado);
@@ -207,7 +216,9 @@ public partial class Administrador : System.Web.UI.Page
                 string nombre = txtNombre.Text;
                 string inicioJornada = (ddlInicioJornadaHoras.SelectedItem.Text + ":" + ddlInicioJornadaMinutos.SelectedItem.Text);
                 string finJornada = (ddlFinJornadaHoras.SelectedItem.Text + ":" + ddlFinJornadaMinutos.SelectedItem.Text);
-                Empleado empleado = new Empleado(usuario, pass, nombre, inicioJornada, finJornada);
+                string hashedContrasena = CalcularHash(pass);
+                string Correo = "";
+                Empleado empleado = new Empleado(usuario, hashedContrasena, nombre, inicioJornada, finJornada, Correo);
 
                 LogicaUsuario logicaUsuario = new LogicaUsuario();
                 logicaUsuario.BajaUsuario(empleado);
@@ -233,7 +244,9 @@ public partial class Administrador : System.Web.UI.Page
             string nombre = txtNombre.Text;
             string inicioJornada = (ddlInicioJornadaHoras.SelectedItem.Text + ":" + ddlInicioJornadaMinutos.SelectedItem.Text);
             string finJornada = (ddlFinJornadaHoras.SelectedItem.Text + ":" + ddlFinJornadaMinutos.SelectedItem.Text);
-            Empleado empleado = new Empleado(usuario, pass, nombre, inicioJornada, finJornada);
+            string hashedContrasena = CalcularHash(pass);
+            string Correo = "";
+            Empleado empleado = new Empleado(usuario, hashedContrasena, nombre, inicioJornada, finJornada, Correo);
 
             LogicaUsuario logicaUsuario = new LogicaUsuario();
             logicaUsuario.AltaUsuario(empleado);
@@ -245,6 +258,20 @@ public partial class Administrador : System.Web.UI.Page
         {
             lblERROR.ForeColor = System.Drawing.Color.Red;
             lblERROR.Text = ex.Message;
+        }
+    }
+    private string CalcularHash(string input)
+    {
+        using (SHA256 sha256Hash = SHA256.Create())
+        {
+            byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString("x2"));
+            }
+            return builder.ToString();
         }
     }
 }

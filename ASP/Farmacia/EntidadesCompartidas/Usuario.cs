@@ -31,11 +31,8 @@ namespace EntidadesCompartidas
             get { return Pass; }
             set
             {
-                /*VERIFICAR LONGITUD*/
-                if (value.Trim().Length <= 10 && value.Trim().Length >= 5)
+               
                     Pass = value.Trim().ToUpper();
-                else
-                    throw new Exception("La password debe tener entre 5 y 10 caracteres.");
             }
         }
 
@@ -51,6 +48,7 @@ namespace EntidadesCompartidas
                     throw new Exception("El nombre debe tener entre 3 y 50 caracteres.");
             }
         }
+
 
         /*CONSTRUCTOR*/
         public Usuario(string _NombreUsuario, string _Pass, string _NombreCompleto)
